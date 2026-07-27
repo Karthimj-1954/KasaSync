@@ -9,7 +9,7 @@ import Button from '../../../components/ui/Button';
 import { Home, Mail, Lock, ShieldCheck, UserCheck, Wrench, Building2 } from 'lucide-react';
 
 export default function LoginPage() {
-  const router = Router = useRouter();
+  const router = useRouter();
   const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');

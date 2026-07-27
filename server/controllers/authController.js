@@ -1,16 +1,17 @@
 const User = require('../models/User');
 const ActivityLog = require('../models/ActivityLog');
+const { sendPasswordResetEmail } = require('../services/emailService');
 const jwt = require('jsonwebtoken');
 
 const generateToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_SECRET || 'kasasync_jwt_secret_key_prod_2026', {
-    expiresIn: '7d',
+  return jwt.sign({ id }, process.env.JWT_SECRET, {
+    expiresIn: process.env.JWT_EXPIRES_IN || '15m',
   });
 };
 
 const generateRefreshToken = (id) => {
-  return jwt.sign({ id }, process.env.JWT_REFRESH_SECRET || 'kasasync_refresh_jwt_secret_key_prod_2026', {
-    expiresIn: '30d',
+  return jwt.sign({ id }, process.env.JWT_REFRESH_SECRET, {
+    expiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   });
 };
 
@@ -175,6 +176,9 @@ exports.forgotPassword = async (req, res, next) => {
     if (!user) {
       return res.status(404).json({ success: false, message: 'No user found with that email address' });
     }
+
+    const resetUrl = `${process.env.CLIENT_URL || 'http://localhost:3000'}/reset-password?email=${encodeURIComponent(user.email)}`;
+    await sendPasswordResetEmail(user.email, resetUrl);
 
     res.json({
       success: true,

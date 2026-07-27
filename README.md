@@ -106,3 +106,22 @@ npm run dev
 ```
 
 Visit `http://localhost:3000` in your browser.
+
+---
+
+## 🌐 Production Deployment Architecture
+
+- **Frontend**: Vercel (`https://kasasync.vercel.app`)
+- **Backend API & Real-Time Server**: Railway (`https://kasasync-api-production.up.railway.app`)
+- **Database**: MongoDB Atlas
+- **Storage**: Cloudinary
+- **Email**: Mailtrap (Development) / Gmail SMTP (Production)
+
+### Deploying Backend to Railway
+1. Log in to [Railway](https://railway.app) and create a **New Project** $\rightarrow$ **Deploy from GitHub repo**.
+2. Select your repository and specify the Root Directory as `server`.
+3. Railway automatically detects `server/railway.json` and configures the Nixpacks Node.js builder.
+4. Add your Environment Variables in Railway Settings (`MONGODB_URI`, `JWT_SECRET`, `JWT_REFRESH_SECRET`, `CLOUDINARY_*`, `SMTP_*`, `CLIENT_URL`, `SOCKET_CORS_ORIGIN`).
+5. Copy your Railway Public Domain (e.g., `https://kasasync-api-production.up.railway.app`).
+6. Update `NEXT_PUBLIC_API_URL` and `NEXT_PUBLIC_SOCKET_URL` on Vercel with your Railway URL.
+

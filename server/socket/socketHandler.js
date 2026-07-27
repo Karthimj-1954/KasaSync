@@ -3,10 +3,12 @@ const socketIO = require('socket.io');
 const onlineUsers = new Map(); // userId -> socketId
 
 const initSocket = (server) => {
+  const corsOrigin = process.env.SOCKET_CORS_ORIGIN || process.env.CLIENT_URL || '*';
   const io = socketIO(server, {
     cors: {
-      origin: '*',
+      origin: corsOrigin,
       methods: ['GET', 'POST', 'PUT', 'DELETE'],
+      credentials: true,
     },
   });
 

@@ -21,7 +21,7 @@ export const SocketProvider = ({ children }) => {
 
     newSocket.on('connect', () => {
       setIsConnected(true);
-      console.log('[Socket] Connected to real-time server');
+      console.log('[Socket.IO] Connected to real-time server');
       if (user) {
         newSocket.emit('user:join', user);
       }

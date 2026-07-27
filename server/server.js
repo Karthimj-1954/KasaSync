@@ -1,4 +1,5 @@
 require('dotenv').config();
+const { validateEnv } = require('./config/env');
 const express = require('express');
 const http = require('http');
 const cors = require('cors');
@@ -8,6 +9,9 @@ const rateLimit = require('express-rate-limit');
 const connectDB = require('./config/db');
 const errorHandler = require('./middleware/errorMiddleware');
 const initSocket = require('./socket/socketHandler');
+
+// Validate Startup Environment Variables
+validateEnv();
 
 // Route Imports
 const authRoutes = require('./routes/authRoutes');
@@ -38,6 +42,16 @@ app.use(
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 app.use(morgan('dev'));
+
+// Healthcheck Endpoint for Railway Deployment
+app.get('/api/health', (req, res) => {
+  res.status(200).json({
+    status: 'ok',
+    service: 'KasaSync Express API & Socket Server',
+    timestamp: new Date().toISOString(),
+    uptime: process.uptime(),
+  });
+});
 
 // Rate Limiting
 const limiter = rateLimit({

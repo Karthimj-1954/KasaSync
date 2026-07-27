@@ -13,7 +13,8 @@ import { formatDate } from '../../../../lib/utils';
 import toast from 'react-hot-toast';
 
 export default function MaintenanceDetailPage({ params }) {
-  const { id } = use(params);
+  const resolvedParams = React.use(Promise.resolve(params));
+  const id = resolvedParams?.id;
   const { user } = useAuth();
   const [ticket, setTicket] = useState(null);
   const [loading, setLoading] = useState(true);

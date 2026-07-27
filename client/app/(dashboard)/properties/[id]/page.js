@@ -12,7 +12,8 @@ import { formatPrice } from '../../../../lib/utils';
 import toast from 'react-hot-toast';
 
 export default function PropertyDetailPage({ params }) {
-  const { id } = use(params);
+  const resolvedParams = React.use(Promise.resolve(params));
+  const id = resolvedParams?.id;
   const { user } = useAuth();
   const [property, setProperty] = useState(null);
   const [loading, setLoading] = useState(true);
