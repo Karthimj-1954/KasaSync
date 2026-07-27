@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
@@ -51,11 +52,13 @@ export default function TenantDashboard({ data }) {
             <Badge status="Occupied">Active Lease</Badge>
           </CardHeader>
           <CardContent className="grid md:grid-cols-3 gap-6 pt-4">
-            <div className="md:col-span-1 rounded-xl overflow-hidden h-40">
-              <img
+            <div className="md:col-span-1 rounded-xl overflow-hidden h-40 relative">
+              <Image
                 src={property.images?.[0] || 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688'}
-                alt={property.title}
-                className="w-full h-full object-cover"
+                alt={property.title || 'Current residence'}
+                fill
+                sizes="(max-width: 768px) 100vw, 33vw"
+                className="object-cover"
               />
             </div>
             <div className="md:col-span-2 space-y-3">
