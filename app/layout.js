@@ -3,6 +3,7 @@ import { AuthProvider } from '../context/AuthContext';
 import { SocketProvider } from '../context/SocketContext';
 import { ThemeProvider } from '../context/ThemeContext';
 import { Toaster } from 'react-hot-toast';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata = {
   title: 'KasaSync - Real-Time Property, Maintenance & Amenity Management',
@@ -29,6 +30,7 @@ export default function RootLayout({ children }) {
                 }}
               />
               {children}
+              <Analytics />
             </ThemeProvider>
           </SocketProvider>
         </AuthProvider>
