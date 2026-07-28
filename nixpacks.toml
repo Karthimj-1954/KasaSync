@@ -1,4 +1,1 @@
-providers = ["node"]
-
-[start]
-cmd = "cd server && npm start"
+# Obsolete deployment manifest - Vercel handles Next.js zero-config
