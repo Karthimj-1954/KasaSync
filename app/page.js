@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import Button from '../components/ui/Button';
+import Button from '@/components/ui/Button';
 import { Home, Building2, Wrench, Sparkles, ShieldCheck, ArrowRight, Activity, Users, CalendarCheck } from 'lucide-react';
 
 export default function LandingPage() {

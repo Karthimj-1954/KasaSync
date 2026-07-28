@@ -3,9 +3,9 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../../context/AuthContext';
-import Input from '../../../components/ui/Input';
-import Button from '../../../components/ui/Button';
+import { useAuth } from '@/context/AuthContext';
+import Input from '@/components/ui/Input';
+import Button from '@/components/ui/Button';
 import { Home, Mail, Lock, ShieldCheck, UserCheck, Wrench, Building2 } from 'lucide-react';
 
 export default function LoginPage() {

@@ -3,10 +3,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { useAuth } from '../../../context/AuthContext';
-import Input from '../../../components/ui/Input';
-import Select from '../../../components/ui/Select';
-import Button from '../../../components/ui/Button';
+import { useAuth } from '@/context/AuthContext';
+import Input from '@/components/ui/Input';
+import Select from '@/components/ui/Select';
+import Button from '@/components/ui/Button';
 import { Home, User, Mail, Lock, Phone } from 'lucide-react';
 
 export default function RegisterPage() {
