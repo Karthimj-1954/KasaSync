@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { maintenanceService } from '../../../services/maintenanceService';
 import { propertyService } from '../../../services/propertyService';
@@ -11,12 +11,14 @@ import Input from '../../../components/ui/Input';
 import Select from '../../../components/ui/Select';
 import Modal from '../../../components/ui/Modal';
 import { useAuth } from '../../../context/AuthContext';
-import { Wrench, Plus, Clock, CheckCircle2, AlertTriangle, ArrowRight } from 'lucide-react';
+import { Wrench, Plus, Clock, CheckCircle2, AlertTriangle, ArrowRight, Upload, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 import { formatDate } from '../../../lib/utils';
 
 export default function MaintenancePage() {
   const { user } = useAuth();
+  const fileInputRef = useRef(null);
+
   const [requests, setRequests] = useState([]);
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -26,7 +28,7 @@ export default function MaintenancePage() {
     description: '',
     propertyId: '',
     priority: 'Medium',
-    image: 'https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&q=80&w=800',
+    image: '',
   });
   const [submitting, setSubmitting] = useState(false);
 
@@ -53,6 +55,24 @@ export default function MaintenancePage() {
     loadData();
   }, []);
 
+  const handleTicketPhotoUpload = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        toast.error('Please select a valid image file');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setCreateData((prev) => ({ ...prev, image: event.target.result }));
+          toast.success('Issue photo attached!');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
   const handleCreateSubmit = async (e) => {
     e.preventDefault();
     setSubmitting(true);
@@ -66,6 +86,13 @@ export default function MaintenancePage() {
       });
       toast.success('Maintenance ticket submitted!');
       setShowCreateModal(false);
+      setCreateData({
+        title: '',
+        description: '',
+        propertyId: properties[0]?._id || '',
+        priority: 'Medium',
+        image: '',
+      });
       loadData();
     } catch (err) {
       toast.error('Failed to create maintenance ticket.');
@@ -135,7 +162,7 @@ export default function MaintenancePage() {
         </div>
       )}
 
-      {/* Create Ticket Modal */}
+      {/* Create Ticket Modal with File Upload */}
       <Modal isOpen={showCreateModal} onClose={() => setShowCreateModal(false)} title="Report Maintenance Issue">
         <form onSubmit={handleCreateSubmit} className="space-y-4">
           <Input
@@ -170,6 +197,38 @@ export default function MaintenancePage() {
               className="w-full glass-input rounded-xl p-3 text-xs focus:ring-2 focus:ring-blue-500/50"
               required
             />
+          </div>
+
+          {/* Maintenance Issue Photo File Upload Dropzone */}
+          <div className="space-y-1.5">
+            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">Attach Issue Photo File</label>
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleTicketPhotoUpload}
+              accept="image/*"
+              className="hidden"
+            />
+            {createData.image ? (
+              <div className="relative rounded-xl overflow-hidden border border-slate-800 h-36">
+                <img src={createData.image} alt="Issue photo" className="w-full h-full object-cover" />
+                <button
+                  type="button"
+                  onClick={() => setCreateData({ ...createData, image: '' })}
+                  className="absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/80 text-rose-400 hover:bg-slate-900 transition"
+                >
+                  <X className="w-4 h-4" />
+                </button>
+              </div>
+            ) : (
+              <div
+                onClick={() => fileInputRef.current?.click()}
+                className="border-2 border-dashed border-slate-800 hover:border-blue-500/50 bg-slate-900/40 p-4 rounded-xl text-center cursor-pointer transition flex items-center justify-center gap-3"
+              >
+                <Upload className="w-5 h-5 text-blue-400" />
+                <span className="text-xs text-slate-300 font-semibold">Upload Photo File from Device</span>
+              </div>
+            )}
           </div>
 
           <Button type="submit" variant="emerald" loading={submitting} className="w-full">
