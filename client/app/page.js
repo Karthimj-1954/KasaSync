@@ -42,7 +42,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold backdrop-blur-md">
             <Sparkles className="w-4 h-4" />
-            <span>Next.js 15 • Socket.IO Real-Time Engine • Enterprise Grade</span>
+            <span>Next.js 15 • Full Stack Vercel Serverless • Enterprise Grade</span>
           </div>
 
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
@@ -105,7 +105,7 @@ export default function LandingPage() {
               </div>
               <h3 className="text-base font-bold text-white">Real-Time Sync</h3>
               <p className="text-xs text-slate-400 mt-2">
-                Socket.IO powered instant messaging, status push notifications, and live presence indicators.
+                Vercel serverless messaging, status push notifications, and live presence indicators.
               </p>
             </div>
           </div>
