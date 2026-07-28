@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '../../../lib/mongodb';
 import Property from '../../../models/Property';
 
+export const dynamic = 'force-dynamic';
+
 const MOCK_PROPERTIES = [
   {
     _id: 'prop_1',

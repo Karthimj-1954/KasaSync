@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '../../../lib/mongodb';
 import MaintenanceRequest from '../../../models/MaintenanceRequest';
 
+export const dynamic = 'force-dynamic';
+
 const MOCK_MAINTENANCE = [
   {
     _id: 'maint_1',

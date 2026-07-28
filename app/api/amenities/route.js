@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '../../../lib/mongodb';
 import Amenity from '../../../models/Amenity';
 
+export const dynamic = 'force-dynamic';
+
 const MOCK_AMENITIES = [
   { _id: 'amenity_1', id: 'amenity_1', name: 'Equinox Elite Fitness Center', category: 'Gym', capacity: 35, openingTime: '05:00', closingTime: '23:00', images: ['https://images.unsplash.com/photo-1534438327276-14e5300c3a48'], isActive: true },
   { _id: 'amenity_2', id: 'amenity_2', name: 'Skyline Infinity Pool & Lounge', category: 'Swimming Pool', capacity: 25, openingTime: '07:00', closingTime: '21:00', images: ['https://images.unsplash.com/photo-1576013551627-0cc20b96c2a7'], isActive: true },

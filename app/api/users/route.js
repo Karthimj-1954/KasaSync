@@ -2,6 +2,8 @@ import { NextResponse } from 'next/server';
 import connectToDatabase from '../../../lib/mongodb';
 import User from '../../../models/User';
 
+export const dynamic = 'force-dynamic';
+
 const MOCK_USERS = [
   { _id: 'usr_1', name: 'Eleanor Vance (Admin)', email: 'admin@kasasync.com', role: 'Admin', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb' },
   { _id: 'usr_2', name: 'Marcus Sterling (Owner)', email: 'owner@kasasync.com', role: 'Property Owner', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d' },
