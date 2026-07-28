@@ -40,10 +40,6 @@ export default function LandingPage() {
       {/* Hero Section */}
       <main className="flex-1 pt-32 pb-20 px-6">
         <div className="max-w-6xl mx-auto text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 text-xs font-semibold backdrop-blur-md">
-            <Sparkles className="w-4 h-4" />
-            <span>Next.js 15 • Full Stack Vercel Serverless • Enterprise Grade</span>
-          </div>
 
           <h1 className="text-4xl md:text-6xl font-black tracking-tight leading-tight max-w-4xl mx-auto">
             Smart Property Management in <span className="bg-gradient-to-r from-blue-400 via-emerald-400 to-teal-300 bg-clip-text text-transparent">Real Time</span>
