@@ -1,6 +1,7 @@
 {
   "name": "kasasync",
   "version": "1.0.0",
+  "description": "Full-Stack Next.js 15 Property Management Platform",
   "private": true,
   "scripts": {
     "dev": "next dev -p 3000",
