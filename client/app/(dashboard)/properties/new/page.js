@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import Input from '../../../../components/ui/Input';
@@ -8,11 +8,13 @@ import Select from '../../../../components/ui/Select';
 import Button from '../../../../components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../../components/ui/Card';
 import { propertyService } from '../../../../services/propertyService';
-import { ArrowLeft, Building2, Plus, Upload } from 'lucide-react';
+import { ArrowLeft, Building2, Plus, Upload, Image as ImageIcon, X } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function NewPropertyPage() {
   const router = useRouter();
+  const fileInputRef = useRef(null);
+
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -25,9 +27,37 @@ export default function NewPropertyPage() {
     city: '',
     state: '',
     zipCode: '',
-    images: 'https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800',
   });
+
+  const [imagePreview, setImagePreview] = useState('https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&q=80&w=800');
+  const [uploadMode, setUploadMode] = useState('file');
+  const [imageUrlInput, setImageUrlInput] = useState('');
   const [loading, setLoading] = useState(false);
+
+  const handleFileChange = (e) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (!file.type.startsWith('image/')) {
+        toast.error('Please select a valid image file (PNG, JPG, WEBP)');
+        return;
+      }
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          setImagePreview(event.target.result);
+          toast.success('Property photo selected!');
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handleUrlSubmit = () => {
+    if (imageUrlInput.trim()) {
+      setImagePreview(imageUrlInput.trim());
+      toast.success('Image URL updated!');
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -48,7 +78,7 @@ export default function NewPropertyPage() {
           state: formData.state,
           zipCode: formData.zipCode,
         },
-        images: formData.images ? [formData.images] : [],
+        images: imagePreview ? [imagePreview] : [],
       });
       toast.success('Property listing published successfully!');
       router.push('/properties');
@@ -67,7 +97,7 @@ export default function NewPropertyPage() {
 
       <div>
         <h2 className="text-2xl font-black text-white">Add New Property Listing</h2>
-        <p className="text-xs text-slate-400">Publish a new rental unit to the KasaSync platform</p>
+        <p className="text-xs text-slate-400">Publish a new rental unit to the KasaSync platform in INR (₹)</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -93,9 +123,9 @@ export default function NewPropertyPage() {
               />
 
               <Input
-                label="Monthly Rent Price ($)"
+                label="Monthly Rent Price (₹)"
                 type="number"
-                placeholder="4500"
+                placeholder="e.g. 45000"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                 required
@@ -145,6 +175,7 @@ export default function NewPropertyPage() {
           </CardContent>
         </Card>
 
+        {/* Location Address */}
         <Card>
           <CardHeader>
             <CardTitle>Location Address</CardTitle>
@@ -152,7 +183,7 @@ export default function NewPropertyPage() {
           <CardContent className="space-y-4">
             <Input
               label="Street Address"
-              placeholder="123 Ocean Boulevard"
+              placeholder="123 MG Road, Suite 400"
               value={formData.street}
               onChange={(e) => setFormData({ ...formData, street: e.target.value })}
               required
@@ -161,7 +192,7 @@ export default function NewPropertyPage() {
             <div className="grid grid-cols-3 gap-4">
               <Input
                 label="City"
-                placeholder="Miami"
+                placeholder="Bengaluru"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 required
@@ -169,15 +200,15 @@ export default function NewPropertyPage() {
 
               <Input
                 label="State"
-                placeholder="FL"
+                placeholder="Karnataka"
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 required
               />
 
               <Input
-                label="Zip Code"
-                placeholder="33139"
+                label="Zip / Pincode"
+                placeholder="560001"
                 value={formData.zipCode}
                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                 required
@@ -186,23 +217,96 @@ export default function NewPropertyPage() {
           </CardContent>
         </Card>
 
+        {/* Photo Upload & Preview Card */}
         <Card>
-          <CardHeader>
-            <CardTitle>Property Cover Photo URL</CardTitle>
+          <CardHeader className="flex flex-row items-center justify-between pb-3">
+            <CardTitle className="flex items-center gap-2">
+              <ImageIcon className="w-4 h-4 text-blue-400" />
+              <span>Property Cover Photo Upload</span>
+            </CardTitle>
+            <div className="flex gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-[11px] font-semibold">
+              <button
+                type="button"
+                onClick={() => setUploadMode('file')}
+                className={`px-3 py-1 rounded-lg transition ${uploadMode === 'file' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
+              >
+                Upload File
+              </button>
+              <button
+                type="button"
+                onClick={() => setUploadMode('url')}
+                className={`px-3 py-1 rounded-lg transition ${uploadMode === 'url' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
+              >
+                Paste Image URL
+              </button>
+            </div>
           </CardHeader>
-          <CardContent>
-            <Input
-              label="Photo URL (Unsplash or Cloudinary)"
-              placeholder="https://images.unsplash.com/..."
-              value={formData.images}
-              onChange={(e) => setFormData({ ...formData, images: e.target.value })}
-              icon={Upload}
-            />
+          <CardContent className="space-y-4">
+            {uploadMode === 'file' ? (
+              <div className="space-y-3">
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/png, image/jpeg, image/webp, image/gif"
+                  className="hidden"
+                />
+
+                <div
+                  onClick={() => fileInputRef.current?.click()}
+                  className="border-2 border-dashed border-slate-700/80 hover:border-blue-500/60 bg-slate-900/40 hover:bg-slate-900/80 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 group"
+                >
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/20 text-blue-400 flex items-center justify-center transition">
+                    <Upload className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <p className="text-sm font-bold text-white">Click to Upload Photo File</p>
+                    <p className="text-xs text-slate-400 mt-0.5">PNG, JPG, WEBP or GIF (Max 10MB)</p>
+                  </div>
+                  <Button type="button" variant="outline" size="sm" className="mt-2">
+                    Browse Computer Files
+                  </Button>
+                </div>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                <div className="flex gap-2">
+                  <Input
+                    placeholder="https://images.unsplash.com/..."
+                    value={imageUrlInput}
+                    onChange={(e) => setImageUrlInput(e.target.value)}
+                    icon={Upload}
+                    className="flex-1"
+                  />
+                  <Button type="button" variant="secondary" size="md" onClick={handleUrlSubmit}>
+                    Set URL
+                  </Button>
+                </div>
+              </div>
+            )}
+
+            {imagePreview && (
+              <div className="space-y-2 pt-2">
+                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Selected Cover Photo Preview</p>
+                <div className="relative h-56 rounded-2xl overflow-hidden border border-slate-800 group">
+                  <img src={imagePreview} alt="Property preview" className="w-full h-full object-cover" />
+                  <div className="absolute top-3 right-3 flex gap-2">
+                    <button
+                      type="button"
+                      onClick={() => fileInputRef.current?.click()}
+                      className="px-3 py-1.5 rounded-xl bg-slate-900/80 backdrop-blur-md text-xs font-semibold text-white border border-slate-700 hover:bg-slate-900 transition"
+                    >
+                      Change Photo
+                    </button>
+                  </div>
+                </div>
+              </div>
+            )}
           </CardContent>
         </Card>
 
-        <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full">
-          Publish Property Listing
+        <Button type="submit" variant="emerald" size="lg" loading={loading} className="w-full">
+          Publish Property Listing (INR ₹)
         </Button>
       </form>
     </div>

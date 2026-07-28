@@ -68,7 +68,7 @@ export default function PropertyFilter({ filters, onChange, onReset }) {
 
         <Input
           type="number"
-          placeholder="Max Price ($/mo)"
+          placeholder="Max price (₹)"
           value={filters.maxPrice}
           onChange={(e) => onChange({ ...filters, maxPrice: e.target.value })}
         />
