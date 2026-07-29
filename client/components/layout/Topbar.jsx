@@ -32,19 +32,19 @@ export default function Topbar() {
   };
 
   return (
-    <header className="sticky top-0 z-20 bg-white/90 backdrop-blur-md border-b border-[#E7EEF4] px-6 py-3.5 flex items-center justify-between shadow-sm">
+    <header className="sticky top-0 z-20 bg-[#FFF7D6] backdrop-blur-md border-b border-[#C7D7EA] px-6 py-3 flex items-center justify-between shadow-sm">
       <div className="relative w-80">
-        <Search className="w-4 h-4 absolute left-3.5 top-3 text-[#78A4CB]" />
+        <Search className="w-4 h-4 absolute left-3.5 top-3 text-[#5E8FBF]" />
         <input
           type="text"
           placeholder="Search properties, amenities, tickets..."
-          className="w-full bg-white border-1.5 border-[#95BDD7] text-[#24425C] placeholder-[#7D8F9C] rounded-[12px] text-xs font-medium pl-10 pr-4 py-2.5 transition-all focus:outline-none focus:border-[#78A4CB] focus:ring-4 focus:ring-[#78A4CB]/20"
+          className="w-full bg-white border-1.5 border-[#C7D7EA] text-[#1F2937] placeholder-[#94A3B8] rounded-[12px] text-xs font-normal pl-10 pr-4 py-2.5 transition-all focus:outline-none focus:border-[#7AA7D9] focus:ring-4 focus:ring-[#7AA7D9]/20"
         />
       </div>
 
       <div className="flex items-center gap-4">
-        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#B4E1EB]/30 border border-[#95BDD7]/50 text-[11px] font-bold text-[#24425C]">
-          <Wifi className={cn('w-3 h-3', isConnected ? 'text-emerald-600 animate-pulse' : 'text-[#6F8190]')} />
+        <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#C7D7EA] text-xs font-semibold text-[#183153] shadow-sm">
+          <Wifi className={cn('w-3.5 h-3.5', isConnected ? 'text-[#2E8B57] animate-pulse' : 'text-[#6B7A90]')} />
           <span>{isConnected ? 'Real-Time Live' : 'Connecting'}</span>
         </div>
 
@@ -54,31 +54,31 @@ export default function Topbar() {
               setShowNotifications(!showNotifications);
               if (!showNotifications) handleMarkRead();
             }}
-            className="relative p-2.5 rounded-xl bg-white border border-[#95BDD7] hover:bg-[#B4E1EB]/30 text-[#78A4CB] hover:text-[#24425C] transition"
+            className="relative p-2.5 rounded-xl bg-white border border-[#C7D7EA] hover:bg-[#EAF3FA] text-[#5E8FBF] hover:text-[#2B5F9E] transition shadow-sm cursor-pointer"
           >
             <Bell className="w-4 h-4" />
             {unreadCount > 0 && (
-              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#78A4CB] text-white text-[9px] font-black flex items-center justify-center">
+              <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#5E8FBF] text-white text-[9px] font-bold flex items-center justify-center">
                 {unreadCount}
               </span>
             )}
           </button>
 
           {showNotifications && (
-            <div className="absolute right-0 mt-3 w-80 bg-white border border-[#E7EEF4] rounded-[20px] shadow-2xl p-4 z-50 space-y-3">
-              <div className="flex items-center justify-between pb-2 border-b border-[#E7EEF4]">
-                <h4 className="text-xs font-bold text-[#24425C] font-poppins">Notifications</h4>
-                <span className="text-[10px] text-[#6F8190]">{notifications.length} total</span>
+            <div className="absolute right-0 mt-3 w-80 bg-white border border-[#C7D7EA] rounded-[20px] shadow-2xl p-4 z-50 space-y-3">
+              <div className="flex items-center justify-between pb-2 border-b border-[#EAF3FA]">
+                <h4 className="text-sm font-bold text-[#183153] font-poppins">Notifications</h4>
+                <span className="text-xs text-[#6B7A90]">{notifications.length} total</span>
               </div>
               <div className="max-h-64 overflow-y-auto space-y-2">
                 {notifications.length === 0 ? (
-                  <p className="text-xs text-[#6F8190] text-center py-4">No notifications</p>
+                  <p className="text-xs text-[#6B7A90] text-center py-4">No notifications</p>
                 ) : (
                   notifications.map((n) => (
-                    <div key={n._id} className="p-2.5 rounded-xl bg-[#B4E1EB]/20 border border-[#95BDD7]/30 text-xs space-y-1">
-                      <p className="font-bold text-[#24425C]">{n.title}</p>
-                      <p className="text-[11px] text-[#4F6475]">{n.message}</p>
-                      <p className="text-[9px] text-[#6F8190]">{formatDate(n.createdAt)}</p>
+                    <div key={n._id} className="p-2.5 rounded-xl bg-[#EAF3FA]/60 border border-[#C7D7EA]/50 text-xs space-y-1">
+                      <p className="font-bold text-[#183153]">{n.title}</p>
+                      <p className="text-xs text-[#425466]">{n.message}</p>
+                      <p className="text-[10px] text-[#6B7A90]">{formatDate(n.createdAt)}</p>
                     </div>
                   ))
                 )}
@@ -91,27 +91,27 @@ export default function Topbar() {
           <div className="relative">
             <button
               onClick={() => setShowProfileMenu(!showProfileMenu)}
-              className="flex items-center gap-2.5 p-1.5 rounded-xl hover:bg-[#B4E1EB]/30 transition"
+              className="flex items-center gap-2.5 p-1 rounded-xl hover:bg-white/80 transition cursor-pointer"
             >
-              <Image src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'} alt={user.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover border-2 border-[#78A4CB]" />
-              <span className="text-xs font-bold text-[#24425C] font-poppins hidden sm:inline">{user.name}</span>
+              <Image src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'} alt={user.name} width={32} height={32} className="w-8 h-8 rounded-full object-cover border-2 border-[#5E8FBF]" />
+              <span className="text-xs font-bold text-[#183153] font-poppins hidden sm:inline">{user.name}</span>
             </button>
 
             {showProfileMenu && (
-              <div className="absolute right-0 mt-3 w-48 bg-white border border-[#E7EEF4] rounded-[20px] shadow-2xl p-2 z-50 space-y-1">
+              <div className="absolute right-0 mt-3 w-48 bg-white border border-[#C7D7EA] rounded-[20px] shadow-2xl p-2 z-50 space-y-1">
                 <Link
                   href="/settings"
                   onClick={() => setShowProfileMenu(false)}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#365E7C] hover:bg-[#B4E1EB]/30 hover:text-[#24425C] transition"
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#425466] hover:bg-[#EAF3FA] hover:text-[#183153] transition"
                 >
-                  <User className="w-4 h-4 text-[#78A4CB]" />
+                  <User className="w-4 h-4 text-[#5E8FBF]" />
                   <span>Profile Settings</span>
                 </Link>
                 <button
                   onClick={logout}
-                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-rose-600 hover:bg-rose-50 transition w-full text-left"
+                  className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#D14343] hover:bg-rose-50 transition w-full text-left cursor-pointer"
                 >
-                  <LogOut className="w-4 h-4 text-rose-500" />
+                  <LogOut className="w-4 h-4 text-[#D14343]" />
                   <span>Log Out</span>
                 </button>
               </div>

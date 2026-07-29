@@ -7,8 +7,8 @@ export function Card({ className, hover = true, children, ...props }) {
   return (
     <div
       className={cn(
-        'bg-white border border-[#E7EEF4] rounded-[20px] p-6 shadow-sm shadow-slate-200/50 transition-all duration-300',
-        hover && 'hover:-translate-y-1.5 hover:shadow-xl hover:shadow-[#78A4CB]/10 hover:border-[#95BDD7]',
+        'bg-white border border-[#EAF3FA] rounded-[20px] p-6 shadow-sm shadow-slate-200/40 transition-all duration-250',
+        hover && 'hover:-translate-y-1 hover:shadow-xl hover:shadow-[#183153]/05 hover:border-[#C7D7EA]',
         className
       )}
       {...props}
@@ -20,7 +20,7 @@ export function Card({ className, hover = true, children, ...props }) {
 
 export function CardHeader({ className, children, ...props }) {
   return (
-    <div className={cn('flex flex-col space-y-1.5 pb-4 border-b border-[#E7EEF4]', className)} {...props}>
+    <div className={cn('flex flex-col space-y-1.5 pb-4 border-b border-[#EAF3FA]', className)} {...props}>
       {children}
     </div>
   );
@@ -28,7 +28,7 @@ export function CardHeader({ className, children, ...props }) {
 
 export function CardTitle({ className, children, ...props }) {
   return (
-    <h3 className={cn('text-lg font-bold tracking-tight text-[#24425C] font-poppins', className)} {...props}>
+    <h3 className={cn('text-lg font-bold tracking-tight text-[#183153] font-poppins', className)} {...props}>
       {children}
     </h3>
   );
@@ -36,7 +36,7 @@ export function CardTitle({ className, children, ...props }) {
 
 export function CardDescription({ className, children, ...props }) {
   return (
-    <p className={cn('text-xs text-[#6F8190]', className)} {...props}>
+    <p className={cn('text-xs font-normal text-[#60758C]', className)} {...props}>
       {children}
     </p>
   );
@@ -44,7 +44,7 @@ export function CardDescription({ className, children, ...props }) {
 
 export function CardContent({ className, children, ...props }) {
   return (
-    <div className={cn('pt-4', className)} {...props}>
+    <div className={cn('pt-4 text-[#425466]', className)} {...props}>
       {children}
     </div>
   );

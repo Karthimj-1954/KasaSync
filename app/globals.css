@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,116 +6,159 @@
 
 @layer base {
   :root {
-    --primary-cream: #F9E8A2;
-    --light-sky: #B4E1EB;
-    --soft-steel: #95BDD7;
-    --muted-blue: #78A4CB;
-    --heading-dark: #24425C;
-    --heading-sub: #365E7C;
-    --body-text: #4F6475;
-    --muted-text: #6F8190;
-    --label-text: #5A6E7C;
-    --link-color: #3F7AA5;
-    --link-hover: #24425C;
-    --card-bg: #FFFFFF;
-    --card-border: #E7EEF4;
-    --footer-bg: #24425C;
-    --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    /* Centralized Design Tokens */
+    --color-heading: #183153;
+    --color-heading-sub: #1F3A5F;
+    --color-body: #425466;
+    --color-secondary: #6B7A90;
+    --color-label: #34495E;
+    --color-input-text: #1F2937;
+    --color-placeholder: #94A3B8;
+    --color-focus-border: #7AA7D9;
+
+    --color-btn-primary-bg: #5E8FBF;
+    --color-btn-primary-hover: #4B7CAD;
+    --color-btn-sec-bg: #EAF3FA;
+    --color-btn-sec-text: #183153;
+    --color-btn-sec-border: #C7D7EA;
+
+    --color-card-title: #183153;
+    --color-card-desc: #60758C;
+    --color-card-value: #17324D;
+
+    --color-link: #3E7CB1;
+    --color-link-hover: #2B5F9E;
+
+    --color-sidebar-bg: #EAF3FA;
+    --color-sidebar-text: #425466;
+    --color-sidebar-active-bg: #C7DDF3;
+    --color-sidebar-active-text: #183153;
+
+    --color-navbar-bg: #FFF7D6;
+    --color-navbar-logo: #183153;
+    --color-navbar-menu: #425466;
+    --color-navbar-hover: #2B5F9E;
+
+    --color-table-header: #17324D;
+    --color-table-rows: #4A5F77;
+    --color-table-alt: #F7FAFC;
+
+    --status-success: #2E8B57;
+    --status-warning: #C68A00;
+    --status-danger: #D14343;
+    --status-info: #3E7CB1;
   }
 
   body {
-    background-color: var(--primary-cream);
-    color: var(--body-text);
+    background-color: #F8FAFC;
+    color: var(--color-body);
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.6;
     overflow-x: hidden;
     min-height: 100vh;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
-    color: var(--heading-dark);
+  h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 40px;
     font-weight: 700;
+    color: var(--color-heading);
+    line-height: 1.25;
+  }
+
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--color-heading);
+    line-height: 1.3;
+  }
+
+  h3 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--color-heading);
+    line-height: 1.35;
+  }
+
+  h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-heading);
+    line-height: 1.4;
   }
 }
 
-/* Premium Component Utilities */
-.glass-panel, .kasasync-card {
-  background-color: #FFFFFF;
-  border: 1px solid #E7EEF4;
-  border-radius: 20px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.kasasync-card-hover:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
-  border-color: #95BDD7;
-}
-
-.glass-input {
-  background-color: #FFFFFF;
-  border: 1.5px solid #95BDD7;
-  color: #24425C;
-  border-radius: 12px;
-  transition: all 0.25s ease;
-}
-
-.glass-input:focus {
-  outline: none;
-  border-color: #78A4CB;
-  box-shadow: 0 0 0 4px rgba(120, 164, 203, 0.25);
-}
-
-.glass-input::placeholder {
-  color: #7D8F9C;
-}
-
-/* Buttons */
+/* Design Tokens Utilities */
 .btn-kasasync-primary {
-  background-color: #78A4CB;
+  background-color: #5E8FBF;
   color: #FFFFFF;
   border-radius: 14px;
   font-weight: 600;
-  box-shadow: 0 4px 14px rgba(120, 164, 203, 0.25);
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
+  box-shadow: 0 4px 12px rgba(94, 143, 191, 0.25);
 }
 
 .btn-kasasync-primary:hover {
-  background-color: #5E91BA;
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(120, 164, 203, 0.35);
+  background-color: #4B7CAD;
+  transform: translateY(-1px);
 }
 
 .btn-kasasync-secondary {
-  background-color: #95BDD7;
-  color: #24425C;
+  background-color: #EAF3FA;
+  color: #183153;
+  border: 1px solid #C7D7EA;
   border-radius: 14px;
   font-weight: 600;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-kasasync-secondary:hover {
-  background-color: #78A4CB;
-  color: #FFFFFF;
-  transform: translateY(-2px);
+  background-color: #C7DDF3;
+  color: #183153;
 }
 
 .btn-kasasync-outline {
   background-color: #FFFFFF;
-  border: 1.5px solid #78A4CB;
-  color: #365E7C;
+  color: #183153;
+  border: 1.5px solid #5E8FBF;
   border-radius: 14px;
   font-weight: 600;
-  transition: all 0.25s ease;
+  transition: all 0.2s ease;
 }
 
 .btn-kasasync-outline:hover {
-  background-color: #B4E1EB;
-  color: #24425C;
-  border-color: #95BDD7;
-  transform: translateY(-2px);
+  background-color: #EAF3FA;
+  color: #2B5F9E;
+}
+
+.kasasync-card {
+  background-color: #FFFFFF;
+  border: 1px solid #EAF3FA;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(24, 49, 83, 0.05);
+  transition: all 0.25s ease;
+}
+
+.kasasync-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 36px rgba(24, 49, 83, 0.08);
+  border-color: #C7D7EA;
+}
+
+.kasasync-link {
+  color: #3E7CB1;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.kasasync-link:hover {
+  color: #2B5F9E;
+  text-decoration: underline;
 }
 
 /* Custom Scrollbar */
@@ -125,14 +168,14 @@
 }
 
 ::-webkit-scrollbar-track {
-  background: #F9E8A2;
+  background: #EAF3FA;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #95BDD7;
+  background: #5E8FBF;
   border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #78A4CB;
+  background: #4B7CAD;
 }

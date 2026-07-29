@@ -15,15 +15,15 @@ export default function Button({
   onClick,
   ...props
 }) {
-  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-[14px] transition-all duration-250 focus:outline-none focus:ring-2 focus:ring-[#78A4CB]/40 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none';
+  const baseStyles = 'inline-flex items-center justify-center font-semibold rounded-[14px] transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#7AA7D9]/40 active:scale-[0.98] disabled:opacity-50 disabled:pointer-events-none cursor-pointer';
 
   const variants = {
-    primary: 'bg-[#78A4CB] hover:bg-[#5E91BA] text-white shadow-md shadow-[#78A4CB]/25',
-    emerald: 'bg-[#78A4CB] hover:bg-[#5E91BA] text-white shadow-md shadow-[#78A4CB]/25',
-    secondary: 'bg-[#95BDD7] hover:bg-[#78A4CB] text-[#24425C] hover:text-white',
-    outline: 'bg-white border-1.5 border-[#78A4CB] text-[#365E7C] hover:bg-[#B4E1EB] hover:text-[#24425C]',
-    ghost: 'text-[#365E7C] hover:bg-[#B4E1EB]/50 hover:text-[#24425C]',
-    danger: 'bg-rose-500 hover:bg-rose-600 text-white shadow-md shadow-rose-500/20',
+    primary: 'bg-[#5E8FBF] hover:bg-[#4B7CAD] text-white shadow-md shadow-[#5E8FBF]/25',
+    emerald: 'bg-[#5E8FBF] hover:bg-[#4B7CAD] text-white shadow-md shadow-[#5E8FBF]/25',
+    secondary: 'bg-[#EAF3FA] hover:bg-[#C7DDF3] text-[#183153] border border-[#C7D7EA]',
+    outline: 'bg-white border-1.5 border-[#5E8FBF] text-[#183153] hover:bg-[#EAF3FA] hover:text-[#2B5F9E]',
+    ghost: 'text-[#425466] hover:bg-[#EAF3FA] hover:text-[#183153]',
+    danger: 'bg-[#D14343] hover:bg-rose-700 text-white shadow-md shadow-rose-500/20',
   };
 
   const sizes = {

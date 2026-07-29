@@ -32,63 +32,63 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-[#F9E8A2] text-[#4F6475] relative">
-      <div className="w-full max-w-md bg-white rounded-[20px] p-8 border border-[#E7EEF4] shadow-2xl relative z-10 space-y-6">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#F8FAFC] text-[#425466] relative">
+      <div className="w-full max-w-md bg-white rounded-[20px] p-8 border border-[#EAF3FA] shadow-2xl relative z-10 space-y-6">
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2.5 mb-1">
-            <div className="w-10 h-10 rounded-2xl bg-[#78A4CB] flex items-center justify-center shadow-md shadow-[#78A4CB]/20">
+            <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
               <Home className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-black text-[#24425C] font-poppins">KasaSync</span>
+            <span className="text-2xl font-bold text-[#183153] font-poppins">KasaSync</span>
           </Link>
-          <h2 className="text-xl font-bold text-[#24425C] font-poppins">Welcome back</h2>
-          <p className="text-xs text-[#6F8190]">Sign in to your KasaSync property portal</p>
+          <h2 className="text-xl font-bold text-[#183153] font-poppins">Welcome back</h2>
+          <p className="text-xs font-normal text-[#60758C]">Sign in to your KasaSync property portal</p>
         </div>
 
         <div className="space-y-2">
-          <p className="text-[11px] font-bold uppercase tracking-wider text-[#5A6E7C] text-center">1-Click Quick Demo Login</p>
+          <p className="text-[11px] font-bold uppercase tracking-wider text-[#34495E] text-center">1-Click Quick Demo Login</p>
           <div className="grid grid-cols-2 gap-2.5">
             <button
               onClick={() => handleQuickLogin('admin@kasasync.com')}
-              className="p-3 rounded-2xl bg-[#B4E1EB]/30 hover:bg-[#B4E1EB]/60 border border-[#95BDD7] text-left transition flex items-center gap-2.5 shadow-sm"
+              className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <ShieldCheck className="w-4 h-4 text-[#24425C] shrink-0" />
+              <ShieldCheck className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
-                <p className="text-xs font-bold text-[#24425C]">Admin</p>
-                <p className="text-[10px] text-[#4F6475] truncate">admin@kasasync.com</p>
+                <p className="text-xs font-bold text-[#183153]">Admin</p>
+                <p className="text-[10px] text-[#425466] truncate">admin@kasasync.com</p>
               </div>
             </button>
 
             <button
               onClick={() => handleQuickLogin('owner@kasasync.com')}
-              className="p-3 rounded-2xl bg-[#95BDD7]/30 hover:bg-[#95BDD7]/60 border border-[#78A4CB] text-left transition flex items-center gap-2.5 shadow-sm"
+              className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <Building2 className="w-4 h-4 text-[#24425C] shrink-0" />
+              <Building2 className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
-                <p className="text-xs font-bold text-[#24425C]">Owner</p>
-                <p className="text-[10px] text-[#4F6475] truncate">owner@kasasync.com</p>
+                <p className="text-xs font-bold text-[#183153]">Owner</p>
+                <p className="text-[10px] text-[#425466] truncate">owner@kasasync.com</p>
               </div>
             </button>
 
             <button
               onClick={() => handleQuickLogin('tenant@kasasync.com')}
-              className="p-3 rounded-2xl bg-[#B4E1EB]/30 hover:bg-[#B4E1EB]/60 border border-[#95BDD7] text-left transition flex items-center gap-2.5 shadow-sm"
+              className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <UserCheck className="w-4 h-4 text-[#24425C] shrink-0" />
+              <UserCheck className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
-                <p className="text-xs font-bold text-[#24425C]">Tenant</p>
-                <p className="text-[10px] text-[#4F6475] truncate">tenant@kasasync.com</p>
+                <p className="text-xs font-bold text-[#183153]">Tenant</p>
+                <p className="text-[10px] text-[#425466] truncate">tenant@kasasync.com</p>
               </div>
             </button>
 
             <button
               onClick={() => handleQuickLogin('staff@kasasync.com')}
-              className="p-3 rounded-2xl bg-[#95BDD7]/30 hover:bg-[#95BDD7]/60 border border-[#78A4CB] text-left transition flex items-center gap-2.5 shadow-sm"
+              className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <Wrench className="w-4 h-4 text-[#24425C] shrink-0" />
+              <Wrench className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
-                <p className="text-xs font-bold text-[#24425C]">Staff</p>
-                <p className="text-[10px] text-[#4F6475] truncate">staff@kasasync.com</p>
+                <p className="text-xs font-bold text-[#183153]">Staff</p>
+                <p className="text-[10px] text-[#425466] truncate">staff@kasasync.com</p>
               </div>
             </button>
           </div>
@@ -116,11 +116,11 @@ export default function LoginPage() {
           />
 
           <div className="flex items-center justify-between text-xs">
-            <label className="flex items-center gap-2 text-[#5A6E7C] cursor-pointer">
-              <input type="checkbox" defaultChecked className="rounded border-[#95BDD7] text-[#78A4CB] focus:ring-[#78A4CB]" />
+            <label className="flex items-center gap-2 text-[#34495E] cursor-pointer">
+              <input type="checkbox" defaultChecked className="rounded border-[#C7D7EA] text-[#5E8FBF] focus:ring-[#7AA7D9]" />
               <span>Remember me</span>
             </label>
-            <Link href="/forgot-password" className="text-[#3F7AA5] hover:text-[#24425C] font-semibold">
+            <Link href="/forgot-password" className="text-[#3E7CB1] hover:text-[#2B5F9E] font-semibold hover:underline">
               Forgot password?
             </Link>
           </div>
@@ -130,9 +130,9 @@ export default function LoginPage() {
           </Button>
         </form>
 
-        <p className="text-center text-xs text-[#6F8190]">
+        <p className="text-center text-xs text-[#60758C]">
           Don&apos;t have an account?{' '}
-          <Link href="/register" className="text-[#3F7AA5] font-bold hover:text-[#24425C]">
+          <Link href="/register" className="text-[#3E7CB1] font-semibold hover:text-[#2B5F9E] hover:underline">
             Register here
           </Link>
         </p>

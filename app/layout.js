@@ -13,7 +13,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className="bg-[#F9E8A2] text-[#4F6475] antialiased min-h-screen font-sans">
+      <body className="bg-[#F8FAFC] text-[#425466] antialiased min-h-screen font-sans text-base font-normal">
         <AuthProvider>
           <SocketProvider>
             <ThemeProvider>
@@ -22,11 +22,11 @@ export default function RootLayout({ children }) {
                 toastOptions={{
                   style: {
                     background: '#FFFFFF',
-                    color: '#24425C',
-                    border: '1px solid #95BDD7',
+                    color: '#183153',
+                    border: '1px solid #C7D7EA',
                     borderRadius: '14px',
-                    fontSize: '13px',
-                    boxShadow: '0 8px 30px rgba(0,0,0,0.08)',
+                    fontSize: '14px',
+                    boxShadow: '0 8px 30px rgba(24, 49, 83, 0.08)',
                   },
                 }}
               />
