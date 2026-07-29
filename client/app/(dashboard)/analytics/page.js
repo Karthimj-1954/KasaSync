@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../..
 import MaintenanceChart from '../../../components/charts/MaintenanceChart';
 import BookingTrendChart from '../../../components/charts/BookingTrendChart';
 import AmenityPopularityChart from '../../../components/charts/AmenityPopularityChart';
-import { BarChart3, TrendingUp, Users, Building2, Wrench, Sparkles } from 'lucide-react';
+import { Building2, Users, Wrench, ShieldCheck } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function AnalyticsPage() {
@@ -23,8 +23,8 @@ export default function AnalyticsPage() {
 
   if (loading) {
     return (
-      <div className="py-20 text-center text-slate-400">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+      <div className="py-20 text-center text-[#6B7A90]">
+        <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p className="text-xs font-semibold">Generating Recharts analytics...</p>
       </div>
     );
@@ -33,94 +33,91 @@ export default function AnalyticsPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-black text-white">Platform Analytics & Intelligence</h2>
-        <p className="text-xs text-slate-400">Interactive charts visualizing maintenance throughput, booking trends, and occupancy</p>
+        <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Platform Analytics & Intelligence</h2>
+        <p className="text-xs text-[#6B7A90]">Interactive charts visualizing maintenance throughput, booking trends, and occupancy</p>
       </div>
 
-      {/* Analytics Summary Bar */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <Card className="bg-slate-900/60">
+        <Card className="bg-[#EAF3FA]/50 border-[#C7D7EA]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Total Properties</p>
-              <h3 className="text-2xl font-black text-white mt-1">{data?.summary?.totalProperties || 0}</h3>
+              <p className="text-[10px] text-[#34495E] font-bold uppercase tracking-wider">Total Properties</p>
+              <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.totalProperties || 0}</h3>
             </div>
-            <Building2 className="w-6 h-6 text-blue-400" />
+            <div className="p-3 rounded-2xl bg-white text-[#5E8FBF] shadow-sm">
+              <Building2 className="w-6 h-6" />
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/60">
+        <Card className="bg-[#EAF3FA]/50 border-[#C7D7EA]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Occupancy Rate</p>
-              <h3 className="text-2xl font-black text-emerald-400 mt-1">{data?.summary?.occupancyRate || 0}%</h3>
+              <p className="text-[10px] text-[#34495E] font-bold uppercase tracking-wider">Occupancy Rate</p>
+              <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.occupancyRate || 0}%</h3>
             </div>
-            <Users className="w-6 h-6 text-emerald-400" />
+            <div className="p-3 rounded-2xl bg-white text-[#2E8B57] shadow-sm">
+              <Users className="w-6 h-6" />
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/60">
+        <Card className="bg-[#EAF3FA]/50 border-[#C7D7EA]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Ticket Completion</p>
-              <h3 className="text-2xl font-black text-purple-400 mt-1">{data?.summary?.completionRate || 0}%</h3>
+              <p className="text-[10px] text-[#34495E] font-bold uppercase tracking-wider">Work Orders</p>
+              <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.totalMaintenance || 0}</h3>
             </div>
-            <Wrench className="w-6 h-6 text-purple-400" />
+            <div className="p-3 rounded-2xl bg-white text-[#C68A00] shadow-sm">
+              <Wrench className="w-6 h-6" />
+            </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-slate-900/60">
+        <Card className="bg-[#EAF3FA]/50 border-[#C7D7EA]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Platform Users</p>
-              <h3 className="text-2xl font-black text-amber-400 mt-1">{data?.summary?.totalUsers || 0}</h3>
+              <p className="text-[10px] text-[#34495E] font-bold uppercase tracking-wider">Completion Rate</p>
+              <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.completionRate || 0}%</h3>
             </div>
-            <BarChart3 className="w-6 h-6 text-amber-400" />
+            <div className="p-3 rounded-2xl bg-white text-[#5E8FBF] shadow-sm">
+              <ShieldCheck className="w-6 h-6" />
+            </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Visual Graphs Grid */}
       <div className="grid md:grid-cols-2 gap-6">
         <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-blue-400" />
-              <span>Weekly Booking & Ticket Trends</span>
-            </CardTitle>
-            <CardDescription>Volume activity over past 7 days</CardDescription>
-          </CardHeader>
-          <CardContent>
-            <BookingTrendChart data={data?.bookingTrends || []} />
-          </CardContent>
-        </Card>
-
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Wrench className="w-4 h-4 text-emerald-400" />
-              <span>Maintenance Requests Status Distribution</span>
-            </CardTitle>
-            <CardDescription>Tickets by lifecycle stage</CardDescription>
+            <CardTitle>Maintenance Status Distribution</CardTitle>
+            <CardDescription>Live breakdown of active and completed tickets</CardDescription>
           </CardHeader>
           <CardContent>
             <MaintenanceChart data={data?.maintenanceStatus || []} />
           </CardContent>
         </Card>
 
-        <Card className="md:col-span-2">
+        <Card>
           <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-amber-400" />
-              <span>Popular Community Amenities Ranking</span>
-            </CardTitle>
-            <CardDescription>Reservations count per amenity facility</CardDescription>
+            <CardTitle>Weekly Booking Activity</CardTitle>
+            <CardDescription>Amenity reservations vs maintenance dispatches</CardDescription>
           </CardHeader>
           <CardContent>
-            <AmenityPopularityChart data={data?.popularAmenities || []} />
+            <BookingTrendChart data={data?.bookingTrends || []} />
           </CardContent>
         </Card>
       </div>
+
+      <Card>
+        <CardHeader>
+          <CardTitle>Amenity Popularity Ranking</CardTitle>
+          <CardDescription>Most frequently reserved community facilities</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <AmenityPopularityChart data={data?.popularAmenities || []} />
+        </CardContent>
+      </Card>
     </div>
   );
 }

@@ -8,7 +8,7 @@ import Select from '@/components/ui/Select';
 import Button from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { propertyService } from '@/services/propertyService';
-import { ArrowLeft, Building2, Plus, Upload, Image as ImageIcon, X, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, Upload, Image as ImageIcon } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function NewPropertyPage() {
@@ -64,7 +64,7 @@ export default function NewPropertyPage() {
     setLoading(true);
 
     try {
-      await propertyService.createProperty({
+      const payload = {
         title: formData.title,
         description: formData.description,
         type: formData.type,
@@ -72,14 +72,16 @@ export default function NewPropertyPage() {
         bedrooms: Number(formData.bedrooms),
         bathrooms: Number(formData.bathrooms),
         areaSqFt: Number(formData.areaSqFt),
+        images: [imagePreview],
         address: {
           street: formData.street,
           city: formData.city,
           state: formData.state,
           zipCode: formData.zipCode,
         },
-        images: imagePreview ? [imagePreview] : [],
-      });
+      };
+
+      await propertyService.createProperty(payload);
       toast.success('Property listing published successfully!');
       router.push('/properties');
     } catch (err) {
@@ -91,13 +93,13 @@ export default function NewPropertyPage() {
 
   return (
     <div className="max-w-3xl mx-auto space-y-6">
-      <Link href="/properties" className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition">
+      <Link href="/properties" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6B7A90] hover:text-[#183153] transition">
         <ArrowLeft className="w-4 h-4" /> Back to Properties
       </Link>
 
       <div>
-        <h2 className="text-2xl font-black text-white">Add New Property Listing</h2>
-        <p className="text-xs text-slate-400">Publish a new rental unit to the KasaSync platform in INR (₹)</p>
+        <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Add New Property Listing</h2>
+        <p className="text-xs text-[#6B7A90]">Publish a new rental unit to the KasaSync platform in INR (₹)</p>
       </div>
 
       <form onSubmit={handleSubmit} className="space-y-6">
@@ -119,71 +121,63 @@ export default function NewPropertyPage() {
                 label="Property Type"
                 value={formData.type}
                 onChange={(e) => setFormData({ ...formData, type: e.target.value })}
-                options={['Apartment', 'Villa', 'Studio', 'Condo', 'Townhouse', 'Commercial']}
+                options={['Apartment', 'Villa', 'Studio', 'Condo', 'Commercial']}
               />
 
               <Input
-                label="Monthly Rent Price (₹)"
+                label="Monthly Rent (₹ INR)"
                 type="number"
-                placeholder="e.g. 45000"
+                placeholder="25000"
                 value={formData.price}
                 onChange={(e) => setFormData({ ...formData, price: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="grid grid-cols-3 gap-4">
-              <Input
-                label="Bedrooms"
-                type="number"
-                placeholder="3"
-                value={formData.bedrooms}
-                onChange={(e) => setFormData({ ...formData, bedrooms: e.target.value })}
-                required
-              />
-
-              <Input
-                label="Bathrooms"
-                type="number"
-                placeholder="2"
-                value={formData.bathrooms}
-                onChange={(e) => setFormData({ ...formData, bathrooms: e.target.value })}
-                required
-              />
-
-              <Input
-                label="Area (Sq Ft)"
-                type="number"
-                placeholder="1850"
-                value={formData.areaSqFt}
-                onChange={(e) => setFormData({ ...formData, areaSqFt: e.target.value })}
-                required
-              />
-            </div>
-
-            <div className="space-y-1.5">
-              <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">Property Description</label>
-              <textarea
-                rows={4}
-                value={formData.description}
-                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-                placeholder="Detailed property highlights..."
-                className="w-full glass-input rounded-xl p-3 text-xs focus:ring-2 focus:ring-blue-500/50"
                 required
               />
             </div>
           </CardContent>
         </Card>
 
-        {/* Location Address */}
+        {/* Specifications */}
         <Card>
           <CardHeader>
-            <CardTitle>Location Address</CardTitle>
+            <CardTitle>Property Specifications</CardTitle>
+          </CardHeader>
+          <CardContent className="grid grid-cols-3 gap-4">
+            <Input
+              label="Bedrooms"
+              type="number"
+              placeholder="3"
+              value={formData.bedrooms}
+              onChange={(e) => setFormData({ ...formData, bedrooms: e.target.value })}
+              required
+            />
+            <Input
+              label="Bathrooms"
+              type="number"
+              placeholder="2"
+              value={formData.bathrooms}
+              onChange={(e) => setFormData({ ...formData, bathrooms: e.target.value })}
+              required
+            />
+            <Input
+              label="Area (Sq Ft)"
+              type="number"
+              placeholder="1450"
+              value={formData.areaSqFt}
+              onChange={(e) => setFormData({ ...formData, areaSqFt: e.target.value })}
+              required
+            />
+          </CardContent>
+        </Card>
+
+        {/* Location Info */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Location & Address</CardTitle>
           </CardHeader>
           <CardContent className="space-y-4">
             <Input
               label="Street Address"
-              placeholder="123 MG Road, Suite 400"
+              placeholder="122 Financial District Avenue"
               value={formData.street}
               onChange={(e) => setFormData({ ...formData, street: e.target.value })}
               required
@@ -192,23 +186,21 @@ export default function NewPropertyPage() {
             <div className="grid grid-cols-3 gap-4">
               <Input
                 label="City"
-                placeholder="Bengaluru"
+                placeholder="Hyderabad"
                 value={formData.city}
                 onChange={(e) => setFormData({ ...formData, city: e.target.value })}
                 required
               />
-
               <Input
                 label="State"
-                placeholder="Karnataka"
+                placeholder="Telangana"
                 value={formData.state}
                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
                 required
               />
-
               <Input
-                label="Zip / Pincode"
-                placeholder="560001"
+                label="Zip Code"
+                placeholder="500032"
                 value={formData.zipCode}
                 onChange={(e) => setFormData({ ...formData, zipCode: e.target.value })}
                 required
@@ -217,99 +209,97 @@ export default function NewPropertyPage() {
           </CardContent>
         </Card>
 
-        {/* Photo Upload & Preview Card */}
+        {/* Property Photo File Upload Section */}
         <Card>
-          <CardHeader className="flex flex-row items-center justify-between pb-3">
-            <CardTitle className="flex items-center gap-2">
-              <ImageIcon className="w-4 h-4 text-blue-400" />
-              <span>Property Cover Photo Upload</span>
-            </CardTitle>
-            <div className="flex gap-1 bg-slate-900/80 p-1 rounded-xl border border-slate-800 text-[11px] font-semibold">
-              <button
-                type="button"
-                onClick={() => setUploadMode('file')}
-                className={`px-3 py-1 rounded-lg transition ${uploadMode === 'file' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
-              >
-                Upload File
-              </button>
-              <button
-                type="button"
-                onClick={() => setUploadMode('url')}
-                className={`px-3 py-1 rounded-lg transition ${uploadMode === 'url' ? 'bg-blue-600 text-white' : 'text-slate-400 hover:text-white'}`}
-              >
-                Paste Image URL
-              </button>
+          <CardHeader>
+            <div className="flex items-center justify-between">
+              <CardTitle>Property Cover Photo Upload</CardTitle>
+              <div className="flex bg-[#EAF3FA] p-1 rounded-xl gap-1 text-xs">
+                <button
+                  type="button"
+                  onClick={() => setUploadMode('file')}
+                  className={`px-3 py-1 rounded-lg font-semibold transition cursor-pointer ${uploadMode === 'file' ? 'bg-[#5E8FBF] text-white shadow-sm' : 'text-[#6B7A90] hover:text-[#183153]'}`}
+                >
+                  File Upload
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setUploadMode('url')}
+                  className={`px-3 py-1 rounded-lg font-semibold transition cursor-pointer ${uploadMode === 'url' ? 'bg-[#5E8FBF] text-white shadow-sm' : 'text-[#6B7A90] hover:text-[#183153]'}`}
+                >
+                  Image URL
+                </button>
+              </div>
             </div>
           </CardHeader>
           <CardContent className="space-y-4">
             {uploadMode === 'file' ? (
               <div className="space-y-3">
-                {/* File Dropzone Input */}
                 <input
                   type="file"
                   ref={fileInputRef}
                   onChange={handleFileChange}
-                  accept="image/png, image/jpeg, image/webp, image/gif"
+                  accept="image/png, image/jpeg, image/webp"
                   className="hidden"
                 />
 
                 <div
                   onClick={() => fileInputRef.current?.click()}
-                  className="border-2 border-dashed border-slate-700/80 hover:border-blue-500/60 bg-slate-900/40 hover:bg-slate-900/80 rounded-2xl p-6 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 group"
+                  className="border-2 border-dashed border-[#C7D7EA] hover:border-[#5E8FBF] bg-[#EAF3FA]/30 rounded-[20px] p-8 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 group"
                 >
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 group-hover:bg-blue-500/20 text-blue-400 flex items-center justify-center transition">
+                  <div className="w-12 h-12 rounded-2xl bg-white border border-[#C7D7EA] flex items-center justify-center text-[#5E8FBF] shadow-sm group-hover:scale-105 transition">
                     <Upload className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-sm font-bold text-white">Click to Upload Photo File</p>
-                    <p className="text-xs text-slate-400 mt-0.5">PNG, JPG, WEBP or GIF (Max 10MB)</p>
+                    <p className="text-sm font-bold text-[#183153] font-poppins">Click to Upload Photo File</p>
+                    <p className="text-xs text-[#6B7A90] mt-0.5">Supports PNG, JPG, JPEG, WEBP files up to 10MB</p>
                   </div>
-                  <Button type="button" variant="outline" size="sm" className="mt-2">
-                    Browse Computer Files
+                  <Button type="button" variant="secondary" size="sm" className="mt-2">
+                    Browse File System
                   </Button>
                 </div>
               </div>
             ) : (
-              <div className="space-y-3">
-                <div className="flex gap-2">
-                  <Input
-                    placeholder="https://images.unsplash.com/..."
-                    value={imageUrlInput}
-                    onChange={(e) => setImageUrlInput(e.target.value)}
-                    icon={Upload}
-                    className="flex-1"
-                  />
-                  <Button type="button" variant="secondary" size="md" onClick={handleUrlSubmit}>
-                    Set URL
-                  </Button>
+              <div className="flex gap-2">
+                <Input
+                  placeholder="https://images.unsplash.com/photo-..."
+                  value={imageUrlInput}
+                  onChange={(e) => setImageUrlInput(e.target.value)}
+                  icon={ImageIcon}
+                />
+                <Button type="button" variant="secondary" onClick={handleUrlSubmit}>
+                  Apply URL
+                </Button>
+              </div>
+            )}
+
+            {/* Photo Preview Container */}
+            {imagePreview && (
+              <div className="space-y-1.5 pt-2">
+                <label className="block text-xs font-bold uppercase tracking-wider text-[#34495E]">Selected Photo Preview</label>
+                <div className="h-56 rounded-[20px] overflow-hidden border border-[#C7D7EA] relative shadow-sm">
+                  <img src={imagePreview} alt="Property cover" className="w-full h-full object-cover" />
                 </div>
               </div>
             )}
 
-            {/* Live Photo Thumbnail Preview */}
-            {imagePreview && (
-              <div className="space-y-2 pt-2">
-                <p className="text-xs font-bold uppercase tracking-wider text-slate-400">Selected Cover Photo Preview</p>
-                <div className="relative h-56 rounded-2xl overflow-hidden border border-slate-800 group">
-                  <img src={imagePreview} alt="Property preview" className="w-full h-full object-cover" />
-                  <div className="absolute top-3 right-3 flex gap-2">
-                    <button
-                      type="button"
-                      onClick={() => fileInputRef.current?.click()}
-                      className="px-3 py-1.5 rounded-xl bg-slate-900/80 backdrop-blur-md text-xs font-semibold text-white border border-slate-700 hover:bg-slate-900 transition"
-                    >
-                      Change Photo
-                    </button>
-                  </div>
-                </div>
-              </div>
-            )}
+            <div className="space-y-1.5">
+              <label className="block text-xs font-bold uppercase tracking-wider text-[#34495E]">Property Description</label>
+              <textarea
+                rows={4}
+                placeholder="Detailed features, nearby landmarks, lease requirements..."
+                value={formData.description}
+                onChange={(e) => setFormData({ ...formData, description: e.target.value })}
+                className="w-full bg-white border-1.5 border-[#C7D7EA] text-[#1F2937] placeholder-[#94A3B8] rounded-[12px] text-xs font-normal p-3 transition focus:outline-none focus:border-[#7AA7D9] focus:ring-4 focus:ring-[#7AA7D9]/20"
+                required
+              />
+            </div>
+
+            <Button type="submit" variant="primary" loading={loading} className="w-full shadow-lg">
+              Publish Property Listing (₹ INR)
+            </Button>
           </CardContent>
         </Card>
-
-        <Button type="submit" variant="emerald" size="lg" loading={loading} className="w-full">
-          Publish Property Listing (INR ₹)
-        </Button>
       </form>
     </div>
   );

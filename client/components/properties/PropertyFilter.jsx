@@ -4,19 +4,18 @@ import React from 'react';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
 import { Search, Filter, RefreshCw } from 'lucide-react';
-import Button from '../ui/Button';
 
 export default function PropertyFilter({ filters, onChange, onReset }) {
   return (
-    <div className="glass-panel rounded-2xl p-4 space-y-4">
+    <div className="bg-white border border-[#EAF3FA] rounded-[20px] p-4 shadow-sm space-y-4">
       <div className="flex items-center justify-between">
-        <h4 className="text-sm font-bold text-white flex items-center gap-2">
-          <Filter className="w-4 h-4 text-blue-400" />
+        <h4 className="text-sm font-bold text-[#183153] font-poppins flex items-center gap-2">
+          <Filter className="w-4 h-4 text-[#5E8FBF]" />
           <span>Filter Properties</span>
         </h4>
         <button
           onClick={onReset}
-          className="text-xs text-slate-400 hover:text-white flex items-center gap-1 transition"
+          className="text-xs text-[#6B7A90] hover:text-[#183153] flex items-center gap-1 transition font-medium cursor-pointer"
         >
           <RefreshCw className="w-3 h-3" /> Reset Filters
         </button>
@@ -59,7 +58,7 @@ export default function PropertyFilter({ filters, onChange, onReset }) {
           value={filters.status}
           onChange={(e) => onChange({ ...filters, status: e.target.value })}
           options={[
-            { label: 'Status (Any)', value: 'All' },
+            { label: 'Status (All)', value: 'All' },
             { label: 'Available', value: 'Available' },
             { label: 'Occupied', value: 'Occupied' },
             { label: 'Under Maintenance', value: 'Under Maintenance' },
@@ -68,7 +67,7 @@ export default function PropertyFilter({ filters, onChange, onReset }) {
 
         <Input
           type="number"
-          placeholder="Max price (₹)"
+          placeholder="Max Price (₹)"
           value={filters.maxPrice}
           onChange={(e) => onChange({ ...filters, maxPrice: e.target.value })}
         />

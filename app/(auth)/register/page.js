@@ -33,17 +33,17 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-6 bg-slate-950 text-white relative">
-      <div className="w-full max-w-md glass-panel rounded-2xl p-8 border border-slate-800 shadow-2xl relative z-10 space-y-6">
+    <div className="min-h-screen flex items-center justify-center p-6 bg-[#F8FAFC] text-[#425466] relative">
+      <div className="w-full max-w-md bg-white rounded-[20px] p-8 border border-[#EAF3FA] shadow-2xl relative z-10 space-y-6">
         <div className="text-center space-y-2">
-          <Link href="/" className="inline-flex items-center gap-2 mb-2">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-400 flex items-center justify-center">
+          <Link href="/" className="inline-flex items-center gap-2.5 mb-1">
+            <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
               <Home className="w-6 h-6 text-white" />
             </div>
-            <span className="text-2xl font-black text-white">KasaSync</span>
+            <span className="text-2xl font-bold text-[#183153] font-poppins">KasaSync</span>
           </Link>
-          <h2 className="text-xl font-bold text-white">Create your account</h2>
-          <p className="text-xs text-slate-400">Join KasaSync property management platform</p>
+          <h2 className="text-xl font-bold text-[#183153] font-poppins">Create your account</h2>
+          <p className="text-xs font-normal text-[#60758C]">Join KasaSync property management platform</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-4">
@@ -67,44 +67,39 @@ export default function RegisterPage() {
           />
 
           <Input
-            label="Phone Number"
-            type="tel"
-            placeholder="+1 (555) 000-0000"
-            icon={Phone}
-            value={formData.phoneNumber}
-            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
-          />
-
-          <Select
-            label="Select Account Role"
-            value={formData.role}
-            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-            options={[
-              { label: 'Tenant', value: 'Tenant' },
-              { label: 'Property Owner', value: 'Property Owner' },
-              { label: 'Maintenance Staff', value: 'Maintenance Staff' },
-              { label: 'Admin', value: 'Admin' },
-            ]}
-          />
-
-          <Input
             label="Password"
             type="password"
-            placeholder="Minimum 6 characters"
+            placeholder="••••••••"
             icon={Lock}
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
           />
 
-          <Button type="submit" variant="emerald" loading={loading} className="w-full">
-            Register Account
+          <Select
+            label="Account Role"
+            value={formData.role}
+            onChange={(e) => setFormData({ ...formData, role: e.target.value })}
+            options={['Tenant', 'Property Owner', 'Maintenance Staff', 'Admin']}
+          />
+
+          <Input
+            label="Phone Number"
+            type="tel"
+            placeholder="+91 98765 43210"
+            icon={Phone}
+            value={formData.phoneNumber}
+            onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
+          />
+
+          <Button type="submit" variant="primary" loading={loading} className="w-full shadow-lg">
+            Create Account
           </Button>
         </form>
 
-        <p className="text-center text-xs text-slate-400">
-          Already registered?{' '}
-          <Link href="/login" className="text-blue-400 font-bold hover:underline">
+        <p className="text-center text-xs text-[#60758C]">
+          Already have an account?{' '}
+          <Link href="/login" className="text-[#3E7CB1] font-semibold hover:text-[#2B5F9E] hover:underline">
             Sign in
           </Link>
         </p>

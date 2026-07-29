@@ -6,7 +6,7 @@ import { useTheme } from '../../../context/ThemeContext';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
-import { User, Lock, Bell, Moon, Sun, Globe, Upload, Camera } from 'lucide-react';
+import { User, Moon, Sun, Upload, Camera } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
@@ -20,7 +20,7 @@ export default function SettingsPage() {
     avatar: user?.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
   });
 
-  const [notifications, setNotifications] = useState(
+  const [notifications] = useState(
     user?.notificationPreferences || { email: true, push: true, sms: false }
   );
 
@@ -65,36 +65,34 @@ export default function SettingsPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
-        <h2 className="text-2xl font-black text-white">Account & System Settings</h2>
-        <p className="text-xs text-slate-400">Manage profile information, notification alerts, and theme preferences</p>
+        <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Account & System Settings</h2>
+        <p className="text-xs text-[#6B7A90]">Manage profile information, notification alerts, and theme preferences</p>
       </div>
 
-      {/* Profile Info Form */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <User className="w-4 h-4 text-blue-400" />
+            <User className="w-4 h-4 text-[#5E8FBF]" />
             <span>Profile & Avatar Upload</span>
           </CardTitle>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSaveProfile} className="space-y-6">
-            {/* Interactive Avatar File Upload Block */}
-            <div className="flex flex-col sm:flex-row items-center gap-6 p-4 rounded-2xl bg-slate-900/60 border border-slate-800">
+            <div className="flex flex-col sm:flex-row items-center gap-6 p-4 rounded-[20px] bg-[#EAF3FA]/50 border border-[#C7D7EA]">
               <div className="relative group cursor-pointer" onClick={() => avatarInputRef.current?.click()}>
                 <img
                   src={formData.avatar}
                   alt="Profile Avatar"
-                  className="w-24 h-24 rounded-full object-cover border-4 border-blue-500/40 shadow-xl group-hover:opacity-80 transition"
+                  className="w-24 h-24 rounded-full object-cover border-4 border-[#5E8FBF] shadow-md group-hover:opacity-80 transition"
                 />
-                <div className="absolute inset-0 rounded-full bg-black/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
+                <div className="absolute inset-0 rounded-full bg-slate-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
                   <Camera className="w-6 h-6 text-white" />
                 </div>
               </div>
 
               <div className="space-y-2 text-center sm:text-left flex-1">
-                <h4 className="text-sm font-bold text-white">Profile Photo File Upload</h4>
-                <p className="text-xs text-slate-400">Upload a new avatar picture directly from your computer or phone</p>
+                <h4 className="text-sm font-bold text-[#183153] font-poppins">Profile Photo File Upload</h4>
+                <p className="text-xs text-[#6B7A90]">Upload a new avatar picture directly from your computer or phone</p>
 
                 <input
                   type="file"
@@ -113,7 +111,7 @@ export default function SettingsPage() {
                   >
                     <Upload className="w-4 h-4" /> Upload Avatar File
                   </Button>
-                  <span className="text-[11px] text-slate-500">PNG, JPG or WEBP (Max 5MB)</span>
+                  <span className="text-[11px] text-[#6B7A90]">PNG, JPG or WEBP (Max 5MB)</span>
                 </div>
               </div>
             </div>
@@ -131,25 +129,24 @@ export default function SettingsPage() {
               onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
             />
 
-            <Button type="submit" variant="emerald" loading={saving}>
+            <Button type="submit" variant="primary" loading={saving}>
               Save Profile Changes
             </Button>
           </form>
         </CardContent>
       </Card>
 
-      {/* Theme Preference */}
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            {theme === 'dark' ? <Moon className="w-4 h-4 text-purple-400" /> : <Sun className="w-4 h-4 text-amber-400" />}
+            {theme === 'dark' ? <Moon className="w-4 h-4 text-[#5E8FBF]" /> : <Sun className="w-4 h-4 text-[#C68A00]" />}
             <span>Interface Theme Mode</span>
           </CardTitle>
         </CardHeader>
         <CardContent className="flex items-center justify-between">
           <div>
-            <p className="text-xs font-bold text-white">Current Mode: {theme === 'dark' ? 'Dark Glassmorphism' : 'Light Mode'}</p>
-            <p className="text-xs text-slate-400">Toggle between dark and light color themes</p>
+            <p className="text-xs font-bold text-[#183153] font-poppins">Current Mode: {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</p>
+            <p className="text-xs text-[#6B7A90]">Toggle between dark and light color themes</p>
           </div>
           <Button variant="outline" size="sm" onClick={toggleTheme}>
             Toggle Theme

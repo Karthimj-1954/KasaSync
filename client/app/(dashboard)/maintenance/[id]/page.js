@@ -2,14 +2,14 @@
 
 import React, { useEffect, useState, use } from 'react';
 import Link from 'next/link';
-import { maintenanceService } from '../../../../services/maintenanceService';
-import { Card, CardHeader, CardTitle, CardContent } from '../../../../components/ui/Card';
-import Badge from '../../../../components/ui/Badge';
-import Button from '../../../../components/ui/Button';
-import Select from '../../../../components/ui/Select';
-import { useAuth } from '../../../../context/AuthContext';
-import { ArrowLeft, Wrench, CheckCircle2, Clock, MessageSquare, Send, AlertTriangle, ShieldCheck } from 'lucide-react';
-import { formatDate } from '../../../../lib/utils';
+import { maintenanceService } from '@/services/maintenanceService';
+import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
+import Badge from '@/components/ui/Badge';
+import Button from '@/components/ui/Button';
+import Select from '@/components/ui/Select';
+import { useAuth } from '@/context/AuthContext';
+import { ArrowLeft, CheckCircle2, MessageSquare } from 'lucide-react';
+import { formatDate } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
 export default function MaintenanceDetailPage({ params }) {
@@ -59,8 +59,8 @@ export default function MaintenanceDetailPage({ params }) {
 
   if (loading) {
     return (
-      <div className="py-20 text-center text-slate-400">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+      <div className="py-20 text-center text-[#6B7A90]">
+        <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
         <p className="text-xs font-semibold">Loading ticket details...</p>
       </div>
     );
@@ -69,7 +69,7 @@ export default function MaintenanceDetailPage({ params }) {
   if (!ticket) {
     return (
       <div className="text-center py-20">
-        <h3 className="text-lg font-bold text-white">Ticket Not Found</h3>
+        <h3 className="text-lg font-bold text-[#183153] font-poppins">Ticket Not Found</h3>
         <Link href="/maintenance">
           <Button variant="outline" size="sm" className="mt-4">
             Back to Maintenance
@@ -83,35 +83,33 @@ export default function MaintenanceDetailPage({ params }) {
 
   return (
     <div className="space-y-6">
-      <Link href="/maintenance" className="inline-flex items-center gap-2 text-xs font-semibold text-slate-400 hover:text-white transition">
+      <Link href="/maintenance" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6B7A90] hover:text-[#183153] transition">
         <ArrowLeft className="w-4 h-4" /> Back to Tickets Queue
       </Link>
 
-      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
-            <h2 className="text-2xl font-black text-white">{ticket.title}</h2>
+            <h2 className="text-2xl font-bold text-[#183153] font-poppins">{ticket.title}</h2>
             <Badge status={ticket.status} />
           </div>
-          <p className="text-xs text-slate-400 mt-1">
-            Submitted by <strong className="text-white">{ticket.tenantId?.name}</strong> for <strong className="text-blue-400">{ticket.propertyId?.title}</strong>
+          <p className="text-xs text-[#6B7A90] mt-1">
+            Submitted by <strong className="text-[#183153]">{ticket.tenantId?.name}</strong> for <strong className="text-[#3E7CB1]">{ticket.propertyId?.title}</strong>
           </p>
         </div>
 
-        <span className={`text-xs font-extrabold uppercase px-3 py-1 rounded-full ${ticket.priority === 'Emergency' ? 'bg-rose-500/20 text-rose-400 border border-rose-500/30' : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'}`}>
+        <span className={`text-xs font-extrabold uppercase px-3 py-1 rounded-full ${ticket.priority === 'Emergency' ? 'bg-[#D14343]/10 text-[#D14343] border border-[#D14343]/30' : 'bg-[#C68A00]/10 text-[#C68A00] border border-[#C68A00]/30'}`}>
           Priority: {ticket.priority}
         </span>
       </div>
 
-      {/* 7-Step Progress Stepper Visualizer */}
       <Card>
         <CardHeader>
           <CardTitle className="text-sm">Resolution Lifecycle Tracker</CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-between relative py-4">
-            <div className="absolute top-1/2 left-0 right-0 h-1 bg-slate-800 -translate-y-1/2 z-0" />
+            <div className="absolute top-1/2 left-0 right-0 h-1 bg-[#EAF3FA] -translate-y-1/2 z-0" />
             {steps.map((step, idx) => {
               const isCompletedStep = currentStepIndex >= idx;
               const isCurrentStep = ticket.status === step;
@@ -120,15 +118,15 @@ export default function MaintenanceDetailPage({ params }) {
                   <div
                     className={`w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all ${
                       isCurrentStep
-                        ? 'bg-blue-600 text-white ring-4 ring-blue-500/30 scale-110'
+                        ? 'bg-[#5E8FBF] text-white ring-4 ring-[#7AA7D9]/30 scale-110'
                         : isCompletedStep
-                        ? 'bg-emerald-500 text-white'
-                        : 'bg-slate-800 text-slate-500 border border-slate-700'
+                        ? 'bg-[#2E8B57] text-white'
+                        : 'bg-white text-[#6B7A90] border border-[#C7D7EA]'
                     }`}
                   >
                     {isCompletedStep ? <CheckCircle2 className="w-4 h-4" /> : idx + 1}
                   </div>
-                  <span className={`text-[11px] font-semibold ${isCurrentStep ? 'text-blue-400' : isCompletedStep ? 'text-emerald-400' : 'text-slate-500'}`}>
+                  <span className={`text-[11px] font-semibold ${isCurrentStep ? 'text-[#5E8FBF]' : isCompletedStep ? 'text-[#2E8B57]' : 'text-[#6B7A90]'}`}>
                     {step}
                   </span>
                 </div>
@@ -138,46 +136,43 @@ export default function MaintenanceDetailPage({ params }) {
         </CardContent>
       </Card>
 
-      {/* Main Grid */}
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-6">
-          {/* Ticket Description & Attachment Photos */}
           <Card>
             <CardHeader>
               <CardTitle>Ticket Details & Photos</CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
-              <p className="text-xs text-slate-300 leading-relaxed">{ticket.description}</p>
+              <p className="text-xs text-[#425466] leading-relaxed">{ticket.description}</p>
               {ticket.images?.length > 0 && (
                 <div className="grid grid-cols-2 gap-3 pt-2">
                   {ticket.images.map((img, idx) => (
-                    <img key={idx} src={img} alt="Attachment" className="rounded-xl h-44 w-full object-cover border border-slate-800" />
+                    <img key={idx} src={img} alt="Attachment" className="rounded-xl h-44 w-full object-cover border border-[#C7D7EA]" />
                   ))}
                 </div>
               )}
             </CardContent>
           </Card>
 
-          {/* Activity Notes Feed */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-blue-400" />
+                <MessageSquare className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Status Activity & Technician Notes</span>
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
               <div className="space-y-3 max-h-64 overflow-y-auto">
                 {ticket.notes?.length === 0 ? (
-                  <p className="text-xs text-slate-400 text-center py-4">No notes recorded yet.</p>
+                  <p className="text-xs text-[#6B7A90] text-center py-4">No notes recorded yet.</p>
                 ) : (
                   ticket.notes?.map((note, idx) => (
-                    <div key={idx} className="p-3 rounded-xl bg-slate-900/60 border border-slate-800 space-y-1">
+                    <div key={idx} className="p-3 rounded-xl bg-[#EAF3FA]/50 border border-[#C7D7EA] space-y-1">
                       <div className="flex items-center justify-between">
-                        <span className="text-xs font-bold text-white">{note.authorName} <span className="text-[10px] text-blue-400 font-semibold">({note.authorRole})</span></span>
-                        <span className="text-[10px] text-slate-500">{formatDate(note.createdAt)}</span>
+                        <span className="text-xs font-bold text-[#183153] font-poppins">{note.authorName} <span className="text-[10px] text-[#3E7CB1] font-semibold">({note.authorRole})</span></span>
+                        <span className="text-[10px] text-[#6B7A90]">{formatDate(note.createdAt)}</span>
                       </div>
-                      <p className="text-xs text-slate-300">{note.text}</p>
+                      <p className="text-xs text-[#425466]">{note.text}</p>
                     </div>
                   ))
                 )}
@@ -186,7 +181,6 @@ export default function MaintenanceDetailPage({ params }) {
           </Card>
         </div>
 
-        {/* Status Update Control Panel */}
         <div className="space-y-6">
           {(user?.role === 'Property Owner' || user?.role === 'Maintenance Staff' || user?.role === 'Admin') && (
             <Card>
@@ -203,13 +197,13 @@ export default function MaintenanceDetailPage({ params }) {
                   />
 
                   <div className="space-y-1.5">
-                    <label className="block text-xs font-semibold uppercase tracking-wider text-slate-300">Add Activity Note</label>
+                    <label className="block text-xs font-bold uppercase tracking-wider text-[#34495E]">Add Activity Note</label>
                     <textarea
                       rows={3}
                       value={noteText}
                       onChange={(e) => setNoteText(e.target.value)}
                       placeholder="e.g., Parts ordered, work scheduled..."
-                      className="w-full glass-input rounded-xl p-3 text-xs focus:ring-2 focus:ring-blue-500/50"
+                      className="w-full bg-white border-1.5 border-[#C7D7EA] text-[#1F2937] placeholder-[#94A3B8] rounded-[12px] p-3 text-xs focus:outline-none focus:border-[#7AA7D9] focus:ring-4 focus:ring-[#7AA7D9]/20"
                     />
                   </div>
 
@@ -228,14 +222,14 @@ export default function MaintenanceDetailPage({ params }) {
             <CardContent>
               {ticket.assignedStaffId ? (
                 <div className="flex items-center gap-3">
-                  <img src={ticket.assignedStaffId.avatar || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e'} alt="" className="w-10 h-10 rounded-full object-cover border border-blue-500/40" />
+                  <img src={ticket.assignedStaffId.avatar || 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e'} alt="" className="w-10 h-10 rounded-full object-cover border border-[#5E8FBF]" />
                   <div>
-                    <h5 className="text-xs font-bold text-white">{ticket.assignedStaffId.name}</h5>
-                    <p className="text-[10px] text-blue-400">{ticket.assignedStaffId.email}</p>
+                    <h5 className="text-xs font-bold text-[#183153] font-poppins">{ticket.assignedStaffId.name}</h5>
+                    <p className="text-[10px] text-[#3E7CB1]">{ticket.assignedStaffId.email}</p>
                   </div>
                 </div>
               ) : (
-                <p className="text-xs text-slate-400">Technician not yet assigned.</p>
+                <p className="text-xs text-[#6B7A90]">Technician not yet assigned.</p>
               )}
             </CardContent>
           </Card>
