@@ -1,51 +1,84 @@
 import { NextResponse } from 'next/server';
-import connectToDatabase from '../../../lib/mongodb';
-import MaintenanceRequest from '../../../models/MaintenanceRequest';
+import connectToDatabase from '@/lib/mongodb';
+import { seedInitialData } from '@/lib/seed';
+import MaintenanceRequest from '@/models/MaintenanceRequest';
+import User from '@/models/User';
+import Property from '@/models/Property';
+import { uploadToCloudinary } from '@/lib/cloudinary';
 
 export const dynamic = 'force-dynamic';
-
-const MOCK_MAINTENANCE = [
-  {
-    _id: 'maint_1',
-    id: 'maint_1',
-    title: 'HVAC Air Conditioning Cooling Malfunction',
-    description: 'The central air conditioning system in the master bedroom is blowing warm air.',
-    propertyId: { _id: 'prop_1', title: 'The Glass Pavilion Luxury Penthouse' },
-    tenantId: { _id: 'tenant_1', name: 'Sophia Martinez' },
-    assignedStaffId: { _id: 'staff_1', name: 'David Miller' },
-    priority: 'High',
-    status: 'In Progress',
-    images: ['https://images.unsplash.com/photo-1581092160607-ee22621dd758'],
-    notes: [{ authorName: 'David Miller', authorRole: 'Maintenance Staff', text: 'Inspected compressor capacitor.', createdAt: new Date().toISOString() }],
-  },
-];
 
 export async function GET() {
   try {
     await connectToDatabase();
+    await seedInitialData();
+
     const requests = await MaintenanceRequest.find()
-      .populate('propertyId', 'title')
-      .populate('tenantId', 'name')
-      .populate('assignedStaffId', 'name')
+      .populate('propertyId', 'title address')
+      .populate('tenantId', 'name email avatar')
+      .populate('assignedStaffId', 'name email avatar')
       .sort({ createdAt: -1 });
 
-    if (!requests || requests.length === 0) {
-      return NextResponse.json({ requests: MOCK_MAINTENANCE });
-    }
-    return NextResponse.json({ requests });
-  } catch (e) {
-    return NextResponse.json({ requests: MOCK_MAINTENANCE });
+    return NextResponse.json({ success: true, requests });
+  } catch (error) {
+    console.error("Fetch Maintenance Requests Error", error);
+    return NextResponse.json({ message: 'Failed to fetch maintenance tickets', error: error.message }, { status: 500 });
   }
 }
 
 export async function POST(req) {
   try {
-    const data = await req.json();
     await connectToDatabase();
-    const request = await MaintenanceRequest.create({ ...data, status: 'Pending' });
-    return NextResponse.json({ request }, { status: 201 });
-  } catch (e) {
-    const data = await req.json().catch(() => ({}));
-    return NextResponse.json({ request: { _id: `maint_${Date.now()}`, ...data, status: 'Pending' } }, { status: 201 });
+    await seedInitialData();
+
+    const data = await req.json();
+    const { title, description, propertyId, tenantId, priority, images } = data;
+
+    console.log("Creating Maintenance Ticket...");
+
+    let activeTenantId = tenantId;
+    if (!activeTenantId) {
+      const tenantUser = await User.findOne({ role: 'Tenant' });
+      activeTenantId = tenantUser ? tenantUser._id : null;
+    }
+
+    let activePropertyId = propertyId;
+    if (!activePropertyId) {
+      const defaultProp = await Property.findOne();
+      activePropertyId = defaultProp ? defaultProp._id : null;
+    }
+
+    let imageUrls = [];
+    if (Array.isArray(images) && images.length > 0) {
+      imageUrls = await Promise.all(
+        images.map(async (img) => {
+          if (img.startsWith('data:image')) {
+            return await uploadToCloudinary(img, 'kasasync/maintenance');
+          }
+          return img;
+        })
+      );
+    }
+
+    const request = await MaintenanceRequest.create({
+      title,
+      description,
+      propertyId: activePropertyId,
+      tenantId: activeTenantId,
+      priority: priority || 'Medium',
+      status: 'Pending',
+      images: imageUrls,
+    });
+
+    console.log("Maintenance Ticket Saved");
+
+    const populatedRequest = await MaintenanceRequest.findById(request._id)
+      .populate('propertyId', 'title')
+      .populate('tenantId', 'name email');
+
+    return NextResponse.json({ success: true, request: populatedRequest }, { status: 201 });
+  } catch (error) {
+    console.error("Create Maintenance Ticket Error", error);
+    return NextResponse.json({ message: 'Failed to create maintenance ticket', error: error.message }, { status: 500 });
   }
 }

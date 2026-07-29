@@ -1,6 +1,8 @@
 import { NextResponse } from 'next/server';
-import connectToDatabase from '../../../lib/mongodb';
-import Booking from '../../../models/Booking';
+import connectToDatabase from '@/lib/mongodb';
+import { seedInitialData } from '@/lib/seed';
+import Booking from '@/models/Booking';
+import User from '@/models/User';
 
 export const dynamic = 'force-dynamic';
 
@@ -13,17 +15,27 @@ const timeToMinutes = (t) => {
 export async function GET() {
   try {
     await connectToDatabase();
-    const bookings = await Booking.find().populate('amenityId').populate('tenantId', 'name email').sort({ createdAt: -1 });
-    return NextResponse.json({ bookings });
-  } catch (e) {
-    return NextResponse.json({ bookings: [] });
+    await seedInitialData();
+
+    const bookings = await Booking.find()
+      .populate('amenityId')
+      .populate('tenantId', 'name email avatar')
+      .sort({ createdAt: -1 });
+
+    return NextResponse.json({ success: true, bookings });
+  } catch (error) {
+    console.error("Fetch Bookings Error", error);
+    return NextResponse.json({ message: 'Failed to fetch amenity bookings', error: error.message }, { status: 500 });
   }
 }
 
 export async function POST(req) {
   try {
+    await connectToDatabase();
+    await seedInitialData();
+
     const data = await req.json();
-    const { amenityId, bookingDate, startTime, endTime } = data;
+    const { amenityId, tenantId, bookingDate, startTime, endTime, totalGuests, notes } = data;
 
     const newStart = timeToMinutes(startTime);
     const newEnd = timeToMinutes(endTime);
@@ -32,32 +44,50 @@ export async function POST(req) {
       return NextResponse.json({ message: 'Check-out time must be after check-in time' }, { status: 400 });
     }
 
-    try {
-      await connectToDatabase();
+    console.log("Creating Booking...");
 
-      // Check collision
-      const existing = await Booking.find({
-        amenityId,
-        bookingDate,
-        status: 'Confirmed',
-      });
-
-      const conflict = existing.some((b) => {
-        const bStart = timeToMinutes(b.startTime);
-        const bEnd = timeToMinutes(b.endTime);
-        return bStart < newEnd && bEnd > newStart;
-      });
-
-      if (conflict) {
-        return NextResponse.json({ message: 'Conflict detected: Selected time slot overlaps with an existing reservation.' }, { status: 400 });
-      }
-
-      const booking = await Booking.create({ ...data, status: 'Confirmed' });
-      return NextResponse.json({ booking }, { status: 201 });
-    } catch (dbErr) {
-      return NextResponse.json({ booking: { _id: `book_${Date.now()}`, ...data, status: 'Confirmed' } }, { status: 201 });
+    // Find default tenant if tenantId not supplied
+    let activeTenantId = tenantId;
+    if (!activeTenantId) {
+      const tenantUser = await User.findOne({ role: 'Tenant' });
+      activeTenantId = tenantUser ? tenantUser._id : null;
     }
+
+    // Check collision in MongoDB
+    const existing = await Booking.find({
+      amenityId,
+      bookingDate,
+      status: 'Confirmed',
+    });
+
+    const conflict = existing.some((b) => {
+      const bStart = timeToMinutes(b.startTime);
+      const bEnd = timeToMinutes(b.endTime);
+      return bStart < newEnd && bEnd > newStart;
+    });
+
+    if (conflict) {
+      return NextResponse.json({ message: 'Conflict detected: Selected time slot overlaps with an existing reservation.' }, { status: 400 });
+    }
+
+    const booking = await Booking.create({
+      amenityId,
+      tenantId: activeTenantId,
+      bookingDate,
+      startTime,
+      endTime,
+      totalGuests: Number(totalGuests) || 1,
+      notes: notes || '',
+      status: 'Confirmed',
+    });
+
+    console.log("Booking Saved");
+
+    const populatedBooking = await Booking.findById(booking._id).populate('amenityId').populate('tenantId', 'name email');
+
+    return NextResponse.json({ success: true, booking: populatedBooking }, { status: 201 });
   } catch (error) {
-    return NextResponse.json({ message: error.message || 'Booking failed' }, { status: 500 });
+    console.error("Create Booking Error", error);
+    return NextResponse.json({ message: 'Failed to save booking', error: error.message }, { status: 500 });
   }
 }

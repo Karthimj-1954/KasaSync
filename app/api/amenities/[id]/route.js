@@ -1,10 +1,9 @@
 import { NextResponse } from 'next/server';
-import connectToDatabase from '../../../../lib/mongodb';
-import Amenity from '../../../../models/Amenity';
+import connectToDatabase from '@/lib/mongodb';
+import { seedInitialData } from '@/lib/seed';
+import Amenity from '@/models/Amenity';
 
-const MOCK_AMENITIES = [
-  { _id: 'amenity_1', id: 'amenity_1', name: 'Equinox Elite Fitness Center', category: 'Gym', capacity: 35, openingTime: '05:00', closingTime: '23:00', images: ['https://images.unsplash.com/photo-1534438327276-14e5300c3a48'], isActive: true },
-];
+export const dynamic = 'force-dynamic';
 
 export async function GET(req, { params }) {
   const resolvedParams = await params;
@@ -12,9 +11,36 @@ export async function GET(req, { params }) {
 
   try {
     await connectToDatabase();
-    const amenity = await Amenity.findById(id);
-    if (amenity) return NextResponse.json({ amenity });
-  } catch (e) {}
+    await seedInitialData();
 
-  return NextResponse.json({ amenity: MOCK_AMENITIES[0] });
+    const amenity = await Amenity.findById(id);
+    if (!amenity) {
+      return NextResponse.json({ message: 'Amenity not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, amenity });
+  } catch (error) {
+    console.error("Get Amenity Error", error);
+    return NextResponse.json({ message: 'Failed to fetch amenity details', error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req, { params }) {
+  const resolvedParams = await params;
+  const id = resolvedParams?.id;
+  const data = await req.json();
+
+  try {
+    await connectToDatabase();
+
+    const amenity = await Amenity.findByIdAndUpdate(id, data, { new: true, runValidators: true });
+    if (!amenity) {
+      return NextResponse.json({ message: 'Amenity not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, amenity });
+  } catch (error) {
+    console.error("Update Amenity Error", error);
+    return NextResponse.json({ message: 'Failed to update amenity', error: error.message }, { status: 500 });
+  }
 }

@@ -1,22 +1,9 @@
 import { NextResponse } from 'next/server';
-import connectToDatabase from '../../../../lib/mongodb';
-import MaintenanceRequest from '../../../../models/MaintenanceRequest';
+import connectToDatabase from '@/lib/mongodb';
+import { seedInitialData } from '@/lib/seed';
+import MaintenanceRequest from '@/models/MaintenanceRequest';
 
-const MOCK_MAINTENANCE = [
-  {
-    _id: 'maint_1',
-    id: 'maint_1',
-    title: 'HVAC Air Conditioning Cooling Malfunction',
-    description: 'The central air conditioning system in the master bedroom is blowing warm air.',
-    propertyId: { _id: 'prop_1', title: 'The Glass Pavilion Luxury Penthouse' },
-    tenantId: { _id: 'tenant_1', name: 'Sophia Martinez' },
-    assignedStaffId: { _id: 'staff_1', name: 'David Miller' },
-    priority: 'High',
-    status: 'In Progress',
-    images: ['https://images.unsplash.com/photo-1581092160607-ee22621dd758'],
-    notes: [{ authorName: 'David Miller', authorRole: 'Maintenance Staff', text: 'Inspected compressor capacitor.', createdAt: new Date().toISOString() }],
-  },
-];
+export const dynamic = 'force-dynamic';
 
 export async function GET(req, { params }) {
   const resolvedParams = await params;
@@ -24,11 +11,22 @@ export async function GET(req, { params }) {
 
   try {
     await connectToDatabase();
-    const request = await MaintenanceRequest.findById(id).populate('propertyId').populate('tenantId').populate('assignedStaffId');
-    if (request) return NextResponse.json({ request });
-  } catch (e) {}
+    await seedInitialData();
 
-  return NextResponse.json({ request: MOCK_MAINTENANCE[0] });
+    const request = await MaintenanceRequest.findById(id)
+      .populate('propertyId')
+      .populate('tenantId', 'name email avatar')
+      .populate('assignedStaffId', 'name email avatar');
+
+    if (!request) {
+      return NextResponse.json({ message: 'Ticket not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, request });
+  } catch (error) {
+    console.error("Get Maintenance Ticket Error", error);
+    return NextResponse.json({ message: 'Failed to fetch ticket details', error: error.message }, { status: 500 });
+  }
 }
 
 export async function PUT(req, { params }) {
@@ -38,9 +36,37 @@ export async function PUT(req, { params }) {
 
   try {
     await connectToDatabase();
-    const request = await MaintenanceRequest.findByIdAndUpdate(id, data, { new: true });
-    return NextResponse.json({ request });
-  } catch (e) {
-    return NextResponse.json({ request: { _id: id, ...data } });
+
+    const updateFields = {};
+    if (data.status) updateFields.status = data.status;
+    if (data.assignedStaffId) updateFields.assignedStaffId = data.assignedStaffId;
+    if (data.priority) updateFields.priority = data.priority;
+
+    let updateQuery = { $set: updateFields };
+
+    if (data.noteText) {
+      updateQuery.$push = {
+        notes: {
+          authorName: data.authorName || 'Staff Technician',
+          authorRole: data.authorRole || 'Maintenance Staff',
+          text: data.noteText,
+          createdAt: new Date(),
+        },
+      };
+    }
+
+    const request = await MaintenanceRequest.findByIdAndUpdate(id, updateQuery, { new: true, runValidators: true })
+      .populate('propertyId')
+      .populate('tenantId', 'name email avatar')
+      .populate('assignedStaffId', 'name email avatar');
+
+    if (!request) {
+      return NextResponse.json({ message: 'Ticket not found' }, { status: 404 });
+    }
+
+    return NextResponse.json({ success: true, request });
+  } catch (error) {
+    console.error("Update Maintenance Ticket Error", error);
+    return NextResponse.json({ message: 'Failed to update ticket', error: error.message }, { status: 500 });
   }
 }

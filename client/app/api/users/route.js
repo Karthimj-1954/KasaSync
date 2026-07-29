@@ -1,23 +1,51 @@
 import { NextResponse } from 'next/server';
-import connectToDatabase from '../../../lib/mongodb';
-import User from '../../../models/User';
+import connectToDatabase from '@/lib/mongodb';
+import { seedInitialData } from '@/lib/seed';
+import User from '@/models/User';
 
 export const dynamic = 'force-dynamic';
-
-const MOCK_USERS = [
-  { _id: 'usr_1', name: 'Eleanor Vance (Admin)', email: 'admin@kasasync.com', role: 'Admin', avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb' },
-  { _id: 'usr_2', name: 'Marcus Sterling (Owner)', email: 'owner@kasasync.com', role: 'Property Owner', avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d' },
-  { _id: 'usr_3', name: 'Sophia Martinez (Tenant)', email: 'tenant@kasasync.com', role: 'Tenant', avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330' },
-  { _id: 'usr_4', name: 'David Miller (Technician)', email: 'staff@kasasync.com', role: 'Maintenance Staff', avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e' },
-];
 
 export async function GET() {
   try {
     await connectToDatabase();
+    await seedInitialData();
+
     const users = await User.find().select('-password').sort({ name: 1 });
-    if (!users || users.length === 0) return NextResponse.json({ users: MOCK_USERS });
-    return NextResponse.json({ users });
-  } catch (e) {
-    return NextResponse.json({ users: MOCK_USERS });
+    return NextResponse.json({ success: true, users });
+  } catch (error) {
+    console.error("Fetch Users Error", error);
+    return NextResponse.json({ message: 'Failed to fetch users', error: error.message }, { status: 500 });
+  }
+}
+
+export async function PUT(req) {
+  try {
+    await connectToDatabase();
+
+    const { userId, name, phoneNumber, avatar, notificationPreferences } = await req.json();
+
+    if (!userId) {
+      return NextResponse.json({ message: 'User ID required' }, { status: 400 });
+    }
+
+    console.log("Updating User Profile...");
+
+    const updatedUser = await User.findByIdAndUpdate(
+      userId,
+      {
+        ...(name && { name }),
+        ...(phoneNumber !== undefined && { phoneNumber }),
+        ...(avatar && { avatar }),
+        ...(notificationPreferences && { notificationPreferences }),
+      },
+      { new: true, runValidators: true }
+    ).select('-password');
+
+    console.log("User Profile Updated");
+
+    return NextResponse.json({ success: true, user: updatedUser });
+  } catch (error) {
+    console.error("Update User Error", error);
+    return NextResponse.json({ message: 'Failed to update user profile', error: error.message }, { status: 500 });
   }
 }
