@@ -14,19 +14,19 @@ export default function Modal({ isOpen, onClose, title, children }) {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-slate-950/80 backdrop-blur-md"
+            className="fixed inset-0 bg-[#24425C]/40 backdrop-blur-sm"
           />
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.95, y: 10 }}
-            className="relative z-10 w-full max-w-xl glass-panel rounded-2xl p-6 shadow-2xl border border-slate-700/60 max-h-[90vh] overflow-y-auto"
+            exit={{ opacity: 0, scale: 0.95, y: 0 }}
+            className="relative z-10 w-full max-w-xl bg-white rounded-[20px] p-6 shadow-2xl border border-[#E7EEF4] max-h-[90vh] overflow-y-auto"
           >
-            <div className="flex items-center justify-between pb-4 border-b border-slate-800">
-              <h3 className="text-lg font-bold text-white">{title}</h3>
+            <div className="flex items-center justify-between pb-4 border-b border-[#E7EEF4]">
+              <h3 className="text-lg font-bold text-[#24425C] font-poppins">{title}</h3>
               <button
                 onClick={onClose}
-                className="p-1 rounded-lg hover:bg-slate-800 text-slate-400 hover:text-white transition"
+                className="p-1.5 rounded-xl hover:bg-[#B4E1EB]/40 text-[#6F8190] hover:text-[#24425C] transition"
               >
                 <X className="w-5 h-5" />
               </button>

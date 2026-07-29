@@ -12,10 +12,10 @@ export default function DashboardLayout({ children }) {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-slate-950 text-white">
+      <div className="min-h-screen flex items-center justify-center bg-[#F9E8A2] text-[#24425C]">
         <div className="text-center space-y-3">
-          <div className="w-10 h-10 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto" />
-          <p className="text-xs text-slate-400 font-semibold">Initializing KasaSync Platform...</p>
+          <div className="w-10 h-10 border-4 border-[#78A4CB] border-t-transparent rounded-full animate-spin mx-auto" />
+          <p className="text-xs text-[#6F8190] font-semibold">Initializing KasaSync Platform...</p>
         </div>
       </div>
     );
@@ -27,7 +27,7 @@ export default function DashboardLayout({ children }) {
   }
 
   return (
-    <div className="min-h-screen flex bg-slate-950 text-slate-100">
+    <div className="min-h-screen flex bg-[#F9E8A2] text-[#4F6475]">
       <Sidebar />
       <div className="flex-1 flex flex-col min-w-0">
         <Topbar />

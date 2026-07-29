@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,65 +6,133 @@
 
 @layer base {
   :root {
-    --bg-main: #0f172a;
-    --bg-card: rgba(30, 41, 59, 0.7);
-    --border-color: rgba(255, 255, 255, 0.1);
-    --text-primary: #f8fafc;
-    --text-secondary: #94a3b8;
-  }
-
-  .light {
-    --bg-main: #f8fafc;
-    --bg-card: rgba(255, 255, 255, 0.9);
-    --border-color: rgba(0, 0, 0, 0.1);
-    --text-primary: #0f172a;
-    --text-secondary: #475569;
+    --primary-cream: #F9E8A2;
+    --light-sky: #B4E1EB;
+    --soft-steel: #95BDD7;
+    --muted-blue: #78A4CB;
+    --heading-dark: #24425C;
+    --heading-sub: #365E7C;
+    --body-text: #4F6475;
+    --muted-text: #6F8190;
+    --label-text: #5A6E7C;
+    --link-color: #3F7AA5;
+    --link-hover: #24425C;
+    --card-bg: #FFFFFF;
+    --card-border: #E7EEF4;
+    --footer-bg: #24425C;
+    --soft-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    --card-hover-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
   }
 
   body {
-    background-color: var(--bg-main);
-    color: var(--text-primary);
-    font-family: 'Inter', sans-serif;
+    background-color: var(--primary-cream);
+    color: var(--body-text);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
     overflow-x: hidden;
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+    color: var(--heading-dark);
+    font-weight: 700;
   }
 }
 
-/* Glassmorphism Design Utilities */
-.glass-panel {
-  background: var(--bg-card);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border-color);
-  box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.2);
+/* Premium Component Utilities */
+.glass-panel, .kasasync-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E7EEF4;
+  border-radius: 20px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.kasasync-card-hover:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  border-color: #95BDD7;
 }
 
 .glass-input {
-  background: rgba(15, 23, 42, 0.6);
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  color: #f8fafc;
+  background-color: #FFFFFF;
+  border: 1.5px solid #95BDD7;
+  color: #24425C;
+  border-radius: 12px;
+  transition: all 0.25s ease;
 }
 
-.light .glass-input {
-  background: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(0, 0, 0, 0.15);
-  color: #0f172a;
+.glass-input:focus {
+  outline: none;
+  border-color: #78A4CB;
+  box-shadow: 0 0 0 4px rgba(120, 164, 203, 0.25);
+}
+
+.glass-input::placeholder {
+  color: #7D8F9C;
+}
+
+/* Buttons */
+.btn-kasasync-primary {
+  background-color: #78A4CB;
+  color: #FFFFFF;
+  border-radius: 14px;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(120, 164, 203, 0.25);
+  transition: all 0.25s ease;
+}
+
+.btn-kasasync-primary:hover {
+  background-color: #5E91BA;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(120, 164, 203, 0.35);
+}
+
+.btn-kasasync-secondary {
+  background-color: #95BDD7;
+  color: #24425C;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-kasasync-secondary:hover {
+  background-color: #78A4CB;
+  color: #FFFFFF;
+  transform: translateY(-2px);
+}
+
+.btn-kasasync-outline {
+  background-color: #FFFFFF;
+  border: 1.5px solid #78A4CB;
+  color: #365E7C;
+  border-radius: 14px;
+  font-weight: 600;
+  transition: all 0.25s ease;
+}
+
+.btn-kasasync-outline:hover {
+  background-color: #B4E1EB;
+  color: #24425C;
+  border-color: #95BDD7;
+  transform: translateY(-2px);
 }
 
 /* Custom Scrollbar */
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 7px;
+  height: 7px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(15, 23, 42, 0.5);
+  background: #F9E8A2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(59, 130, 246, 0.4);
-  border-radius: 9999px;
+  background: #95BDD7;
+  border-radius: 10px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(59, 130, 246, 0.8);
+  background: #78A4CB;
 }

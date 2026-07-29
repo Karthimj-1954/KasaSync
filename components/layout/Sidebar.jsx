@@ -39,28 +39,28 @@ export default function Sidebar({ className }) {
   ];
 
   return (
-    <aside className={cn('w-64 glass-panel border-r border-slate-800/80 flex flex-col justify-between h-screen sticky top-0 z-30 p-4', className)}>
+    <aside className={cn('w-64 bg-white border-r border-[#E7EEF4] flex flex-col justify-between h-screen sticky top-0 z-30 p-4 shadow-sm', className)}>
       <div>
         {/* Brand Header */}
         <Link href="/" className="flex items-center gap-3 px-3 py-2 mb-6">
-          <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-emerald-400 flex items-center justify-center shadow-lg shadow-blue-500/20">
+          <div className="w-10 h-10 rounded-xl bg-[#78A4CB] flex items-center justify-center shadow-md shadow-[#78A4CB]/20">
             <Home className="w-6 h-6 text-white" />
           </div>
           <div>
-            <h1 className="text-xl font-black bg-gradient-to-r from-white via-slate-200 to-blue-400 bg-clip-text text-transparent">
+            <h1 className="text-xl font-black text-[#24425C] font-poppins">
               KasaSync
             </h1>
-            <p className="text-[10px] uppercase font-bold tracking-widest text-emerald-400">Real-Time Sync</p>
+            <p className="text-[10px] uppercase font-bold tracking-widest text-[#78A4CB]">Property Portal</p>
           </div>
         </Link>
 
         {/* User Role Pill */}
         {user && (
-          <div className="mb-6 px-3 py-2 rounded-xl bg-slate-800/60 border border-slate-700/50 flex items-center gap-3">
-            <Image src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'} alt={user.name || 'User'} width={32} height={32} className="w-8 h-8 rounded-full object-cover border border-blue-500/40" />
+          <div className="mb-6 px-3 py-2.5 rounded-2xl bg-[#B4E1EB]/30 border border-[#95BDD7]/40 flex items-center gap-3">
+            <Image src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'} alt={user.name || 'User'} width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-[#78A4CB]" />
             <div className="overflow-hidden">
-              <p className="text-xs font-bold text-white truncate">{user.name}</p>
-              <p className="text-[10px] text-blue-400 font-semibold">{user.role}</p>
+              <p className="text-xs font-bold text-[#24425C] truncate font-poppins">{user.name}</p>
+              <p className="text-[10px] text-[#3F7AA5] font-semibold">{user.role}</p>
             </div>
           </div>
         )}
@@ -69,19 +69,19 @@ export default function Sidebar({ className }) {
         <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
-            const isActive = pathname === item.href || (item.href !== '/dashboard' && pathname.startsWith(item.href));
+            const isActive = pathname === item.href || pathname.startsWith(`${item.href}/`);
             return (
               <Link
                 key={item.href}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-medium transition-all duration-200 group',
+                  'flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-xs font-semibold transition-all duration-200',
                   isActive
-                    ? 'bg-blue-600 text-white font-semibold shadow-lg shadow-blue-600/30'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/50'
+                    ? 'bg-[#B4E1EB] text-[#24425C] shadow-sm font-bold border border-[#95BDD7]'
+                    : 'text-[#365E7C] hover:bg-[#B4E1EB]/30 hover:text-[#24425C]'
                 )}
               >
-                <Icon className={cn('w-4 h-4 transition-transform group-hover:scale-110', isActive ? 'text-white' : 'text-slate-400 group-hover:text-blue-400')} />
+                <Icon className={cn('w-4 h-4 transition-colors', isActive ? 'text-[#24425C]' : 'text-[#78A4CB]')} />
                 <span>{item.label}</span>
               </Link>
             );
@@ -90,15 +90,13 @@ export default function Sidebar({ className }) {
       </div>
 
       {/* Logout Action */}
-      <div className="pt-4 border-t border-slate-800">
-        <button
-          onClick={logout}
-          className="w-full flex items-center gap-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold text-rose-400 hover:bg-rose-500/10 transition"
-        >
-          <LogOut className="w-4 h-4" />
-          <span>Logout</span>
-        </button>
-      </div>
+      <button
+        onClick={logout}
+        className="flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-xs font-semibold text-rose-600 hover:bg-rose-50 transition w-full mt-4"
+      >
+        <LogOut className="w-4 h-4 text-rose-500" />
+        <span>Log Out</span>
+      </button>
     </aside>
   );
 }

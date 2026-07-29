@@ -8,36 +8,38 @@ export default function Select({
   options = [],
   value,
   onChange,
-  error,
   className,
-  id,
+  required,
   ...props
 }) {
   return (
-    <div className="w-full space-y-1.5">
+    <div className="space-y-1.5 w-full">
       {label && (
-        <label htmlFor={id} className="block text-xs font-semibold uppercase tracking-wider text-slate-300">
-          {label}
+        <label className="block text-xs font-bold uppercase tracking-wider text-[#365E7C]">
+          {label} {required && <span className="text-rose-500">*</span>}
         </label>
       )}
+
       <select
-        id={id}
         value={value}
         onChange={onChange}
+        required={required}
         className={cn(
-          'w-full glass-input rounded-xl px-4 py-2.5 text-sm transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500/50 appearance-none bg-no-repeat bg-right text-slate-200 cursor-pointer',
-          error && 'border-rose-500/80',
+          'w-full bg-white border-1.5 border-[#95BDD7] text-[#24425C] rounded-[12px] text-xs font-medium px-3.5 py-2.5 transition-all duration-200 focus:outline-none focus:border-[#78A4CB] focus:ring-4 focus:ring-[#78A4CB]/20 cursor-pointer',
           className
         )}
         {...props}
       >
-        {options.map((opt) => (
-          <option key={opt.value || opt} value={opt.value || opt} className="bg-slate-900 text-white">
-            {opt.label || opt}
-          </option>
-        ))}
+        {options.map((opt, idx) => {
+          const val = typeof opt === 'object' ? opt.value : opt;
+          const lbl = typeof opt === 'object' ? opt.label : opt;
+          return (
+            <option key={idx} value={val} className="bg-white text-[#24425C]">
+              {lbl}
+            </option>
+          );
+        })}
       </select>
-      {error && <p className="text-xs text-rose-400 font-medium">{error}</p>}
     </div>
   );
 }

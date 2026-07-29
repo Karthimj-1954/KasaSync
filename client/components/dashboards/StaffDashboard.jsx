@@ -5,7 +5,8 @@ import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { Wrench, CheckCircle2, Clock, AlertTriangle, ArrowRight } from 'lucide-react';
+import { Wrench, CheckCircle2, Clock, AlertTriangle } from 'lucide-react';
+import { formatDate } from '../../lib/utils';
 
 export default function StaffDashboard({ data }) {
   const { maintenance = [] } = data;
@@ -15,80 +16,84 @@ export default function StaffDashboard({ data }) {
 
   return (
     <div className="space-y-6">
-      {/* Task Summary Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        <Card className="bg-gradient-to-br from-amber-900/30 to-slate-900/60 border-amber-500/20">
+        <Card className="bg-[#F9E8A2]/60 border-[#E7D688]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Assigned Work Orders</p>
-              <h3 className="text-2xl font-black text-amber-400 mt-1">{assignedTasks.length}</h3>
+              <p className="text-[10px] text-[#5A6E7C] font-bold uppercase tracking-wider">Assigned Work Orders</p>
+              <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{assignedTasks.length}</h3>
             </div>
-            <div className="p-3 rounded-xl bg-amber-500/20 text-amber-400">
+            <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
               <Clock className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-emerald-900/30 to-slate-900/60 border-emerald-500/20">
+        <Card className="bg-[#B4E1EB]/30 border-[#95BDD7]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Completed Jobs</p>
-              <h3 className="text-2xl font-black text-emerald-400 mt-1">{completedTasks.length}</h3>
+              <p className="text-[10px] text-[#5A6E7C] font-bold uppercase tracking-wider">Completed Jobs</p>
+              <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{completedTasks.length}</h3>
             </div>
-            <div className="p-3 rounded-xl bg-emerald-500/20 text-emerald-400">
+            <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
               <CheckCircle2 className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
 
-        <Card className="bg-gradient-to-br from-rose-900/30 to-slate-900/60 border-rose-500/20">
+        <Card className="bg-[#95BDD7]/30 border-[#78A4CB]">
           <CardContent className="p-4 flex items-center justify-between">
             <div>
-              <p className="text-xs text-slate-400 font-semibold uppercase">Emergency Dispatch</p>
-              <h3 className="text-2xl font-black text-rose-400 mt-1">
+              <p className="text-[10px] text-[#5A6E7C] font-bold uppercase tracking-wider">Emergency Dispatch</p>
+              <h3 className="text-2xl font-black text-rose-600 font-poppins mt-1">
                 {maintenance.filter((m) => m.priority === 'Emergency' && m.status !== 'Completed').length}
               </h3>
             </div>
-            <div className="p-3 rounded-xl bg-rose-500/20 text-rose-400">
+            <div className="p-3 rounded-2xl bg-white text-rose-500 shadow-sm">
               <AlertTriangle className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
       </div>
 
-      {/* Active Work Queue */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
-            <CardTitle className="flex items-center gap-2">
-              <Wrench className="w-4 h-4 text-blue-400" />
-              <span>Assigned Maintenance Queue</span>
-            </CardTitle>
-            <CardDescription>Update step-by-step progress and upload proof photos</CardDescription>
+            <CardTitle>Active Dispatch Queue</CardTitle>
+            <CardDescription>Work orders assigned to technical field staff</CardDescription>
           </div>
-          <Link href="/maintenance" className="text-xs text-blue-400 hover:underline flex items-center gap-1">
-            View All Orders <ArrowRight className="w-3 h-3" />
+          <Link href="/maintenance">
+            <Button variant="primary" size="sm">
+              Open Board &rarr;
+            </Button>
           </Link>
         </CardHeader>
-        <CardContent className="space-y-4">
+        <CardContent className="space-y-3">
           {maintenance.length === 0 ? (
-            <p className="text-xs text-slate-400 py-6 text-center">No work orders currently in your queue.</p>
+            <p className="text-xs text-[#6F8190] text-center py-8">No maintenance tickets in queue.</p>
           ) : (
-            maintenance.map((ticket) => (
-              <div key={ticket._id} className="p-4 rounded-xl bg-slate-900/50 border border-slate-800 flex flex-col md:flex-row md:items-center justify-between gap-4">
-                <div>
+            maintenance.slice(0, 5).map((task) => (
+              <div key={task._id} className="p-4 rounded-xl bg-white border border-[#E7EEF4] hover:border-[#95BDD7] flex items-center justify-between gap-4 transition shadow-sm">
+                <div className="space-y-1">
                   <div className="flex items-center gap-2">
-                    <h5 className="text-sm font-bold text-white">{ticket.title}</h5>
-                    <Badge status={ticket.status} />
+                    <p className="text-sm font-bold text-[#24425C] font-poppins">{task.title}</p>
+                    {task.priority === 'High' || task.priority === 'Emergency' ? (
+                      <span className="px-2 py-0.5 rounded-full bg-rose-100 text-rose-700 text-[10px] font-bold border border-rose-200">
+                        {task.priority}
+                      </span>
+                    ) : null}
                   </div>
-                  <p className="text-xs text-slate-400 mt-1">{ticket.description}</p>
-                  <p className="text-[11px] text-slate-500 mt-1">Property: {ticket.propertyId?.title || 'Residential Unit'}</p>
+                  <p className="text-xs text-[#6F8190]">{task.description}</p>
+                  <p className="text-[10px] text-[#6F8190]">{formatDate(task.createdAt)}</p>
                 </div>
-                <Link href={`/maintenance/${ticket._id}`}>
-                  <Button variant="outline" size="sm">
-                    Manage Order
-                  </Button>
-                </Link>
+                <div className="flex items-center gap-3">
+                  <Badge status={task.status} />
+                  <Link href={`/maintenance/${task._id}`}>
+                    <Button variant="outline" size="sm">
+                      Update
+                    </Button>
+                  </Link>
+                </div>
               </div>
             ))
           )}
