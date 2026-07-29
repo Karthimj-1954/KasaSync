@@ -2,16 +2,14 @@
 
 import React, { useState, useRef } from 'react';
 import { useAuth } from '../../../context/AuthContext';
-import { useTheme } from '../../../context/ThemeContext';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
-import { User, Moon, Sun, Upload, Camera } from 'lucide-react';
+import { User, Upload, Camera } from 'lucide-react';
 import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
   const { user, updateUserProfile } = useAuth();
-  const { theme, toggleTheme } = useTheme();
   const avatarInputRef = useRef(null);
 
   const [formData, setFormData] = useState({
@@ -66,7 +64,7 @@ export default function SettingsPage() {
     <div className="max-w-3xl mx-auto space-y-6">
       <div>
         <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Account & System Settings</h2>
-        <p className="text-xs text-[#6B7A90]">Manage profile information, notification alerts, and theme preferences</p>
+        <p className="text-xs text-[#6B7A90]">Manage profile information and notification preferences</p>
       </div>
 
       {/* Profile Info Form */}
@@ -135,25 +133,6 @@ export default function SettingsPage() {
               Save Profile Changes
             </Button>
           </form>
-        </CardContent>
-      </Card>
-
-      {/* Theme Preference */}
-      <Card>
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            {theme === 'dark' ? <Moon className="w-4 h-4 text-[#5E8FBF]" /> : <Sun className="w-4 h-4 text-[#C68A00]" />}
-            <span>Interface Theme Mode</span>
-          </CardTitle>
-        </CardHeader>
-        <CardContent className="flex items-center justify-between">
-          <div>
-            <p className="text-xs font-bold text-[#183153] font-poppins">Current Mode: {theme === 'dark' ? 'Dark Mode' : 'Light Mode'}</p>
-            <p className="text-xs text-[#6B7A90]">Toggle between dark and light color themes</p>
-          </div>
-          <Button variant="outline" size="sm" onClick={toggleTheme}>
-            Toggle Theme
-          </Button>
         </CardContent>
       </Card>
     </div>
