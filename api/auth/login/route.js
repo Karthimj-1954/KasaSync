@@ -63,10 +63,12 @@ export async function POST(req) {
           avatar: profile.avatar,
         });
       } else {
+        // Ensure demo password matches input
         user.password = hashedPassword;
         await user.save();
       }
     } else {
+      // Standard Non-Demo User Login
       if (!user) {
         return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
       }

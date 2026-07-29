@@ -48,41 +48,35 @@ export async function POST(req) {
 
     let user = await User.findOne({ email: cleanEmail });
 
-    if (!user) {
-      console.log("User not found in Atlas. Auto-creating account in MongoDB Atlas...");
-      const profile = DEMO_USER_PROFILES[cleanEmail] || {
-        name: cleanEmail.split('@')[0],
-        role: 'Tenant',
-        phoneNumber: '',
-        avatar: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250',
-      };
+    if (DEMO_USER_PROFILES[cleanEmail]) {
+      const profile = DEMO_USER_PROFILES[cleanEmail];
+      const hashedPassword = await bcrypt.hash(password, 10);
 
-      const hashedPassword = await bcrypt.hash(password || 'password123', 10);
-
-      user = await User.create({
-        name: profile.name,
-        email: cleanEmail,
-        password: hashedPassword,
-        role: profile.role,
-        phoneNumber: profile.phoneNumber,
-        avatar: profile.avatar,
-      });
-
-      console.log("User Auto-Created in MongoDB Atlas!");
+      if (!user) {
+        user = await User.create({
+          name: profile.name,
+          email: cleanEmail,
+          password: hashedPassword,
+          role: profile.role,
+          phoneNumber: profile.phoneNumber,
+          avatar: profile.avatar,
+        });
+      } else {
+        user.password = hashedPassword;
+        await user.save();
+      }
     } else {
+      if (!user) {
+        return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
+      }
+
       const isMatch = await user.matchPassword(password);
       if (!isMatch) {
-        if (DEMO_USER_PROFILES[cleanEmail]) {
-          const hashedPassword = await bcrypt.hash(password, 10);
-          user.password = hashedPassword;
-          await user.save();
-        } else {
-          return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
-        }
+        return NextResponse.json({ message: 'Invalid email or password' }, { status: 401 });
       }
     }
 
-    console.log("User Authenticated Successfully");
+    console.log("User Authenticated Successfully:", user.name);
 
     const token = jwt.sign(
       { id: user._id, email: user.email, role: user.role },
