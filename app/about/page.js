@@ -394,36 +394,7 @@ export default function AboutPage() {
           </motion.div>
         </section>
 
-        {/* 8. Technology Stack */}
-        <section className="max-w-5xl mx-auto space-y-8">
-          <div className="text-center space-y-3">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#5E8FBF]">Engineering</span>
-            <h2 className="text-3xl font-bold text-[#183153] font-poppins">Technology Stack</h2>
-          </div>
-
-          <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
-            {[
-              { category: 'Frontend', items: 'Next.js 15, React 19, Tailwind CSS', icon: Cpu },
-              { category: 'Backend', items: 'Node.js, Express.js API', icon: Server },
-              { category: 'Database', items: 'MongoDB Atlas', icon: Database },
-              { category: 'Media', items: 'Cloudinary CDN', icon: Cloud },
-              { category: 'Deployment', items: 'Vercel Platform', icon: Layers },
-              { category: 'Authentication', items: 'JWT & Bcrypt.js', icon: Key },
-              { category: 'Icons & Design', items: 'Lucide React Icons', icon: Sparkles },
-              { category: 'State & Query', items: 'TanStack React Query', icon: Activity }
-            ].map((tech, idx) => (
-              <div key={idx} className="bg-white p-5 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-2">
-                <div className="flex items-center gap-2 text-[#5E8FBF]">
-                  <tech.icon className="w-4 h-4" />
-                  <span className="text-xs font-bold uppercase tracking-wider text-[#183153]">{tech.category}</span>
-                </div>
-                <p className="text-xs text-[#425466] font-semibold">{tech.items}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        {/* 9. Meet the Platform */}
+        {/* Meet the Platform */}
         <section className="max-w-7xl mx-auto space-y-12">
           <div className="text-center space-y-3">
             <span className="text-xs font-bold uppercase tracking-wider text-[#5E8FBF]">Architecture</span>
