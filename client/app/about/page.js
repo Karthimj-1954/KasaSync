@@ -34,6 +34,7 @@ import {
   FileCheck,
   UserCheck
 } from 'lucide-react';
+import Header from '@/components/layout/Header';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -52,37 +53,7 @@ export default function AboutPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#FFFDF7] text-[#425466] selection:bg-[#5E8FBF] selection:text-white">
       {/* Header Navigation */}
-      <header className="sticky top-0 inset-x-0 z-50 bg-[#FFFDF7]/90 backdrop-blur-md border-b border-[#EAF3FA] px-6 py-4 shadow-sm">
-        <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <Link href="/" className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-              <Home className="w-6 h-6 text-white" />
-            </div>
-            <div>
-              <h1 className="text-xl font-bold text-[#183153] font-poppins">KasaSync</h1>
-              <p className="text-[10px] uppercase font-bold tracking-widest text-[#3E7CB1]">Smart Property Sync</p>
-            </div>
-          </Link>
-
-          <div className="hidden md:flex items-center gap-6 text-xs font-semibold text-[#183153]">
-            <Link href="/" className="hover:text-[#5E8FBF] transition">Home</Link>
-            <Link href="/#features" className="hover:text-[#5E8FBF] transition">Features</Link>
-            <Link href="/properties" className="hover:text-[#5E8FBF] transition">Properties</Link>
-            <Link href="/about" className="text-[#5E8FBF] font-bold">About Us</Link>
-          </div>
-
-          <div className="flex items-center gap-3">
-            <Link href="/login">
-              <Button variant="outline" size="sm">Sign In</Button>
-            </Link>
-            <Link href="/register">
-              <Button variant="primary" size="sm">
-                Get Started <ArrowRight className="w-4 h-4" />
-              </Button>
-            </Link>
-          </div>
-        </div>
-      </header>
+      <Header />
 
       {/* Main Content Container */}
       <main className="flex-1 space-y-24 py-16 px-6">
