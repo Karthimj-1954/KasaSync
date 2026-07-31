@@ -13,15 +13,14 @@ export default function Header() {
   const navLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
-    { name: 'Features', href: '/#features' },
-    { name: 'Pricing', href: '/#pricing' },
-    { name: 'Contact', href: '/#contact' }
+    { name: 'Features', href: '/features' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'Contact', href: '/contact' }
   ];
 
   const isActive = (href) => {
     if (href === '/') return pathname === '/';
-    if (href === '/about') return pathname === '/about';
-    return false;
+    return pathname === href;
   };
 
   return (

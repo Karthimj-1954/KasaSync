@@ -35,9 +35,34 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:support@kasasync.com" className="hover:text-white transition-colors duration-200">
+                <Link href="/about" className="hover:text-white transition-colors duration-200">
+                  About Us
+                </Link>
+              </li>
+              <li>
+                <Link href="/features" className="hover:text-white transition-colors duration-200">
+                  Features
+                </Link>
+              </li>
+              <li>
+                <Link href="/pricing" className="hover:text-white transition-colors duration-200">
+                  Pricing
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white transition-colors duration-200">
                   Contact
-                </a>
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacy" className="hover:text-white transition-colors duration-200">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/terms" className="hover:text-white transition-colors duration-200">
+                  Terms of Service
+                </Link>
               </li>
             </ul>
           </div>
@@ -105,7 +130,7 @@ export default function Footer() {
 
         {/* Bottom Bar: Copyright & Legal */}
         <div className="pt-8 border-t border-[#23426B] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[#AFC5DB]">
-          <p>© 2026 KasaSync. All rights reserved.</p>
+          <p>© 2026 KasaSync. Smart Property Sync Platform.</p>
           <div className="flex items-center gap-4 text-[#AFC5DB]">
             <Link href="/privacy" className="hover:text-white transition-colors duration-200">
               Privacy Policy
