@@ -11,7 +11,7 @@ export async function GET(req) {
     await connectToDatabase();
     await seedInitialData();
 
-    const { searchParams } = new URL(req.url);
+    const searchParams = req.nextUrl ? req.nextUrl.searchParams : new URL(req.url, 'http://localhost').searchParams;
     const userId = searchParams.get('userId');
 
     let query = {};

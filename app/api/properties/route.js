@@ -17,7 +17,7 @@ export async function GET(req) {
 
     console.log("Fetching properties...");
 
-    const { searchParams } = new URL(req.url);
+    const searchParams = req.nextUrl ? req.nextUrl.searchParams : new URL(req.url, 'http://localhost').searchParams;
     const search = searchParams.get('search');
     const type = searchParams.get('type');
     const bedrooms = searchParams.get('bedrooms');

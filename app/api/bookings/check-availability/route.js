@@ -3,7 +3,7 @@ import connectToDatabase from '../../../../lib/mongodb';
 import Booking from '../../../../models/Booking';
 
 export async function GET(req) {
-  const { searchParams } = new URL(req.url);
+  const searchParams = req.nextUrl ? req.nextUrl.searchParams : new URL(req.url, 'http://localhost').searchParams;
   const amenityId = searchParams.get('amenityId');
   const bookingDate = searchParams.get('bookingDate');
 
