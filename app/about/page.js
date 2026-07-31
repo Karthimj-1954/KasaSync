@@ -30,6 +30,7 @@ import {
   ArrowRight,
   Mail,
   Key,
+  ShieldAlert,
   FileCheck,
   UserCheck
 } from 'lucide-react';
