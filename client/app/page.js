@@ -7,6 +7,8 @@ import { Home, Building2, Wrench, Sparkles, ArrowRight, Activity, CalendarCheck 
 
 import FeatureCard from '@/components/ui/FeatureCard';
 
+import Footer from '@/components/layout/Footer';
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#425466] selection:bg-[#5E8FBF] selection:text-white">
@@ -67,7 +69,7 @@ export default function LandingPage() {
             </Link>
           </div>
 
-          <div className="pt-16 grid md:grid-cols-4 gap-6 text-left">
+          <div id="features" className="pt-16 grid md:grid-cols-4 gap-6 text-left">
             <FeatureCard
               icon={Building2}
               title="Property Management"
@@ -92,19 +94,7 @@ export default function LandingPage() {
         </div>
       </main>
 
-      <footer className="bg-[#183153] text-white py-8 px-6 text-center text-xs font-normal">
-        <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="flex items-center gap-2">
-            <Home className="w-4 h-4 text-[#7AA7D9]" />
-            <span className="font-bold text-[#FFFFFF] font-poppins">KasaSync Platform</span>
-          </div>
-          <p className="text-slate-300">© 2026 KasaSync Platform. Enterprise Property, Maintenance & Amenity Portal.</p>
-          <div className="flex gap-4 text-[#7AA7D9]">
-            <Link href="/login" className="hover:text-white transition">Sign In</Link>
-            <Link href="/properties" className="hover:text-white transition">Properties</Link>
-          </div>
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }
