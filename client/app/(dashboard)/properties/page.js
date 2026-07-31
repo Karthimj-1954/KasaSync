@@ -27,8 +27,9 @@ export default function PropertiesPage() {
     setLoading(true);
     try {
       const data = await propertyService.getProperties(filters);
-      setProperties(data.properties || []);
+      setProperties(data.properties || (Array.isArray(data) ? data : []));
     } catch (err) {
+      console.error('Failed to load properties error:', err);
       toast.error('Failed to load properties');
     } finally {
       setLoading(false);
@@ -48,6 +49,7 @@ export default function PropertiesPage() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Property Management</h2>
@@ -62,16 +64,18 @@ export default function PropertiesPage() {
         )}
       </div>
 
+      {/* Filter Component */}
       <PropertyFilter
         filters={filters}
         onChange={setFilters}
         onReset={() => setFilters({ search: '', type: 'All', bedrooms: 'All', status: 'All', maxPrice: '' })}
       />
 
+      {/* Property Cards Grid */}
       {loading ? (
         <div className="py-16 text-center text-[#6B7A90]">
           <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-xs font-semibold">Fetching property catalog...</p>
+          <p className="text-xs font-semibold">Fetching property catalog from MongoDB Atlas...</p>
         </div>
       ) : properties.length === 0 ? (
         <div className="bg-white border border-[#EAF3FA] text-center py-12 rounded-[20px] shadow-sm">
