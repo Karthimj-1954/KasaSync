@@ -5,6 +5,8 @@ import Link from 'next/link';
 import Button from '@/components/ui/Button';
 import { Home, Building2, Wrench, Sparkles, ArrowRight, Activity, CalendarCheck } from 'lucide-react';
 
+import FeatureCard from '@/components/ui/FeatureCard';
+
 export default function LandingPage() {
   return (
     <div className="min-h-screen flex flex-col bg-[#F8FAFC] text-[#425466] selection:bg-[#5E8FBF] selection:text-white">
@@ -70,45 +72,26 @@ export default function LandingPage() {
 
           {/* Feature Highlights Grid */}
           <div className="pt-16 grid md:grid-cols-4 gap-6 text-left">
-            <div className="bg-white p-6 rounded-[20px] border border-[#EAF3FA] hover:-translate-y-1 hover:shadow-xl hover:shadow-[#183153]/05 hover:border-[#C7D7EA] transition duration-250">
-              <div className="w-11 h-11 rounded-2xl bg-[#EAF3FA] text-[#183153] flex items-center justify-center mb-4 border border-[#C7D7EA]/50">
-                <Building2 className="w-5 h-5 text-[#5E8FBF]" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#183153] font-poppins">Property Management</h3>
-              <p className="text-xs text-[#60758C] mt-2 leading-relaxed font-normal">
-                Zillow-inspired workflow for listing properties, managing tenant leases, and Cloudinary photo galleries.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-[20px] border border-[#EAF3FA] hover:-translate-y-1 hover:shadow-xl hover:shadow-[#183153]/05 hover:border-[#C7D7EA] transition duration-250">
-              <div className="w-11 h-11 rounded-2xl bg-[#EAF3FA] text-[#183153] flex items-center justify-center mb-4 border border-[#C7D7EA]/50">
-                <Wrench className="w-5 h-5 text-[#5E8FBF]" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#183153] font-poppins">Maintenance Engine</h3>
-              <p className="text-xs text-[#60758C] mt-2 leading-relaxed font-normal">
-                7-step ticket resolution lifecycle with priority dispatches and photo completion proof.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-[20px] border border-[#EAF3FA] hover:-translate-y-1 hover:shadow-xl hover:shadow-[#183153]/05 hover:border-[#C7D7EA] transition duration-250">
-              <div className="w-11 h-11 rounded-2xl bg-[#EAF3FA] text-[#183153] flex items-center justify-center mb-4 border border-[#C7D7EA]/50">
-                <CalendarCheck className="w-5 h-5 text-[#5E8FBF]" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#183153] font-poppins">Conflict-Free Bookings</h3>
-              <p className="text-xs text-[#60758C] mt-2 leading-relaxed font-normal">
-                Smart time-slot validation preventing double reservations across community amenities.
-              </p>
-            </div>
-
-            <div className="bg-white p-6 rounded-[20px] border border-[#EAF3FA] hover:-translate-y-1 hover:shadow-xl hover:shadow-[#183153]/05 hover:border-[#C7D7EA] transition duration-250">
-              <div className="w-11 h-11 rounded-2xl bg-[#EAF3FA] text-[#183153] flex items-center justify-center mb-4 border border-[#C7D7EA]/50">
-                <Activity className="w-5 h-5 text-[#5E8FBF]" />
-              </div>
-              <h3 className="text-lg font-semibold text-[#183153] font-poppins">Real-Time Sync</h3>
-              <p className="text-xs text-[#60758C] mt-2 leading-relaxed font-normal">
-                MongoDB Atlas live metrics aggregation, status push notifications, and presence indicators.
-              </p>
-            </div>
+            <FeatureCard
+              icon={Building2}
+              title="Property Management"
+              description="Zillow-inspired workflow for listing properties, managing tenant leases, and Cloudinary photo galleries."
+            />
+            <FeatureCard
+              icon={Wrench}
+              title="Maintenance Engine"
+              description="7-step ticket resolution lifecycle with priority dispatches and photo completion proof."
+            />
+            <FeatureCard
+              icon={CalendarCheck}
+              title="Conflict-Free Bookings"
+              description="Smart time-slot validation preventing double reservations across community amenities."
+            />
+            <FeatureCard
+              icon={Activity}
+              title="Real-Time Sync"
+              description="MongoDB Atlas live metrics aggregation, status push notifications, and presence indicators."
+            />
           </div>
         </div>
       </main>
