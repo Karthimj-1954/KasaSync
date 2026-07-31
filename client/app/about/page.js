@@ -124,7 +124,7 @@ export default function AboutPage() {
                     <Activity className="w-5 h-5 text-[#5E8FBF] animate-pulse" />
                     <div>
                       <p className="text-xs font-bold font-poppins">Live Property Sync</p>
-                      <p className="text-[10px] text-[#AFC5DB]">MongoDB Atlas Real-Time</p>
+                      <p className="text-[10px] text-[#AFC5DB]">Real-Time Sync Engine</p>
                     </div>
                   </div>
                   <span className="text-xs font-bold text-[#5E8FBF]">Active</span>
@@ -407,7 +407,7 @@ export default function AboutPage() {
               'JWT Authentication',
               'Secure REST API',
               'Encrypted Passwords',
-              'MongoDB Atlas Security',
+              'Enterprise Security Architecture',
               'Protected Routes',
               'Role-Based Access'
             ].map((sec, idx) => (

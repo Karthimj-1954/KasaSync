@@ -194,7 +194,7 @@ export default function NotificationsPage() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
               { step: '1', title: 'Event Trigger', desc: 'A booking is placed or maintenance status changes.' },
-              { step: '2', title: 'Real-Time Dispatch', desc: 'MongoDB Atlas live event triggers notification engine.' },
+              { step: '2', title: 'Real-Time Dispatch', desc: 'Live event engine triggers instant notification.' },
               { step: '3', title: 'Instant Delivery', desc: 'Alert appears in-app feed, mobile push, and email.' }
             ].map((proc, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-3">

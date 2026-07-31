@@ -62,7 +62,7 @@ export default function LandingPage() {
             <FeatureCard
               icon={Activity}
               title="Real-Time Sync"
-              description="MongoDB Atlas live metrics aggregation, status push notifications, and presence indicators."
+              description="Real-time metrics aggregation, status push notifications, and presence indicators."
             />
           </div>
         </div>

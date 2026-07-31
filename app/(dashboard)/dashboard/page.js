@@ -71,8 +71,8 @@ export default function DashboardPage() {
   if (loading) {
     return (
       <div className="py-20 text-center text-slate-400">
-        <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-xs font-semibold">Loading real-time dashboard state...</p>
+        <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
+        <p className="text-xs font-semibold text-[#6B7A90] animate-pulse">Loading dashboard...</p>
       </div>
     );
   }

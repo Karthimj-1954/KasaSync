@@ -75,7 +75,7 @@ export default function PropertiesPage() {
       {loading ? (
         <div className="py-16 text-center text-[#6B7A90]">
           <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-          <p className="text-xs font-semibold">Fetching property catalog from MongoDB Atlas...</p>
+          <p className="text-xs font-semibold text-[#6B7A90] animate-pulse">Loading available properties...</p>
         </div>
       ) : properties.length === 0 ? (
         <div className="bg-white border border-[#EAF3FA] text-center py-12 rounded-[20px] shadow-sm">

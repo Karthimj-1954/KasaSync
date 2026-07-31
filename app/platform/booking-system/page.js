@@ -148,7 +148,7 @@ export default function BookingSystemPage() {
               {
                 icon: ShieldCheck,
                 title: 'Conflict Prevention Guard',
-                desc: 'MongoDB Atlas transaction checks guarantee two residents can never reserve the same slot.'
+                desc: 'Automated transaction checks guarantee two residents can never reserve the same slot.'
               },
               {
                 icon: Zap,

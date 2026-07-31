@@ -61,7 +61,7 @@ export default function MaintenanceDetailPage({ params }) {
     return (
       <div className="py-20 text-center text-[#6B7A90]">
         <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
-        <p className="text-xs font-semibold">Loading ticket details...</p>
+        <p className="text-xs font-semibold text-[#6B7A90] animate-pulse">Loading request details...</p>
       </div>
     );
   }
