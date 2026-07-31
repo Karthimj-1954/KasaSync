@@ -47,27 +47,27 @@ export default function Footer() {
             <h4 className="text-sm font-semibold text-white font-poppins tracking-wide">Platform</h4>
             <ul className="space-y-2 text-xs">
               <li>
-                <Link href="/properties" className="hover:text-white transition-colors duration-200">
+                <Link href="/platform/property-management" className="hover:text-white transition-colors duration-200">
                   Property Management
                 </Link>
               </li>
               <li>
-                <Link href="/amenities" className="hover:text-white transition-colors duration-200">
+                <Link href="/platform/booking-system" className="hover:text-white transition-colors duration-200">
                   Booking System
                 </Link>
               </li>
               <li>
-                <Link href="/maintenance" className="hover:text-white transition-colors duration-200">
+                <Link href="/platform/maintenance" className="hover:text-white transition-colors duration-200">
                   Maintenance Requests
                 </Link>
               </li>
               <li>
-                <Link href="/amenities" className="hover:text-white transition-colors duration-200">
+                <Link href="/platform/amenities" className="hover:text-white transition-colors duration-200">
                   Community Amenities
                 </Link>
               </li>
               <li>
-                <Link href="/notifications" className="hover:text-white transition-colors duration-200">
+                <Link href="/platform/notifications" className="hover:text-white transition-colors duration-200">
                   Notifications
                 </Link>
               </li>
