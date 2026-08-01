@@ -23,47 +23,44 @@ export default function DashboardPage() {
   });
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function loadDashboardData() {
+  const loadDashboardData = async () => {
+    try {
+      const [propsRes, maintRes, bookRes, analyticsRes] = await Promise.allSettled([
+        propertyService.getProperties(),
+        maintenanceService.getMaintenanceRequests(),
+        bookingService.getBookings(),
+        analyticsService.getAnalytics(),
+      ]);
+
+      let activityLogs = [];
       try {
-        const [propsRes, maintRes, bookRes, analyticsRes] = await Promise.allSettled([
-          propertyService.getProperties(),
-          maintenanceService.getMaintenanceRequests(),
-          bookingService.getBookings(),
-          analyticsService.getAnalytics(),
-        ]);
+        const logRes = await authService.getActivityLogs();
+        activityLogs = logRes.logs || [];
+      } catch (e) {}
 
-        let activityLogs = [];
-        if (user?.role === 'Admin') {
-          try {
-            const logRes = await authService.getActivityLogs();
-            activityLogs = logRes.logs || [];
-          } catch (e) {}
-        }
+      const properties = propsRes.status === 'fulfilled' ? propsRes.value.properties || [] : [];
+      const maintenance = maintRes.status === 'fulfilled' ? maintRes.value.requests || [] : [];
+      const bookings = bookRes.status === 'fulfilled' ? bookRes.value.bookings || [] : [];
+      const summary = analyticsRes.status === 'fulfilled' ? analyticsRes.value.data?.summary || {} : {};
 
-        const properties = propsRes.status === 'fulfilled' ? propsRes.value.properties || [] : [];
-        const maintenance = maintRes.status === 'fulfilled' ? maintRes.value.requests || [] : [];
-        const bookings = bookRes.status === 'fulfilled' ? bookRes.value.bookings || [] : [];
-        const summary = analyticsRes.status === 'fulfilled' ? analyticsRes.value.data?.summary || {} : {};
+      const userProperty = properties.find((p) => p.tenantId?._id === user?.id || p.tenantId === user?.id) || properties[0];
 
-        // Find tenant property if applicable
-        const userProperty = properties.find((p) => p.tenantId?._id === user?.id || p.tenantId === user?.id) || properties[0];
-
-        setData({
-          properties,
-          property: userProperty,
-          maintenance,
-          bookings,
-          summary,
-          activityLogs,
-        });
-      } catch (err) {
-        console.error(err);
-      } finally {
-        setLoading(false);
-      }
+      setData({
+        properties,
+        property: userProperty,
+        maintenance,
+        bookings,
+        summary,
+        activityLogs,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setLoading(false);
     }
+  };
 
+  useEffect(() => {
     if (user) {
       loadDashboardData();
     }
@@ -80,7 +77,7 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      {user?.role === 'Admin' && <AdminDashboard data={data} />}
+      {user?.role === 'Admin' && <AdminDashboard data={data} onRefresh={loadDashboardData} />}
       {user?.role === 'Property Owner' && <OwnerDashboard data={data} />}
       {user?.role === 'Maintenance Staff' && <StaffDashboard data={data} />}
       {user?.role === 'Tenant' && <TenantDashboard data={data} />}

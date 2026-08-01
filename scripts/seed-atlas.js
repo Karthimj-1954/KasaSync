@@ -117,7 +117,65 @@ async function seed() {
 
   // 8. Activity Logs / Analytics
   await ActivityLog.deleteMany({});
-  await ActivityLog.create({ action: 'INITIAL_SEED', details: 'MongoDB Atlas initial collections created.', userEmail: 'system@kasasync.com', entityType: 'SYSTEM' });
+  const now = new Date();
+  await ActivityLog.create([
+    {
+      action: 'Property Listing Published',
+      details: 'A new residential property "The Glass Pavilion Penthouse" has been successfully listed and is now available for bookings.',
+      userEmail: 'owner@kasasync.com',
+      entityType: 'PROPERTY',
+      createdAt: new Date(now.getTime() - 2 * 60 * 1000)
+    },
+    {
+      action: 'Maintenance Request Assigned',
+      details: 'A maintenance ticket for kitchen sink leak repair has been assigned to service technician David Miller.',
+      userEmail: 'staff@kasasync.com',
+      entityType: 'MAINTENANCE',
+      createdAt: new Date(now.getTime() - 15 * 60 * 1000)
+    },
+    {
+      action: 'Booking Confirmed',
+      details: 'A tenant reservation for Rooftop Infinity Pool has been successfully confirmed.',
+      userEmail: 'tenant@kasasync.com',
+      entityType: 'BOOKING',
+      createdAt: new Date(now.getTime() - 28 * 60 * 1000)
+    },
+    {
+      action: 'New Tenant Message',
+      details: 'A new inquiry has been received regarding lease agreement terms and property inspection.',
+      userEmail: 'tenant@kasasync.com',
+      entityType: 'MESSAGE',
+      createdAt: new Date(now.getTime() - 45 * 60 * 1000)
+    },
+    {
+      action: 'Analytics Updated',
+      details: 'Platform occupancy, maintenance completion rates, and monthly revenue statistics have been refreshed.',
+      userEmail: 'admin@kasasync.com',
+      entityType: 'ANALYTICS',
+      createdAt: new Date(now.getTime() - 60 * 60 * 1000)
+    },
+    {
+      action: 'Amenity Reserved',
+      details: 'Executive Fitness Center facility reservation has been confirmed for resident access.',
+      userEmail: 'tenant@kasasync.com',
+      entityType: 'AMENITY',
+      createdAt: new Date(now.getTime() - 2 * 60 * 60 * 1000)
+    },
+    {
+      action: 'Administrator Login',
+      details: 'An administrator securely signed in to the platform administration portal.',
+      userEmail: 'admin@kasasync.com',
+      entityType: 'SECURITY',
+      createdAt: new Date(now.getTime() - 3 * 60 * 60 * 1000)
+    },
+    {
+      action: 'Platform Health Check',
+      details: 'All cloud microservices, database clusters, and API gateways are operating normally.',
+      userEmail: 'system@kasasync.com',
+      entityType: 'SYSTEM',
+      createdAt: new Date(now.getTime() - 5 * 60 * 60 * 1000)
+    }
+  ]);
   console.log("-> Created 'activitylogs' collection");
 
   console.log("\n🎉 ALL 8 COLLECTIONS SEEDED SUCCESSFULLY INTO MONGODB ATLAS ('kasasync')!");

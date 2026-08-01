@@ -5,7 +5,8 @@ import { authService } from '../../../services/authService';
 import { Card } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 import Select from '../../../components/ui/Select';
-import { formatDate } from '../../../lib/utils';
+import { formatDate, formatRelativeTime, getActivityMeta } from '../../../lib/utils';
+import { FiActivity, FiRefreshCw } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function AdminPanelPage() {
@@ -118,18 +119,56 @@ export default function AdminPanelPage() {
         </Card>
       ) : (
         <div className="space-y-3">
-          {activityLogs.map((log) => (
-            <Card key={log._id}>
-              <div className="flex items-center justify-between">
-                <div>
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-[#3E7CB1]">{log.action}</span>
-                  <h5 className="text-xs font-semibold text-[#183153] font-poppins mt-0.5">{log.details}</h5>
-                  <p className="text-[10px] text-[#6B7A90]">{log.userEmail || 'System'} • {formatDate(log.createdAt)}</p>
-                </div>
-                <Badge status="Confirmed">{log.entityType}</Badge>
+          {activityLogs.length === 0 ? (
+            <Card className="py-12 px-4 text-center bg-[#F8FAFC] border-dashed border-[#D6E4F2]">
+              <div className="w-12 h-12 rounded-2xl bg-[#EAF3FA] text-[#5E8FBF] border border-[#D6E4F2] flex items-center justify-center mx-auto shadow-sm mb-3">
+                <FiActivity className="w-6 h-6" />
               </div>
+              <h4 className="text-sm font-bold text-[#183153] font-poppins">No recent activity</h4>
+              <p className="text-xs text-[#6B7A90] max-w-sm mx-auto mt-1 mb-4 leading-relaxed">
+                Platform activity will appear here as users interact with the system.
+              </p>
+              <button
+                onClick={loadAdminData}
+                className="inline-flex items-center gap-2 text-xs font-semibold px-4 py-2 bg-white border border-[#D6E4F2] rounded-xl text-[#183153] hover:bg-[#EAF3FA] transition"
+              >
+                <FiRefreshCw className="w-3.5 h-3.5" />
+                <span>Refresh Activity</span>
+              </button>
             </Card>
-          ))}
+          ) : (
+            activityLogs.map((log, idx) => {
+              const meta = getActivityMeta(log.entityType, log.action);
+              return (
+                <Card key={log._id || idx} className="p-4 hover:border-[#95BDD7] transition duration-200">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                    <div className="flex items-start gap-3">
+                      <div className={`p-2.5 rounded-xl shrink-0 ${meta.iconContainerClass}`}>
+                        <FiActivity className="w-4 h-4" />
+                      </div>
+                      <div className="space-y-0.5">
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className={`text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${meta.badgeClass}`}>
+                            {meta.typeLabel}
+                          </span>
+                          <h4 className="text-xs font-bold text-[#183153] font-poppins">{log.action}</h4>
+                        </div>
+                        <p className="text-xs text-[#425466] leading-relaxed">{log.details}</p>
+                        {log.userEmail && (
+                          <p className="text-[10px] text-[#6B7A90] pt-0.5 font-medium">User: {log.userEmail}</p>
+                        )}
+                      </div>
+                    </div>
+                    <div className="shrink-0 text-right">
+                      <span className="text-[11px] font-semibold text-[#6B7A90] inline-block px-2.5 py-1 bg-[#F5F8FC] rounded-lg border border-[#E2EAF2]">
+                        {formatRelativeTime(log.createdAt)}
+                      </span>
+                    </div>
+                  </div>
+                </Card>
+              );
+            })
+          )}
         </div>
       )}
     </div>
