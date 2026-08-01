@@ -15,6 +15,7 @@ const connectDB = async () => {
       autoIndex: true,
     });
 
+    console.log("✅ MongoDB Connected");
     console.log(`[MongoDB] Connected successfully to host: ${conn.connection.host}`);
 
     // Reconnection & Error event listeners
@@ -27,7 +28,7 @@ const connectDB = async () => {
     });
 
     mongoose.connection.on('error', (err) => {
-      console.error('[MongoDB Error] Database connection error:', err.message);
+      console.error('❌ MongoDB Connection Failed', err);
     });
 
     // Graceful Shutdown handlers
@@ -41,7 +42,7 @@ const connectDB = async () => {
     process.on('SIGTERM', gracefulExit);
 
   } catch (error) {
-    console.error(`[MongoDB Connection Error] ${error.message}`);
+    console.error("❌ MongoDB Connection Failed", error);
   }
 };
 
