@@ -7,7 +7,6 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  FiScale,
   FiFileText,
   FiUserCheck,
   FiHome,
@@ -41,7 +40,7 @@ export default function TermsClient() {
         <section className="max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#8EB3D1]/30 text-xs font-semibold text-[#183153] shadow-sm">
-              <FiScale className="w-4 h-4 text-[#6F9DCB]" />
+              <FiFileText className="w-4 h-4 text-[#6F9DCB]" />
               <span>Legal Agreements & Usage Policies</span>
             </motion.div>
 
