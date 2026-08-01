@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { Wrench, CheckCircle2, Clock, AlertTriangle } from 'lucide-react';
+import { FiTool, FiCheckCircle, FiClock, FiAlertTriangle } from 'react-icons/fi';
 import { formatDate } from '../../lib/utils';
 
 export default function StaffDashboard({ data }) {
@@ -24,7 +24,7 @@ export default function StaffDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{assignedTasks.length}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Clock className="w-6 h-6" />
+              <FiClock className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -36,7 +36,7 @@ export default function StaffDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{completedTasks.length}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <CheckCircle2 className="w-6 h-6" />
+              <FiCheckCircle className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -50,7 +50,7 @@ export default function StaffDashboard({ data }) {
               </h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-rose-500 shadow-sm">
-              <AlertTriangle className="w-6 h-6" />
+              <FiAlertTriangle className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>

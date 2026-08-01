@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Button from '@/components/ui/Button';
-import { Home, Building2, Wrench, Sparkles, ArrowRight, Activity, CalendarCheck } from 'lucide-react';
+import { FiHome, FiGrid, FiTool, FiCoffee, FiArrowRight, FiActivity, FiCalendar } from 'react-icons/fi';
 
 import Header from '@/components/layout/Header';
 import FeatureCard from '@/components/ui/FeatureCard';
@@ -20,7 +20,7 @@ export default function LandingPage() {
         <div className="max-w-5xl mx-auto text-center space-y-8">
 
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#C7D7EA] text-xs font-semibold text-[#183153] shadow-sm">
-            <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+            <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
             <span>Modern Property, Maintenance & Amenity Portal</span>
           </div>
 
@@ -49,22 +49,22 @@ export default function LandingPage() {
           {/* Feature Highlights Grid */}
           <div id="features" className="pt-16 grid md:grid-cols-4 gap-6 text-left">
             <FeatureCard
-              icon={Building2}
+              icon={FiGrid}
               title="Property Management"
               description="Zillow-inspired workflow for listing properties, managing tenant leases, and Cloudinary photo galleries."
             />
             <FeatureCard
-              icon={Wrench}
+              icon={FiTool}
               title="Maintenance Engine"
               description="7-step ticket resolution lifecycle with priority dispatches and photo completion proof."
             />
             <FeatureCard
-              icon={CalendarCheck}
+              icon={FiCalendar}
               title="Conflict-Free Bookings"
               description="Smart time-slot validation preventing double reservations across community amenities."
             />
             <FeatureCard
-              icon={Activity}
+              icon={FiActivity}
               title="Real-Time Sync"
               description="Real-time metrics aggregation, status push notifications, and presence indicators."
             />

@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import { notificationService } from '../../services/notificationService';
-import { Search, Bell, User, LogOut, Wifi } from 'lucide-react';
+import { FiSearch, FiBell, FiUser, FiLogOut, FiWifi } from 'react-icons/fi';
 import { cn, formatDate } from '../../lib/utils';
 
 export default function Topbar() {
@@ -33,8 +33,9 @@ export default function Topbar() {
 
   return (
     <header className="sticky top-0 z-20 bg-[#FFF7D6] backdrop-blur-md border-b border-[#C7D7EA] px-6 py-3 flex items-center justify-between shadow-sm">
+      {/* Global Search Bar */}
       <div className="relative w-80">
-        <Search className="w-4 h-4 absolute left-3.5 top-3 text-[#5E8FBF]" />
+        <FiSearch className="w-4 h-4 absolute left-3.5 top-3 text-[#5E8FBF]" />
         <input
           type="text"
           placeholder="Search properties, amenities, tickets..."
@@ -42,12 +43,15 @@ export default function Topbar() {
         />
       </div>
 
+      {/* Topbar Actions */}
       <div className="flex items-center gap-4">
+        {/* Socket Status Indicator */}
         <div className="flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-[#C7D7EA] text-xs font-semibold text-[#183153] shadow-sm">
-          <Wifi className={cn('w-3.5 h-3.5', isConnected ? 'text-[#2E8B57] animate-pulse' : 'text-[#6B7A90]')} />
+          <FiWifi className={cn('w-3.5 h-3.5', isConnected ? 'text-[#2E8B57] animate-pulse' : 'text-[#6B7A90]')} />
           <span>{isConnected ? 'Real-Time Live' : 'Connecting'}</span>
         </div>
 
+        {/* Notifications Dropdown */}
         <div className="relative">
           <button
             onClick={() => {
@@ -56,7 +60,7 @@ export default function Topbar() {
             }}
             className="relative p-2.5 rounded-xl bg-white border border-[#C7D7EA] hover:bg-[#EAF3FA] text-[#5E8FBF] hover:text-[#2B5F9E] transition shadow-sm cursor-pointer"
           >
-            <Bell className="w-4 h-4" />
+            <FiBell className="w-4 h-4" />
             {unreadCount > 0 && (
               <span className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-[#5E8FBF] text-white text-[9px] font-bold flex items-center justify-center">
                 {unreadCount}
@@ -87,6 +91,7 @@ export default function Topbar() {
           )}
         </div>
 
+        {/* Profile Dropdown */}
         {user && (
           <div className="relative">
             <button
@@ -104,14 +109,14 @@ export default function Topbar() {
                   onClick={() => setShowProfileMenu(false)}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#425466] hover:bg-[#EAF3FA] hover:text-[#183153] transition"
                 >
-                  <User className="w-4 h-4 text-[#5E8FBF]" />
+                  <FiUser className="w-4 h-4 text-[#5E8FBF]" />
                   <span>Profile Settings</span>
                 </Link>
                 <button
                   onClick={logout}
                   className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-[#D14343] hover:bg-rose-50 transition w-full text-left cursor-pointer"
                 >
-                  <LogOut className="w-4 h-4 text-[#D14343]" />
+                  <FiLogOut className="w-4 h-4 text-[#D14343]" />
                   <span>Log Out</span>
                 </button>
               </div>

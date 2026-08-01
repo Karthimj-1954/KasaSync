@@ -4,7 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
-import { ShieldCheck, Users, Building2, Wrench, Activity } from 'lucide-react';
+import { FiShield, FiUsers, FiHome, FiTool, FiActivity } from 'react-icons/fi';
 import { formatDate } from '../../lib/utils';
 
 export default function AdminDashboard({ data }) {
@@ -12,6 +12,7 @@ export default function AdminDashboard({ data }) {
 
   return (
     <div className="space-y-6">
+      {/* Global Platform Overview Metrics */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="bg-[#B4E1EB]/30 border-[#95BDD7]">
           <CardContent className="p-4 flex items-center justify-between">
@@ -20,7 +21,7 @@ export default function AdminDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.totalUsers || 24}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Users className="w-6 h-6" />
+              <FiUsers className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -32,7 +33,7 @@ export default function AdminDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.totalProperties || 12}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Building2 className="w-6 h-6" />
+              <FiHome className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -44,7 +45,7 @@ export default function AdminDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.totalMaintenance || 18}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Wrench className="w-6 h-6" />
+              <FiTool className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -56,12 +57,13 @@ export default function AdminDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.completionRate || 92}%</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <ShieldCheck className="w-6 h-6" />
+              <FiShield className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
       </div>
 
+      {/* Real-Time System Activity Feed */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
@@ -75,7 +77,7 @@ export default function AdminDashboard({ data }) {
             <div className="space-y-3">
               <div className="p-3.5 rounded-xl bg-[#F5FBFD] border border-[#E7EEF4] flex items-center justify-between text-xs">
                 <div className="flex items-center gap-3">
-                  <Activity className="w-4 h-4 text-[#78A4CB]" />
+                  <FiActivity className="w-4 h-4 text-[#78A4CB]" />
                   <div>
                     <p className="font-bold text-[#24425C] font-poppins">System Audit Initiated</p>
                     <p className="text-[11px] text-[#6F8190]">MongoDB Atlas collections synced successfully.</p>
@@ -88,7 +90,7 @@ export default function AdminDashboard({ data }) {
             activityLogs.slice(0, 5).map((log) => (
               <div key={log._id} className="p-3.5 rounded-xl bg-[#F5FBFD] border border-[#E7EEF4] flex items-center justify-between text-xs hover:border-[#95BDD7] transition">
                 <div className="flex items-center gap-3">
-                  <Activity className="w-4 h-4 text-[#78A4CB]" />
+                  <FiActivity className="w-4 h-4 text-[#78A4CB]" />
                   <div>
                     <p className="font-bold text-[#24425C] font-poppins">{log.action}</p>
                     <p className="text-[11px] text-[#6F8190]">{log.details}</p>

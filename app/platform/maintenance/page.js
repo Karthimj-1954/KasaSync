@@ -7,19 +7,19 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  Wrench,
-  Camera,
-  Activity,
-  UserCheck,
-  AlertCircle,
-  History,
-  CheckCircle2,
-  ArrowRight,
-  Sparkles,
-  HelpCircle,
-  Layers,
-  FileCheck
-} from 'lucide-react';
+  FiTool,
+  FiCamera,
+  FiActivity,
+  FiUserCheck,
+  FiAlertCircle,
+  FiClock,
+  FiCheckCircle,
+  FiArrowRight,
+  FiCoffee,
+  FiHelpCircle,
+  FiLayers,
+  FiFileText
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -47,7 +47,7 @@ export default function MaintenancePage() {
           >
             <motion.div variants={fadeIn} className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#D6E4F2] text-xs font-semibold text-[#183153] shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+                <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
                 <span>7-Step Ticket Resolution Engine</span>
               </div>
 
@@ -67,7 +67,7 @@ export default function MaintenancePage() {
                 </a>
                 <Link href="/login">
                   <Button variant="secondary" size="lg" className="px-8">
-                    Submit Request <ArrowRight className="w-4 h-4" />
+                    Submit Request <FiArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -79,7 +79,7 @@ export default function MaintenancePage() {
                 <div className="flex items-center justify-between z-10">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#183153] text-white flex items-center justify-center">
-                      <Wrench className="w-5 h-5" />
+                      <FiTool className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-sm font-bold text-[#183153]">HVAC AC Repair Ticket #8402</p>
@@ -93,12 +93,12 @@ export default function MaintenancePage() {
 
                 <div className="grid grid-cols-2 gap-4 z-10">
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <Camera className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiCamera className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Photo Proof</p>
                     <p className="text-[10px] text-[#6B7A90]">Cloudinary photo logs</p>
                   </div>
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <UserCheck className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiUserCheck className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Staff Dispatch</p>
                     <p className="text-[10px] text-[#6B7A90]">Assigned to Mike R.</p>
                   </div>
@@ -106,7 +106,7 @@ export default function MaintenancePage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] flex items-center justify-between z-10 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <Activity className="w-5 h-5 text-[#5E8FBF]" />
+                    <FiActivity className="w-5 h-5 text-[#5E8FBF]" />
                     <span className="text-xs font-bold text-[#183153]">Status: Technician En Route</span>
                   </div>
                   <span className="text-xs font-bold text-[#2B5F9E]">Step 4/7</span>
@@ -132,32 +132,32 @@ export default function MaintenancePage() {
           >
             {[
               {
-                icon: Wrench,
+                icon: FiTool,
                 title: 'Report Issues Instantly',
                 desc: 'Submit maintenance requests directly from tenant dashboard with category selection and descriptions.'
               },
               {
-                icon: Camera,
+                icon: FiCamera,
                 title: 'Upload Photo Evidence',
                 desc: 'Attach photos of broken fixtures or leaks powered by Cloudinary for instant technician diagnosis.'
               },
               {
-                icon: Activity,
+                icon: FiActivity,
                 title: 'Live Ticket Status Tracking',
                 desc: 'Monitor real-time resolution states: Submitted, Reviewed, Scheduled, Dispatched, In-Progress, Completed, Closed.'
               },
               {
-                icon: UserCheck,
+                icon: FiUserCheck,
                 title: 'Technician Assignment',
                 desc: 'Admins and staff assign maintenance tickets to certified technicians with priority dispatch alerts.'
               },
               {
-                icon: AlertCircle,
+                icon: FiAlertCircle,
                 title: 'Priority Levels',
                 desc: 'Categorize requests by Urgency (Low, Medium, High, Emergency) to ensure critical issues get handled first.'
               },
               {
-                icon: History,
+                icon: FiClock,
                 title: 'Comprehensive Request History',
                 desc: 'Access complete maintenance history logs, technician notes, and completion proof for every unit.'
               }
@@ -230,7 +230,7 @@ export default function MaintenancePage() {
             ].map((faq, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-2">
                 <div className="flex items-center gap-2 text-[#183153]">
-                  <HelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                  <FiHelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                   <h3 className="text-base font-bold font-poppins">{faq.q}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-[#425466] leading-relaxed pl-7">{faq.a}</p>

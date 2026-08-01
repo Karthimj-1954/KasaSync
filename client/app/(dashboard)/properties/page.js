@@ -7,7 +7,7 @@ import PropertyFilter from '@/components/properties/PropertyFilter';
 import Button from '@/components/ui/Button';
 import { propertyService } from '@/services/propertyService';
 import { useAuth } from '@/context/AuthContext';
-import { Plus, Building2 } from 'lucide-react';
+import { FiPlus, FiGrid } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function PropertiesPage() {
@@ -58,7 +58,7 @@ export default function PropertiesPage() {
         {(user?.role === 'Property Owner' || user?.role === 'Admin') && (
           <Link href="/properties/new">
             <Button variant="primary" size="sm">
-              <Plus className="w-4 h-4" /> Add New Property
+              <FiPlus className="w-4 h-4" /> Add New Property
             </Button>
           </Link>
         )}
@@ -79,7 +79,7 @@ export default function PropertiesPage() {
         </div>
       ) : properties.length === 0 ? (
         <div className="bg-white border border-[#EAF3FA] text-center py-12 rounded-[20px] shadow-sm">
-          <Building2 className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiGrid className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No properties match your filter</h4>
           <p className="text-xs text-[#6B7A90] mt-1">Try resetting filters or adjusting search queries.</p>
         </div>

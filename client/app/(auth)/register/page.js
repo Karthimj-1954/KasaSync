@@ -7,7 +7,7 @@ import { useAuth } from '@/context/AuthContext';
 import Input from '@/components/ui/Input';
 import Select from '@/components/ui/Select';
 import Button from '@/components/ui/Button';
-import { Home, User, Mail, Lock, Phone } from 'lucide-react';
+import { FiHome, FiUser, FiMail, FiLock, FiPhone } from 'react-icons/fi';
 
 export default function RegisterPage() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function RegisterPage() {
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2.5 mb-1">
             <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-              <Home className="w-6 h-6 text-white" />
+              <FiHome className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-[#183153] font-poppins">KasaSync</span>
           </Link>
@@ -50,7 +50,7 @@ export default function RegisterPage() {
           <Input
             label="Full Name"
             placeholder="John Doe"
-            icon={User}
+            icon={FiUser}
             value={formData.name}
             onChange={(e) => setFormData({ ...formData, name: e.target.value })}
             required
@@ -60,7 +60,7 @@ export default function RegisterPage() {
             label="Email Address"
             type="email"
             placeholder="name@example.com"
-            icon={Mail}
+            icon={FiMail}
             value={formData.email}
             onChange={(e) => setFormData({ ...formData, email: e.target.value })}
             required
@@ -70,7 +70,7 @@ export default function RegisterPage() {
             label="Password"
             type="password"
             placeholder="••••••••"
-            icon={Lock}
+            icon={FiLock}
             value={formData.password}
             onChange={(e) => setFormData({ ...formData, password: e.target.value })}
             required
@@ -87,7 +87,7 @@ export default function RegisterPage() {
             label="Phone Number"
             type="tel"
             placeholder="+91 98765 43210"
-            icon={Phone}
+            icon={FiPhone}
             value={formData.phoneNumber}
             onChange={(e) => setFormData({ ...formData, phoneNumber: e.target.value })}
           />

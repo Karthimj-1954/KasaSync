@@ -11,7 +11,7 @@ import Input from '../../../components/ui/Input';
 import Select from '../../../components/ui/Select';
 import Modal from '../../../components/ui/Modal';
 import { useAuth } from '../../../context/AuthContext';
-import { Wrench, Plus, ArrowRight, Upload, X } from 'lucide-react';
+import { FiTool, FiPlus, FiArrowRight, FiUpload, FiX } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 import { formatDate } from '../../../lib/utils';
 
@@ -96,7 +96,7 @@ export default function MaintenancePage() {
         </div>
         {user?.role === 'Tenant' && (
           <Button variant="primary" size="sm" onClick={() => setShowCreateModal(true)}>
-            <Plus className="w-4 h-4" /> Submit New Ticket
+            <FiPlus className="w-4 h-4" /> Submit New Ticket
           </Button>
         )}
       </div>
@@ -109,7 +109,7 @@ export default function MaintenancePage() {
         </div>
       ) : requests.length === 0 ? (
         <Card className="text-center py-12">
-          <Wrench className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiTool className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No maintenance tickets found</h4>
           <p className="text-xs text-[#6B7A90] mt-1">Submit a ticket to request repair dispatch.</p>
         </Card>
@@ -138,7 +138,7 @@ export default function MaintenancePage() {
 
                 <Link href={`/maintenance/${ticket._id}`}>
                   <Button variant="outline" size="sm">
-                    View Details <ArrowRight className="w-3.5 h-3.5" />
+                    View Details <FiArrowRight className="w-3.5 h-3.5" />
                   </Button>
                 </Link>
               </div>
@@ -197,7 +197,7 @@ export default function MaintenancePage() {
                     onClick={() => setCreateData((prev) => ({ ...prev, image: '' }))}
                     className="absolute top-2 right-2 p-1.5 rounded-full bg-slate-900/80 text-white hover:bg-slate-900 transition"
                   >
-                    <X className="w-4 h-4" />
+                    <FiX className="w-4 h-4" />
                   </button>
                 </div>
               ) : (
@@ -206,7 +206,7 @@ export default function MaintenancePage() {
                   onClick={() => fileInputRef.current?.click()}
                   className="w-full p-4 rounded-xl border-2 border-dashed border-[#C7D7EA] hover:border-[#5E8FBF] bg-[#EAF3FA]/30 flex flex-col items-center justify-center gap-1 transition text-[#6B7A90] hover:text-[#183153] cursor-pointer"
                 >
-                  <Upload className="w-5 h-5 text-[#5E8FBF]" />
+                  <FiUpload className="w-5 h-5 text-[#5E8FBF]" />
                   <span className="text-xs font-semibold">Click to Attach Photo File</span>
                 </button>
               )}

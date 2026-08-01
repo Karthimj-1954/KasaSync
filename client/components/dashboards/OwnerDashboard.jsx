@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { Building2, Users, Wrench, DollarSign, Plus } from 'lucide-react';
+import { FiHome, FiUsers, FiTool, FiDollarSign, FiPlus } from 'react-icons/fi';
 import { formatPrice } from '../../lib/utils';
 
 export default function OwnerDashboard({ data }) {
@@ -14,6 +14,7 @@ export default function OwnerDashboard({ data }) {
 
   return (
     <div className="space-y-6">
+      {/* Portfolio Quick Stats Grid */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         <Card className="bg-[#B4E1EB]/30 border-[#95BDD7]">
           <CardContent className="p-4 flex items-center justify-between">
@@ -22,7 +23,7 @@ export default function OwnerDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.totalProperties || properties.length}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Building2 className="w-6 h-6" />
+              <FiHome className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -34,7 +35,7 @@ export default function OwnerDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{summary.occupancyRate || 85}%</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Users className="w-6 h-6" />
+              <FiUsers className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -46,7 +47,7 @@ export default function OwnerDashboard({ data }) {
               <h3 className="text-2xl font-black text-[#24425C] font-poppins mt-1">{maintenance.filter((m) => m.status === 'Pending').length}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <Wrench className="w-6 h-6" />
+              <FiTool className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -60,12 +61,13 @@ export default function OwnerDashboard({ data }) {
               </h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#78A4CB] shadow-sm">
-              <DollarSign className="w-6 h-6" />
+              <FiDollarSign className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
       </div>
 
+      {/* Property List Section */}
       <Card>
         <CardHeader className="flex flex-row items-center justify-between">
           <div>
@@ -74,7 +76,7 @@ export default function OwnerDashboard({ data }) {
           </div>
           <Link href="/properties/new">
             <Button variant="primary" size="sm">
-              <Plus className="w-4 h-4" /> Add Property
+              <FiPlus className="w-4 h-4" /> Add Property
             </Button>
           </Link>
         </CardHeader>

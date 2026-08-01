@@ -6,19 +6,18 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import {
-  LayoutDashboard,
-  Building2,
-  Wrench,
-  Sparkles,
-  CalendarCheck,
-  MessageSquare,
-  Bell,
-  BarChart3,
-  ShieldCheck,
-  Settings,
-  LogOut,
-  Home,
-} from 'lucide-react';
+  FiGrid,
+  FiHome,
+  FiTool,
+  FiCoffee,
+  FiCalendar,
+  FiMessageSquare,
+  FiBell,
+  FiBarChart2,
+  FiShield,
+  FiSettings,
+  FiLogOut,
+} from 'react-icons/fi';
 import { cn } from '../../lib/utils';
 
 export default function Sidebar({ className }) {
@@ -26,16 +25,16 @@ export default function Sidebar({ className }) {
   const { user, logout } = useAuth();
 
   const navItems = [
-    { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-    { label: 'Properties', href: '/properties', icon: Building2 },
-    { label: 'Maintenance', href: '/maintenance', icon: Wrench },
-    { label: 'Amenities', href: '/amenities', icon: Sparkles },
-    { label: 'Bookings', href: '/bookings', icon: CalendarCheck },
-    { label: 'Messages', href: '/messages', icon: MessageSquare },
-    { label: 'Notifications', href: '/notifications', icon: Bell },
-    { label: 'Analytics', href: '/analytics', icon: BarChart3 },
-    ...(user?.role === 'Admin' ? [{ label: 'Admin Panel', href: '/admin', icon: ShieldCheck }] : []),
-    { label: 'Settings', href: '/settings', icon: Settings },
+    { label: 'Dashboard', href: '/dashboard', icon: FiGrid },
+    { label: 'Properties', href: '/properties', icon: FiHome },
+    { label: 'Maintenance', href: '/maintenance', icon: FiTool },
+    { label: 'Amenities', href: '/amenities', icon: FiCoffee },
+    { label: 'Bookings', href: '/bookings', icon: FiCalendar },
+    { label: 'Messages', href: '/messages', icon: FiMessageSquare },
+    { label: 'Notifications', href: '/notifications', icon: FiBell },
+    { label: 'Analytics', href: '/analytics', icon: FiBarChart2 },
+    ...(user?.role === 'Admin' ? [{ label: 'Admin Panel', href: '/admin', icon: FiShield }] : []),
+    { label: 'Settings', href: '/settings', icon: FiSettings },
   ];
 
   return (
@@ -44,7 +43,7 @@ export default function Sidebar({ className }) {
         {/* Brand Header */}
         <Link href="/" className="flex items-center gap-3 px-3 py-2 mb-6">
           <div className="w-10 h-10 rounded-xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-            <Home className="w-6 h-6 text-white" />
+            <FiHome className="w-6 h-6 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-[#183153] font-poppins">
@@ -94,7 +93,7 @@ export default function Sidebar({ className }) {
         onClick={logout}
         className="flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-sm font-semibold text-[#D14343] hover:bg-rose-50 transition w-full mt-4 cursor-pointer"
       >
-        <LogOut className="w-4 h-4 text-[#D14343]" />
+        <FiLogOut className="w-4 h-4 text-[#D14343]" />
         <span>Log Out</span>
       </button>
     </aside>

@@ -6,34 +6,33 @@ import { motion } from 'framer-motion';
 import Button from '@/components/ui/Button';
 import Footer from '@/components/layout/Footer';
 import {
-  Home,
-  Building2,
-  Wrench,
-  CalendarCheck,
-  Activity,
-  MessageSquare,
-  Bell,
-  BarChart3,
-  ShieldCheck,
-  CheckCircle2,
-  Target,
-  Compass,
-  Lock,
-  Server,
-  Database,
-  Cloud,
-  Cpu,
-  Layers,
-  Users,
-  Zap,
-  Sparkles,
-  ArrowRight,
-  Mail,
-  Key,
-  ShieldAlert,
-  FileCheck,
-  UserCheck
-} from 'lucide-react';
+  FiHome,
+  FiGrid,
+  FiTool,
+  FiCalendar,
+  FiActivity,
+  FiMessageSquare,
+  FiBell,
+  FiBarChart2,
+  FiShield,
+  FiCheckCircle,
+  FiTarget,
+  FiCompass,
+  FiLock,
+  FiServer,
+  FiDatabase,
+  FiCloud,
+  FiCpu,
+  FiLayers,
+  FiUsers,
+  FiZap,
+  FiCoffee,
+  FiArrowRight,
+  FiMail,
+  FiKey,
+  FiFileText,
+  FiUserCheck
+} from 'react-icons/fi';
 import Header from '@/components/layout/Header';
 
 const fadeIn = {
@@ -68,7 +67,7 @@ export default function AboutPage() {
           >
             <motion.div variants={fadeIn} className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#D6E4F2] text-xs font-semibold text-[#183153] shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+                <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Next-Gen Property Operations</span>
               </div>
 
@@ -99,7 +98,7 @@ export default function AboutPage() {
               <div className="w-full max-w-lg h-96 bg-gradient-to-tr from-[#EAF3FA] via-[#D6E4F2]/50 to-[#5E8FBF]/10 rounded-3xl border border-[#D6E4F2] p-8 flex flex-col justify-between relative overflow-hidden shadow-xl">
                 <div className="flex justify-between items-center z-10">
                   <div className="w-12 h-12 rounded-2xl bg-white shadow-md flex items-center justify-center border border-[#EAF3FA]">
-                    <Building2 className="w-6 h-6 text-[#183153]" />
+                    <FiGrid className="w-6 h-6 text-[#183153]" />
                   </div>
                   <span className="px-3 py-1 bg-white/80 backdrop-blur-md rounded-full text-xs font-bold text-[#183153] border border-[#D6E4F2]">
                     Real-Time Ecosystem
@@ -108,12 +107,12 @@ export default function AboutPage() {
 
                 <div className="grid grid-cols-2 gap-4 z-10">
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2] space-y-1">
-                    <Wrench className="w-5 h-5 text-[#5E8FBF]" />
+                    <FiTool className="w-5 h-5 text-[#5E8FBF]" />
                     <p className="text-xs font-bold text-[#183153]">7-Step Dispatch</p>
                     <p className="text-[10px] text-[#6B7A90]">Automated tickets</p>
                   </div>
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2] space-y-1">
-                    <CalendarCheck className="w-5 h-5 text-[#5E8FBF]" />
+                    <FiCalendar className="w-5 h-5 text-[#5E8FBF]" />
                     <p className="text-xs font-bold text-[#183153]">Conflict-Free</p>
                     <p className="text-[10px] text-[#6B7A90]">Amenity bookings</p>
                   </div>
@@ -121,7 +120,7 @@ export default function AboutPage() {
 
                 <div className="bg-[#183153] text-white p-4 rounded-2xl flex items-center justify-between z-10 shadow-lg">
                   <div className="flex items-center gap-3">
-                    <Activity className="w-5 h-5 text-[#5E8FBF] animate-pulse" />
+                    <FiActivity className="w-5 h-5 text-[#5E8FBF] animate-pulse" />
                     <div>
                       <p className="text-xs font-bold font-poppins">Live Property Sync</p>
                       <p className="text-[10px] text-[#AFC5DB]">Real-Time Sync Engine</p>
@@ -174,7 +173,7 @@ export default function AboutPage() {
               className="bg-white p-8 rounded-3xl border border-[#EAF3FA] shadow-sm space-y-4"
             >
               <div className="w-12 h-12 rounded-2xl bg-[#EAF3FA] border border-[#D6E4F2] flex items-center justify-center text-[#5E8FBF]">
-                <Target className="w-6 h-6" strokeWidth={1.75} />
+                <FiTarget className="w-6 h-6" strokeWidth={1.75} />
               </div>
               <h3 className="text-xl font-bold text-[#183153] font-poppins">Our Mission</h3>
               <p className="text-sm text-[#425466] leading-relaxed font-normal">
@@ -189,7 +188,7 @@ export default function AboutPage() {
               className="bg-white p-8 rounded-3xl border border-[#EAF3FA] shadow-sm space-y-4"
             >
               <div className="w-12 h-12 rounded-2xl bg-[#EAF3FA] border border-[#D6E4F2] flex items-center justify-center text-[#5E8FBF]">
-                <Compass className="w-6 h-6" strokeWidth={1.75} />
+                <FiCompass className="w-6 h-6" strokeWidth={1.75} />
               </div>
               <h3 className="text-xl font-bold text-[#183153] font-poppins">Our Vision</h3>
               <p className="text-sm text-[#425466] leading-relaxed font-normal">
@@ -218,32 +217,26 @@ export default function AboutPage() {
           >
             {[
               {
-                icon: Building2,
                 title: 'Property Management',
                 desc: 'Manage properties, tenants, and listings efficiently with Cloudinary photo galleries.'
               },
               {
-                icon: CalendarCheck,
                 title: 'Smart Bookings',
                 desc: 'Prevent booking conflicts with real-time time-slot scheduling across community amenities.'
               },
               {
-                icon: Wrench,
                 title: 'Maintenance Management',
                 desc: 'Track maintenance requests from submission to completion with photo completion proof.'
               },
               {
-                icon: MessageSquare,
                 title: 'Messaging',
                 desc: 'Secure direct communication channel between residents, owners, and property managers.'
               },
               {
-                icon: Bell,
                 title: 'Notifications',
                 desc: 'Real-time status updates, push alerts, and important community announcements.'
               },
               {
-                icon: BarChart3,
                 title: 'Analytics',
                 desc: 'Monitor occupancy rates, maintenance metrics, and financial insights at a glance.'
               }
@@ -255,7 +248,7 @@ export default function AboutPage() {
                 className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-3"
               >
                 <div className="w-12 h-12 rounded-xl bg-[#EAF3FA] border border-[#D6E4F2] flex items-center justify-center text-[#2B5F9E]">
-                  <item.icon className="w-6 h-6" strokeWidth={1.75} />
+                  <FiGrid className="w-6 h-6" strokeWidth={1.75} />
                 </div>
                 <h3 className="text-lg font-bold text-[#183153] font-poppins">{item.title}</h3>
                 <p className="text-xs md:text-sm text-[#425466] leading-relaxed font-normal">{item.desc}</p>
@@ -292,7 +285,7 @@ export default function AboutPage() {
                 whileHover={{ scale: 1.02 }}
                 className="bg-white p-4 rounded-xl border border-[#EAF3FA] shadow-sm flex items-center gap-3"
               >
-                <CheckCircle2 className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                <FiCheckCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                 <span className="text-sm font-semibold text-[#183153]">{item}</span>
               </motion.div>
             ))}
@@ -342,12 +335,12 @@ export default function AboutPage() {
             className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6"
           >
             {[
-              { icon: FileCheck, name: 'Transparency', desc: 'Clear communication and open tracking across all property actions.' },
-              { icon: Zap, name: 'Innovation', desc: 'Continuous iteration using modern web tech and real-time sync.' },
-              { icon: ShieldCheck, name: 'Reliability', desc: '24/7 uptime and zero double-booking conflict algorithms.' },
-              { icon: Lock, name: 'Security', desc: 'Enterprise-grade password hashing, JWT, and encrypted channels.' },
-              { icon: UserCheck, name: 'Customer First', desc: 'Intuitive user experiences designed for tenants, staff, and owners.' },
-              { icon: Users, name: 'Community', desc: 'Fostering harmonious relationships in shared residential spaces.' }
+              { icon: FiFileText, name: 'Transparency', desc: 'Clear communication and open tracking across all property actions.' },
+              { icon: FiZap, name: 'Innovation', desc: 'Continuous iteration using modern web tech and real-time sync.' },
+              { icon: FiShield, name: 'Reliability', desc: '24/7 uptime and zero double-booking conflict algorithms.' },
+              { icon: FiLock, name: 'Security', desc: 'Enterprise-grade password hashing, JWT, and encrypted channels.' },
+              { icon: FiUserCheck, name: 'Customer First', desc: 'Intuitive user experiences designed for tenants, staff, and owners.' },
+              { icon: FiUsers, name: 'Community', desc: 'Fostering harmonious relationships in shared residential spaces.' }
             ].map((val, idx) => (
               <motion.div
                 key={idx}
@@ -377,12 +370,12 @@ export default function AboutPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Building2, name: 'Property Module', text: 'Zillow-style listings, photo galleries, lease tracking, and unit specs.' },
-              { icon: Wrench, name: 'Maintenance Module', text: '7-step resolution workflow with dispatch priority and completion photos.' },
-              { icon: CalendarCheck, name: 'Booking Engine', text: 'Conflict-free amenity scheduling with automated slot validation.' },
-              { icon: BarChart3, name: 'Analytics Dashboard', text: 'Real-time metrics, revenue monitoring, and maintenance logs.' },
-              { icon: MessageSquare, name: 'Messaging System', text: 'Direct tenant-to-manager communication threads.' },
-              { icon: Bell, name: 'Notifications', text: 'Instant push updates and broadcast announcements.' }
+              { icon: FiGrid, name: 'Property Module', text: 'Zillow-style listings, photo galleries, lease tracking, and unit specs.' },
+              { icon: FiTool, name: 'Maintenance Module', text: '7-step resolution workflow with dispatch priority and completion photos.' },
+              { icon: FiCalendar, name: 'Booking Engine', text: 'Conflict-free amenity scheduling with automated slot validation.' },
+              { icon: FiBarChart2, name: 'Analytics Dashboard', text: 'Real-time metrics, revenue monitoring, and maintenance logs.' },
+              { icon: FiMessageSquare, name: 'Messaging System', text: 'Direct tenant-to-manager communication threads.' },
+              { icon: FiBell, name: 'Notifications', text: 'Instant push updates and broadcast announcements.' }
             ].map((module, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-3">
                 <div className="w-12 h-12 rounded-xl bg-[#EAF3FA] border border-[#D6E4F2] flex items-center justify-center text-[#2B5F9E]">
@@ -412,7 +405,7 @@ export default function AboutPage() {
               'Role-Based Access'
             ].map((sec, idx) => (
               <div key={idx} className="bg-white p-5 rounded-2xl border border-[#EAF3FA] shadow-sm flex items-center gap-3">
-                <ShieldAlert className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                <FiShield className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                 <span className="text-sm font-bold text-[#183153]">{sec}</span>
               </div>
             ))}

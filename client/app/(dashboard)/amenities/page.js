@@ -6,7 +6,7 @@ import { amenityService } from '../../../services/amenityService';
 import { Card } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 import Button from '../../../components/ui/Button';
-import { Sparkles, CalendarCheck, Clock, Users } from 'lucide-react';
+import { FiCoffee, FiCalendar, FiClock, FiUsers } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function AmenitiesPage() {
@@ -42,6 +42,7 @@ export default function AmenitiesPage() {
 
   return (
     <div className="space-y-6">
+      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
         <div>
           <h2 className="text-2xl font-bold text-[#1F3A5F] font-poppins">Community Amenities & Facilities</h2>
@@ -49,6 +50,7 @@ export default function AmenitiesPage() {
         </div>
       </div>
 
+      {/* Category Filter Chips */}
       <div className="flex gap-2 overflow-x-auto pb-2">
         {categories.map((cat) => (
           <button
@@ -65,6 +67,7 @@ export default function AmenitiesPage() {
         ))}
       </div>
 
+      {/* Amenity Grid */}
       {loading ? (
         <div className="py-16 text-center text-[#6B7A90]">
           <div className="w-8 h-8 border-4 border-[#5E8FBF] border-t-transparent rounded-full animate-spin mx-auto mb-3" />
@@ -72,7 +75,7 @@ export default function AmenitiesPage() {
         </div>
       ) : amenities.length === 0 ? (
         <Card className="text-center py-12">
-          <Sparkles className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiCoffee className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No amenities found in this category</h4>
         </Card>
       ) : (
@@ -97,11 +100,11 @@ export default function AmenitiesPage() {
 
                   <div className="flex items-center justify-between pt-2 border-t border-[#EAF3FA] text-xs text-[#425466]">
                     <span className="flex items-center gap-1 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-[#5E8FBF]" />
+                      <FiClock className="w-3.5 h-3.5 text-[#5E8FBF]" />
                       {amenity.openingTime} - {amenity.closingTime}
                     </span>
                     <span className="flex items-center gap-1 font-semibold text-[#2E8B57]">
-                      <Users className="w-3.5 h-3.5" /> Max {amenity.capacity} Guests
+                      <FiUsers className="w-3.5 h-3.5" /> Max {amenity.capacity} Guests
                     </span>
                   </div>
                 </div>
@@ -110,7 +113,7 @@ export default function AmenitiesPage() {
               <div className="p-4 pt-0">
                 <Link href={`/amenities/book/${amenity._id}`}>
                   <Button variant="primary" size="sm" className="w-full">
-                    <CalendarCheck className="w-4 h-4" /> Reserve Amenity
+                    <FiCalendar className="w-4 h-4" /> Reserve Amenity
                   </Button>
                 </Link>
               </div>

@@ -5,7 +5,7 @@ import { useAuth } from '../../../context/AuthContext';
 import { Card, CardHeader, CardTitle, CardContent } from '../../../components/ui/Card';
 import Input from '../../../components/ui/Input';
 import Button from '../../../components/ui/Button';
-import { User, Upload, Camera } from 'lucide-react';
+import { FiUser, FiUpload, FiCamera } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function SettingsPage() {
@@ -71,7 +71,7 @@ export default function SettingsPage() {
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <User className="w-4 h-4 text-[#5E8FBF]" />
+            <FiUser className="w-4 h-4 text-[#5E8FBF]" />
             <span>Profile & Avatar Upload</span>
           </CardTitle>
         </CardHeader>
@@ -86,7 +86,7 @@ export default function SettingsPage() {
                   className="w-24 h-24 rounded-full object-cover border-4 border-[#5E8FBF] shadow-md group-hover:opacity-80 transition"
                 />
                 <div className="absolute inset-0 rounded-full bg-slate-900/40 flex items-center justify-center opacity-0 group-hover:opacity-100 transition">
-                  <Camera className="w-6 h-6 text-white" />
+                  <FiCamera className="w-6 h-6 text-white" />
                 </div>
               </div>
 
@@ -109,7 +109,7 @@ export default function SettingsPage() {
                     size="sm"
                     onClick={() => avatarInputRef.current?.click()}
                   >
-                    <Upload className="w-4 h-4" /> Upload Avatar File
+                    <FiUpload className="w-4 h-4" /> Upload Avatar File
                   </Button>
                   <span className="text-[11px] text-[#6B7A90]">PNG, JPG or WEBP (Max 5MB)</span>
                 </div>

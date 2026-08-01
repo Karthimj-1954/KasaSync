@@ -6,7 +6,7 @@ import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../..
 import MaintenanceChart from '../../../components/charts/MaintenanceChart';
 import BookingTrendChart from '../../../components/charts/BookingTrendChart';
 import AmenityPopularityChart from '../../../components/charts/AmenityPopularityChart';
-import { Building2, Users, Wrench, ShieldCheck } from 'lucide-react';
+import { FiHome, FiUsers, FiTool, FiShield } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function AnalyticsPage() {
@@ -46,7 +46,7 @@ export default function AnalyticsPage() {
               <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.totalProperties || 0}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#5E8FBF] shadow-sm">
-              <Building2 className="w-6 h-6" />
+              <FiHome className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -58,7 +58,7 @@ export default function AnalyticsPage() {
               <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.occupancyRate || 0}%</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#2E8B57] shadow-sm">
-              <Users className="w-6 h-6" />
+              <FiUsers className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -70,7 +70,7 @@ export default function AnalyticsPage() {
               <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.totalMaintenance || 0}</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#C68A00] shadow-sm">
-              <Wrench className="w-6 h-6" />
+              <FiTool className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>
@@ -82,7 +82,7 @@ export default function AnalyticsPage() {
               <h3 className="text-2xl font-bold text-[#183153] font-poppins mt-1">{data?.summary?.completionRate || 0}%</h3>
             </div>
             <div className="p-3 rounded-2xl bg-white text-[#5E8FBF] shadow-sm">
-              <ShieldCheck className="w-6 h-6" />
+              <FiShield className="w-6 h-6" />
             </div>
           </CardContent>
         </Card>

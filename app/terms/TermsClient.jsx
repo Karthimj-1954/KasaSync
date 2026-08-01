@@ -7,19 +7,19 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  Scale,
-  FileCheck,
-  UserCheck,
-  Building2,
-  CalendarCheck,
-  Wrench,
-  Sparkles,
-  ShieldAlert,
-  AlertTriangle,
-  RefreshCw,
-  Mail,
-  ArrowRight
-} from 'lucide-react';
+  FiScale,
+  FiFileText,
+  FiUserCheck,
+  FiHome,
+  FiCalendar,
+  FiTool,
+  FiCoffee,
+  FiShield,
+  FiAlertTriangle,
+  FiRefreshCw,
+  FiMail,
+  FiArrowRight
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -41,7 +41,7 @@ export default function TermsClient() {
         <section className="max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#8EB3D1]/30 text-xs font-semibold text-[#183153] shadow-sm">
-              <Scale className="w-4 h-4 text-[#6F9DCB]" />
+              <FiScale className="w-4 h-4 text-[#6F9DCB]" />
               <span>Legal Agreements & Usage Policies</span>
             </motion.div>
 
@@ -66,7 +66,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <FileCheck className="w-5 h-5" />
+                <FiFileText className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">1. Acceptance of Terms</h2>
             </div>
@@ -79,7 +79,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <UserCheck className="w-5 h-5" />
+                <FiUserCheck className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">2. User Accounts & Registration</h2>
             </div>
@@ -106,7 +106,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Building2 className="w-5 h-5" />
+                <FiHome className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">3. Property Listings</h2>
             </div>
@@ -133,7 +133,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <CalendarCheck className="w-5 h-5" />
+                <FiCalendar className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">4. Bookings & Reservations</h2>
             </div>
@@ -160,7 +160,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Wrench className="w-5 h-5" />
+                <FiTool className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">5. Maintenance Requests</h2>
             </div>
@@ -187,7 +187,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Sparkles className="w-5 h-5" />
+                <FiCoffee className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">6. Community Amenities</h2>
             </div>
@@ -214,7 +214,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <ShieldAlert className="w-5 h-5" />
+                <FiShield className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">7. Intellectual Property</h2>
             </div>
@@ -227,7 +227,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <AlertTriangle className="w-5 h-5" />
+                <FiAlertTriangle className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">8. Limitation of Liability</h2>
             </div>
@@ -240,7 +240,7 @@ export default function TermsClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-4">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <RefreshCw className="w-5 h-5" />
+                <FiRefreshCw className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">9. Changes to Terms</h2>
             </div>
@@ -260,7 +260,7 @@ export default function TermsClient() {
 
             <Link href="/contact" className="shrink-0">
               <Button variant="primary" size="lg" className="px-6 shadow-md">
-                Contact Us <ArrowRight className="w-4 h-4 ml-1" />
+                Contact Us <FiArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
           </div>

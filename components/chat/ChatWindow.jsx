@@ -4,7 +4,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useSocket } from '../../context/SocketContext';
 import { messageService } from '../../services/messageService';
-import { Send, Check, CheckCheck } from 'lucide-react';
+import { FiSend, FiCheck } from 'react-icons/fi';
 import Button from '../ui/Button';
 
 export default function ChatWindow({ recipient }) {
@@ -106,7 +106,7 @@ export default function ChatWindow({ recipient }) {
                   <p>{msg.content}</p>
                   <div className="flex items-center justify-end gap-1 mt-1 text-[9px] opacity-80">
                     <span>{new Date(msg.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
-                    {isMe && (msg.isRead ? <CheckCheck className="w-3 h-3 text-white" /> : <Check className="w-3 h-3" />)}
+                    {isMe && <FiCheck className="w-3 h-3 text-white" />}
                   </div>
                 </div>
               </div>
@@ -126,7 +126,7 @@ export default function ChatWindow({ recipient }) {
           className="flex-1 bg-white border-1.5 border-[#C7D7EA] text-[#1F2937] placeholder-[#94A3B8] rounded-[12px] px-4 py-2.5 text-xs focus:outline-none focus:border-[#7AA7D9] focus:ring-4 focus:ring-[#7AA7D9]/20"
         />
         <Button type="submit" variant="primary" size="sm">
-          <Send className="w-4 h-4" />
+          <FiSend className="w-4 h-4" />
         </Button>
       </form>
     </div>

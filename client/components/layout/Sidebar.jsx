@@ -6,19 +6,18 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '../../context/AuthContext';
 import {
-  LayoutDashboard,
-  Building2,
-  Wrench,
-  Sparkles,
-  CalendarCheck,
-  MessageSquare,
-  Bell,
-  BarChart3,
-  ShieldCheck,
-  Settings,
-  LogOut,
-  Home,
-} from 'lucide-react';
+  FiGrid,
+  FiHome,
+  FiTool,
+  FiCoffee,
+  FiCalendar,
+  FiMessageSquare,
+  FiBell,
+  FiBarChart2,
+  FiShield,
+  FiSettings,
+  FiLogOut,
+} from 'react-icons/fi';
 import { cn } from '../../lib/utils';
 
 export default function Sidebar({ className }) {
@@ -26,24 +25,25 @@ export default function Sidebar({ className }) {
   const { user, logout } = useAuth();
 
   const navItems = [
-    { label: 'Dashboard', href: '/dashboard', icon: LayoutDashboard },
-    { label: 'Properties', href: '/properties', icon: Building2 },
-    { label: 'Maintenance', href: '/maintenance', icon: Wrench },
-    { label: 'Amenities', href: '/amenities', icon: Sparkles },
-    { label: 'Bookings', href: '/bookings', icon: CalendarCheck },
-    { label: 'Messages', href: '/messages', icon: MessageSquare },
-    { label: 'Notifications', href: '/notifications', icon: Bell },
-    { label: 'Analytics', href: '/analytics', icon: BarChart3 },
-    ...(user?.role === 'Admin' ? [{ label: 'Admin Panel', href: '/admin', icon: ShieldCheck }] : []),
-    { label: 'Settings', href: '/settings', icon: Settings },
+    { label: 'Dashboard', href: '/dashboard', icon: FiGrid },
+    { label: 'Properties', href: '/properties', icon: FiHome },
+    { label: 'Maintenance', href: '/maintenance', icon: FiTool },
+    { label: 'Amenities', href: '/amenities', icon: FiCoffee },
+    { label: 'Bookings', href: '/bookings', icon: FiCalendar },
+    { label: 'Messages', href: '/messages', icon: FiMessageSquare },
+    { label: 'Notifications', href: '/notifications', icon: FiBell },
+    { label: 'Analytics', href: '/analytics', icon: FiBarChart2 },
+    ...(user?.role === 'Admin' ? [{ label: 'Admin Panel', href: '/admin', icon: FiShield }] : []),
+    { label: 'Settings', href: '/settings', icon: FiSettings },
   ];
 
   return (
     <aside className={cn('w-64 bg-[#EAF3FA] border-r border-[#C7D7EA] flex flex-col justify-between h-screen sticky top-0 z-30 p-4 shadow-sm', className)}>
       <div>
+        {/* Brand Header */}
         <Link href="/" className="flex items-center gap-3 px-3 py-2 mb-6">
           <div className="w-10 h-10 rounded-xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-            <Home className="w-6 h-6 text-white" />
+            <FiHome className="w-6 h-6 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-[#183153] font-poppins">
@@ -53,6 +53,7 @@ export default function Sidebar({ className }) {
           </div>
         </Link>
 
+        {/* User Role Pill */}
         {user && (
           <div className="mb-6 px-3 py-2.5 rounded-2xl bg-white border border-[#C7D7EA] flex items-center gap-3 shadow-sm">
             <Image src={user.avatar || 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=250'} alt={user.name || 'User'} width={36} height={36} className="w-9 h-9 rounded-full object-cover border-2 border-[#5E8FBF]" />
@@ -63,6 +64,7 @@ export default function Sidebar({ className }) {
           </div>
         )}
 
+        {/* Navigation Menu */}
         <nav className="space-y-1">
           {navItems.map((item) => {
             const Icon = item.icon;
@@ -86,11 +88,12 @@ export default function Sidebar({ className }) {
         </nav>
       </div>
 
+      {/* Logout Action */}
       <button
         onClick={logout}
         className="flex items-center gap-3 px-3.5 py-2.5 rounded-[12px] text-sm font-semibold text-[#D14343] hover:bg-rose-50 transition w-full mt-4 cursor-pointer"
       >
-        <LogOut className="w-4 h-4 text-[#D14343]" />
+        <FiLogOut className="w-4 h-4 text-[#D14343]" />
         <span>Log Out</span>
       </button>
     </aside>

@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X } from 'lucide-react';
+import { FiX } from 'react-icons/fi';
 
 export default function Modal({ isOpen = true, onClose, title, children }) {
   if (!isOpen) return null;
@@ -29,7 +29,7 @@ export default function Modal({ isOpen = true, onClose, title, children }) {
               onClick={onClose}
               className="p-1.5 rounded-xl hover:bg-[#EAF3FA] text-[#6B7A90] hover:text-[#183153] transition cursor-pointer"
             >
-              <X className="w-5 h-5" />
+              <FiX className="w-5 h-5" />
             </button>
           </div>
           <div className="pt-4">{children}</div>

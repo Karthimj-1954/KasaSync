@@ -9,7 +9,7 @@ import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
-import { ArrowLeft, Clock, ShieldAlert } from 'lucide-react';
+import { FiArrowLeft, FiClock, FiShield } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function BookAmenityPage({ params }) {
@@ -96,7 +96,7 @@ export default function BookAmenityPage({ params }) {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <Link href="/amenities" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6B7A90] hover:text-[#183153] transition">
-        <ArrowLeft className="w-4 h-4" /> Back to Amenities
+        <FiArrowLeft className="w-4 h-4" /> Back to Amenities
       </Link>
 
       <div>
@@ -115,7 +115,7 @@ export default function BookAmenityPage({ params }) {
             <p className="text-xs text-[#60758C]">{amenity.description}</p>
             <div className="pt-2 border-t border-[#EAF3FA] text-xs text-[#425466]">
               <p className="flex items-center gap-1 font-medium">
-                <Clock className="w-3.5 h-3.5 text-[#5E8FBF]" />
+                <FiClock className="w-3.5 h-3.5 text-[#5E8FBF]" />
                 Hours: {amenity.openingTime} - {amenity.closingTime}
               </p>
             </div>
@@ -166,7 +166,7 @@ export default function BookAmenityPage({ params }) {
 
               {conflictWarning && (
                 <div className="p-3 rounded-xl bg-[#C68A00]/10 border border-[#C68A00]/30 text-xs text-[#C68A00] flex items-center gap-2">
-                  <ShieldAlert className="w-4 h-4 shrink-0" />
+                  <FiShield className="w-4 h-4 shrink-0" />
                   <span>{conflictWarning}</span>
                 </div>
               )}

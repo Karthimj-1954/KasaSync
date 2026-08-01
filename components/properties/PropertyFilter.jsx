@@ -3,28 +3,28 @@
 import React from 'react';
 import Input from '../ui/Input';
 import Select from '../ui/Select';
-import { Search, Filter, RefreshCw } from 'lucide-react';
+import { FiSearch, FiFilter, FiRefreshCw } from 'react-icons/fi';
 
 export default function PropertyFilter({ filters, onChange, onReset }) {
   return (
     <div className="bg-white border border-[#EAF3FA] rounded-[20px] p-4 shadow-sm space-y-4">
       <div className="flex items-center justify-between">
         <h4 className="text-sm font-bold text-[#183153] font-poppins flex items-center gap-2">
-          <Filter className="w-4 h-4 text-[#5E8FBF]" />
+          <FiFilter className="w-4 h-4 text-[#5E8FBF]" />
           <span>Filter Properties</span>
         </h4>
         <button
           onClick={onReset}
           className="text-xs text-[#6B7A90] hover:text-[#183153] flex items-center gap-1 transition font-medium cursor-pointer"
         >
-          <RefreshCw className="w-3 h-3" /> Reset Filters
+          <FiRefreshCw className="w-3 h-3" /> Reset Filters
         </button>
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-3">
         <Input
           placeholder="Search location or title..."
-          icon={Search}
+          icon={FiSearch}
           value={filters.search}
           onChange={(e) => onChange({ ...filters, search: e.target.value })}
         />

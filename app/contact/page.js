@@ -8,21 +8,21 @@ import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import Input from '@/components/ui/Input';
 import {
-  Mail,
-  Clock,
-  Globe,
-  Sparkles,
-  ArrowRight,
-  HelpCircle,
-  Headphones,
-  Presentation,
-  Building2,
-  CreditCard,
-  Handshake,
-  MessageSquare,
-  CheckCircle2,
-  Send
-} from 'lucide-react';
+  FiMail,
+  FiClock,
+  FiGlobe,
+  FiCoffee,
+  FiArrowRight,
+  FiHelpCircle,
+  FiHeadphones,
+  FiTv,
+  FiGrid,
+  FiCreditCard,
+  FiUsers,
+  FiMessageSquare,
+  FiCheckCircle,
+  FiSend
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -64,7 +64,7 @@ export default function ContactPage() {
         <section className="max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#8EB3D1]/30 text-xs font-semibold text-[#183153] shadow-sm">
-              <Sparkles className="w-4 h-4 text-[#6F9DCB]" />
+              <FiCoffee className="w-4 h-4 text-[#6F9DCB]" />
               <span>24/7 Support & Inquiries</span>
             </motion.div>
 
@@ -90,7 +90,7 @@ export default function ContactPage() {
                 <div className="space-y-4 text-xs md:text-sm">
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                      <Mail className="w-4 h-4" />
+                      <FiMail className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="font-bold text-[#183153]">General Support</p>
@@ -102,7 +102,7 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                      <Mail className="w-4 h-4" />
+                      <FiMail className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="font-bold text-[#183153]">Sales & Enterprise</p>
@@ -114,7 +114,7 @@ export default function ContactPage() {
 
                   <div className="flex items-start gap-3">
                     <div className="w-9 h-9 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                      <Clock className="w-4 h-4" />
+                      <FiClock className="w-4 h-4" />
                     </div>
                     <div>
                       <p className="font-bold text-[#183153]">Support Hours</p>
@@ -128,7 +128,7 @@ export default function ContactPage() {
               {/* Global Cloud Platform Placeholder Card */}
               <div className="bg-[#183153] text-white p-8 rounded-[20px] shadow-lg space-y-3">
                 <div className="flex items-center gap-2 text-[#A9D5E3]">
-                  <Globe className="w-5 h-5" />
+                  <FiGlobe className="w-5 h-5" />
                   <span className="text-xs font-bold uppercase tracking-wider">Global Reach</span>
                 </div>
                 <p className="text-sm font-semibold leading-relaxed">
@@ -146,7 +146,7 @@ export default function ContactPage() {
 
               {submitted ? (
                 <div className="p-8 bg-emerald-50 rounded-2xl border border-emerald-200 text-center space-y-3">
-                  <CheckCircle2 className="w-10 h-10 text-emerald-600 mx-auto" />
+                  <FiCheckCircle className="w-10 h-10 text-emerald-600 mx-auto" />
                   <h4 className="text-lg font-bold text-emerald-900 font-poppins">Message Sent Successfully!</h4>
                   <p className="text-xs text-emerald-700 max-w-md mx-auto">
                     Thank you for contacting KasaSync. Our support team will review your message and reach out shortly.
@@ -212,7 +212,7 @@ export default function ContactPage() {
                   </div>
 
                   <Button type="submit" variant="primary" size="lg" loading={loading} className="w-full justify-center shadow-md">
-                    Send Message <Send className="w-4 h-4 ml-1" />
+                    Send Message <FiSend className="w-4 h-4 ml-1" />
                   </Button>
                 </form>
               )}
@@ -230,12 +230,12 @@ export default function ContactPage() {
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { icon: Headphones, title: 'Technical Support', desc: 'Assistance with portal navigation, bugs, or system configuration.' },
-              { icon: Presentation, title: 'Product Demo', desc: 'Schedule a live guided demo of KasaSync property modules.' },
-              { icon: Building2, title: 'Enterprise Solutions', desc: 'Custom enterprise contracts for multi-building residential hubs.' },
-              { icon: CreditCard, title: 'Billing Questions', desc: 'Inquiries regarding subscription plans, invoices, and payments.' },
-              { icon: Handshake, title: 'Partnerships', desc: 'Explore channel reseller and technology integration partnerships.' },
-              { icon: MessageSquare, title: 'General Enquiries', desc: 'Any other questions or feedback about the KasaSync platform.' }
+              { icon: FiHeadphones, title: 'Technical Support', desc: 'Assistance with portal navigation, bugs, or system configuration.' },
+              { icon: FiTv, title: 'Product Demo', desc: 'Schedule a live guided demo of KasaSync property modules.' },
+              { icon: FiGrid, title: 'Enterprise Solutions', desc: 'Custom enterprise contracts for multi-building residential hubs.' },
+              { icon: FiCreditCard, title: 'Billing Questions', desc: 'Inquiries regarding subscription plans, invoices, and payments.' },
+              { icon: FiUsers, title: 'Partnerships', desc: 'Explore channel reseller and technology integration partnerships.' },
+              { icon: FiMessageSquare, title: 'General Enquiries', desc: 'Any other questions or feedback about the KasaSync platform.' }
             ].map((cat, idx) => (
               <div key={idx} className="bg-white p-6 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-3">
                 <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB]">
@@ -276,7 +276,7 @@ export default function ContactPage() {
             ].map((faq, idx) => (
               <div key={idx} className="bg-white p-6 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-2">
                 <div className="flex items-center gap-2 text-[#183153]">
-                  <HelpCircle className="w-5 h-5 text-[#6F9DCB] shrink-0" />
+                  <FiHelpCircle className="w-5 h-5 text-[#6F9DCB] shrink-0" />
                   <h3 className="text-base font-bold font-poppins">{faq.q}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-[#4A6484] leading-relaxed pl-7">{faq.a}</p>

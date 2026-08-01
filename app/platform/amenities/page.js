@@ -7,20 +7,20 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  Sparkles,
-  CalendarCheck,
-  Clock,
-  ShieldCheck,
-  CheckCircle2,
-  ArrowRight,
-  HelpCircle,
-  Dumbbell,
-  Waves,
-  Building,
-  Users,
-  Car,
-  PartyPopper
-} from 'lucide-react';
+  FiCoffee,
+  FiCalendar,
+  FiClock,
+  FiShield,
+  FiCheckCircle,
+  FiArrowRight,
+  FiHelpCircle,
+  FiZap,
+  FiWind,
+  FiGrid,
+  FiUsers,
+  FiTruck,
+  FiGift
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -48,7 +48,7 @@ export default function AmenitiesPage() {
           >
             <motion.div variants={fadeIn} className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#D6E4F2] text-xs font-semibold text-[#183153] shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+                <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Shared Community Facilities</span>
               </div>
 
@@ -68,7 +68,7 @@ export default function AmenitiesPage() {
                 </a>
                 <Link href="/login">
                   <Button variant="secondary" size="lg" className="px-8">
-                    Reserve Amenity <ArrowRight className="w-4 h-4" />
+                    Reserve Amenity <FiArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -80,7 +80,7 @@ export default function AmenitiesPage() {
                 <div className="flex items-center justify-between z-10">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#183153] text-white flex items-center justify-center">
-                      <Sparkles className="w-5 h-5 text-[#5E8FBF]" />
+                      <FiCoffee className="w-5 h-5 text-[#5E8FBF]" />
                     </div>
                     <div>
                       <p className="text-sm font-bold text-[#183153]">Resort-Style Living</p>
@@ -94,12 +94,12 @@ export default function AmenitiesPage() {
 
                 <div className="grid grid-cols-2 gap-4 z-10">
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <Dumbbell className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiZap className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Fitness Center</p>
                     <p className="text-[10px] text-[#6B7A90]">24/7 Access</p>
                   </div>
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <Waves className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiWind className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Infinity Pool</p>
                     <p className="text-[10px] text-[#6B7A90]">Heated & Filtered</p>
                   </div>
@@ -107,7 +107,7 @@ export default function AmenitiesPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] flex items-center justify-between z-10 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <CalendarCheck className="w-5 h-5 text-[#5E8FBF]" />
+                    <FiCalendar className="w-5 h-5 text-[#5E8FBF]" />
                     <span className="text-xs font-bold text-[#183153]">Instant Reservation Validation</span>
                   </div>
                   <span className="text-xs font-bold text-[#2B5F9E]">Live</span>
@@ -136,32 +136,32 @@ export default function AmenitiesPage() {
           >
             {[
               {
-                icon: Dumbbell,
+                icon: FiZap,
                 title: 'Fitness & Gym Center',
                 desc: 'Fully equipped cardio, free weights, and yoga studio open 24 hours for resident wellness.'
               },
               {
-                icon: Waves,
+                icon: FiWind,
                 title: 'Swimming Pool & Deck',
                 desc: 'Heated outdoor infinity pool with poolside lounge chairs, cabanas, and towel stations.'
               },
               {
-                icon: Building,
+                icon: FiGrid,
                 title: 'Community Clubhouse',
                 desc: 'Spacious lounge with billiards table, fireplace, flat-screen entertainment, and kitchen.'
               },
               {
-                icon: Users,
+                icon: FiUsers,
                 title: 'Co-Working Meeting Rooms',
                 desc: 'High-speed Wi-Fi, conference tables, and presentation monitors for remote professionals.'
               },
               {
-                icon: Car,
+                icon: FiTruck,
                 title: 'EV Charging & Parking',
                 desc: 'Reserved underground parking spaces complete with Level-2 electric vehicle chargers.'
               },
               {
-                icon: PartyPopper,
+                icon: FiGift,
                 title: 'Rooftop Event Space',
                 desc: 'Panoramic skyline event venue with barbecue grills and private dining pavilions.'
               }
@@ -230,7 +230,7 @@ export default function AmenitiesPage() {
             ].map((faq, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-2">
                 <div className="flex items-center gap-2 text-[#183153]">
-                  <HelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                  <FiHelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                   <h3 className="text-base font-bold font-poppins">{faq.q}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-[#425466] leading-relaxed pl-7">{faq.a}</p>

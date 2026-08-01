@@ -6,7 +6,7 @@ import { amenityService } from '../../../services/amenityService';
 import { Card } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 import Button from '../../../components/ui/Button';
-import { Sparkles, CalendarCheck, Clock, Users } from 'lucide-react';
+import { FiCoffee, FiCalendar, FiClock, FiUsers } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function AmenitiesPage() {
@@ -75,7 +75,7 @@ export default function AmenitiesPage() {
         </div>
       ) : amenities.length === 0 ? (
         <Card className="text-center py-12">
-          <Sparkles className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiCoffee className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No amenities found in this category</h4>
         </Card>
       ) : (
@@ -100,11 +100,11 @@ export default function AmenitiesPage() {
 
                   <div className="flex items-center justify-between pt-2 border-t border-[#EAF3FA] text-xs text-[#425466]">
                     <span className="flex items-center gap-1 font-medium">
-                      <Clock className="w-3.5 h-3.5 text-[#5E8FBF]" />
+                      <FiClock className="w-3.5 h-3.5 text-[#5E8FBF]" />
                       {amenity.openingTime} - {amenity.closingTime}
                     </span>
                     <span className="flex items-center gap-1 font-semibold text-[#2E8B57]">
-                      <Users className="w-3.5 h-3.5" /> Max {amenity.capacity} Guests
+                      <FiUsers className="w-3.5 h-3.5" /> Max {amenity.capacity} Guests
                     </span>
                   </div>
                 </div>
@@ -113,7 +113,7 @@ export default function AmenitiesPage() {
               <div className="p-4 pt-0">
                 <Link href={`/amenities/book/${amenity._id}`}>
                   <Button variant="primary" size="sm" className="w-full">
-                    <CalendarCheck className="w-4 h-4" /> Reserve Amenity
+                    <FiCalendar className="w-4 h-4" /> Reserve Amenity
                   </Button>
                 </Link>
               </div>

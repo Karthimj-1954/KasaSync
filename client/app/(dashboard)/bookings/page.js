@@ -6,7 +6,7 @@ import { bookingService } from '../../../services/bookingService';
 import { Card } from '../../../components/ui/Card';
 import Badge from '../../../components/ui/Badge';
 import Button from '../../../components/ui/Button';
-import { CalendarCheck, Clock, XCircle, Sparkles } from 'lucide-react';
+import { FiCalendar, FiClock, FiXCircle, FiCoffee } from 'react-icons/fi';
 import { formatDate } from '../../../lib/utils';
 import toast from 'react-hot-toast';
 
@@ -46,7 +46,7 @@ export default function BookingsHistoryPage() {
         </div>
         <Link href="/amenities">
           <Button variant="primary" size="sm">
-            <Sparkles className="w-4 h-4" /> Reserve New Amenity
+            <FiCoffee className="w-4 h-4" /> Reserve New Amenity
           </Button>
         </Link>
       </div>
@@ -58,7 +58,7 @@ export default function BookingsHistoryPage() {
         </div>
       ) : bookings.length === 0 ? (
         <Card className="text-center py-12">
-          <CalendarCheck className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiCalendar className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No amenity reservations found</h4>
           <p className="text-xs text-[#6B7A90] mt-1">Book an amenity to view reservations here.</p>
         </Card>
@@ -74,7 +74,7 @@ export default function BookingsHistoryPage() {
                   </div>
 
                   <p className="text-xs text-[#6B7A90] flex items-center gap-2">
-                    <Clock className="w-3.5 h-3.5 text-[#5E8FBF]" />
+                    <FiClock className="w-3.5 h-3.5 text-[#5E8FBF]" />
                     <span>
                       Date: <strong className="text-[#1F2937]">{formatDate(booking.bookingDate)}</strong> ({booking.startTime} - {booking.endTime})
                     </span>
@@ -84,7 +84,7 @@ export default function BookingsHistoryPage() {
 
                 {booking.status === 'Confirmed' && (
                   <Button variant="outline" size="sm" onClick={() => handleCancel(booking._id)} className="text-[#D14343] border-[#D14343]/30 hover:bg-rose-50">
-                    <XCircle className="w-4 h-4" /> Cancel Reservation
+                    <FiXCircle className="w-4 h-4" /> Cancel Reservation
                   </Button>
                 )}
               </div>

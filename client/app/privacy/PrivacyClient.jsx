@@ -7,18 +7,18 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  ShieldCheck,
-  Lock,
-  Database,
-  Cookie,
-  Server,
-  UserCheck,
-  Mail,
-  ArrowRight,
-  Sparkles,
-  CheckCircle2,
-  FileText
-} from 'lucide-react';
+  FiShield,
+  FiLock,
+  FiDatabase,
+  FiDisc,
+  FiServer,
+  FiUserCheck,
+  FiMail,
+  FiArrowRight,
+  FiZap,
+  FiCheckCircle,
+  FiFileText
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -40,7 +40,7 @@ export default function PrivacyClient() {
         <section className="max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#8EB3D1]/30 text-xs font-semibold text-[#183153] shadow-sm">
-              <ShieldCheck className="w-4 h-4 text-[#6F9DCB]" />
+              <FiShield className="w-4 h-4 text-[#6F9DCB]" />
               <span>Data Protection & Privacy</span>
             </motion.div>
 
@@ -65,7 +65,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <FileText className="w-5 h-5" />
+                <FiFileText className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">1. Information We Collect</h2>
             </div>
@@ -85,7 +85,7 @@ export default function PrivacyClient() {
               ].map((item, idx) => (
                 <div key={idx} className="p-4 rounded-xl bg-[#FFFDF7] border border-[#8EB3D1]/20 space-y-1.5">
                   <h3 className="text-sm font-bold text-[#183153] font-poppins flex items-center gap-2">
-                    <CheckCircle2 className="w-4 h-4 text-[#6F9DCB] shrink-0" />
+                    <FiCheckCircle className="w-4 h-4 text-[#6F9DCB] shrink-0" />
                     {item.title}
                   </h3>
                   <p className="text-xs text-[#4A6484] leading-relaxed">{item.desc}</p>
@@ -98,7 +98,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Database className="w-5 h-5" />
+                <FiDatabase className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">2. How We Use Your Information</h2>
             </div>
@@ -128,7 +128,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Lock className="w-5 h-5" />
+                <FiLock className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">3. Data Security</h2>
             </div>
@@ -161,7 +161,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Cookie className="w-5 h-5" />
+                <FiDisc className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">4. Cookies & Local Storage</h2>
             </div>
@@ -172,16 +172,16 @@ export default function PrivacyClient() {
 
             <ul className="grid sm:grid-cols-2 gap-3 text-xs md:text-sm">
               <li className="flex items-center gap-2 text-[#183153] font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Login sessions & authentication state
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Login sessions & authentication state
               </li>
               <li className="flex items-center gap-2 text-[#183153] font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> User UI theme & layout preferences
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> User UI theme & layout preferences
               </li>
               <li className="flex items-center gap-2 text-[#183153] font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Performance & API request caching
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Performance & API request caching
               </li>
               <li className="flex items-center gap-2 text-[#183153] font-semibold">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Security token verification
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Security token verification
               </li>
             </ul>
           </div>
@@ -190,7 +190,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <Server className="w-5 h-5" />
+                <FiServer className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">5. Third-Party Infrastructure Services</h2>
             </div>
@@ -219,7 +219,7 @@ export default function PrivacyClient() {
           <div className="bg-white p-8 md:p-10 rounded-[20px] border border-[#8EB3D1]/20 shadow-sm space-y-6">
             <div className="flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] border border-[#8EB3D1]/30 flex items-center justify-center text-[#6F9DCB] shrink-0">
-                <UserCheck className="w-5 h-5" />
+                <FiUserCheck className="w-5 h-5" />
               </div>
               <h2 className="text-2xl font-bold text-[#183153] font-poppins">6. User Rights</h2>
             </div>
@@ -230,19 +230,19 @@ export default function PrivacyClient() {
 
             <ul className="grid sm:grid-cols-2 gap-3 text-xs md:text-sm text-[#4A6484]">
               <li className="flex items-center gap-2 font-semibold text-[#183153]">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> View account profile & details
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> View account profile & details
               </li>
               <li className="flex items-center gap-2 font-semibold text-[#183153]">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Edit account information at any time
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Edit account information at any time
               </li>
               <li className="flex items-center gap-2 font-semibold text-[#183153]">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Delete account upon request
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Delete account upon request
               </li>
               <li className="flex items-center gap-2 font-semibold text-[#183153]">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Request complete data removal
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Request complete data removal
               </li>
               <li className="flex items-center gap-2 font-semibold text-[#183153]">
-                <CheckCircle2 className="w-4 h-4 text-[#6F9DCB]" /> Contact support for privacy inquiries
+                <FiCheckCircle className="w-4 h-4 text-[#6F9DCB]" /> Contact support for privacy inquiries
               </li>
             </ul>
           </div>
@@ -261,7 +261,7 @@ export default function PrivacyClient() {
 
             <Link href="/contact" className="shrink-0">
               <Button variant="primary" size="lg" className="px-6 shadow-md">
-                Contact Support <ArrowRight className="w-4 h-4 ml-1" />
+                Contact Support <FiArrowRight className="w-4 h-4 ml-1" />
               </Button>
             </Link>
           </div>

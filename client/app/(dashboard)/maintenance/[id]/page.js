@@ -8,7 +8,7 @@ import Badge from '@/components/ui/Badge';
 import Button from '@/components/ui/Button';
 import Select from '@/components/ui/Select';
 import { useAuth } from '@/context/AuthContext';
-import { ArrowLeft, CheckCircle2, MessageSquare } from 'lucide-react';
+import { FiArrowLeft, FiCheckCircle, FiMessageSquare } from 'react-icons/fi';
 import { formatDate } from '@/lib/utils';
 import toast from 'react-hot-toast';
 
@@ -84,9 +84,10 @@ export default function MaintenanceDetailPage({ params }) {
   return (
     <div className="space-y-6">
       <Link href="/maintenance" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6B7A90] hover:text-[#183153] transition">
-        <ArrowLeft className="w-4 h-4" /> Back to Tickets Queue
+        <FiArrowLeft className="w-4 h-4" /> Back to Tickets Queue
       </Link>
 
+      {/* Header */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-3">
@@ -103,6 +104,7 @@ export default function MaintenanceDetailPage({ params }) {
         </span>
       </div>
 
+      {/* 7-Step Progress Stepper Visualizer */}
       <Card>
         <CardHeader>
           <CardTitle className="text-sm">Resolution Lifecycle Tracker</CardTitle>
@@ -124,7 +126,7 @@ export default function MaintenanceDetailPage({ params }) {
                         : 'bg-white text-[#6B7A90] border border-[#C7D7EA]'
                     }`}
                   >
-                    {isCompletedStep ? <CheckCircle2 className="w-4 h-4" /> : idx + 1}
+                    {isCompletedStep ? <FiCheckCircle className="w-4 h-4" /> : idx + 1}
                   </div>
                   <span className={`text-[11px] font-semibold ${isCurrentStep ? 'text-[#5E8FBF]' : isCompletedStep ? 'text-[#2E8B57]' : 'text-[#6B7A90]'}`}>
                     {step}
@@ -136,8 +138,10 @@ export default function MaintenanceDetailPage({ params }) {
         </CardContent>
       </Card>
 
+      {/* Main Grid */}
       <div className="grid md:grid-cols-3 gap-6">
         <div className="md:col-span-2 space-y-6">
+          {/* Ticket Description & Attachment Photos */}
           <Card>
             <CardHeader>
               <CardTitle>Ticket Details & Photos</CardTitle>
@@ -154,10 +158,11 @@ export default function MaintenanceDetailPage({ params }) {
             </CardContent>
           </Card>
 
+          {/* Activity Notes Feed */}
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
-                <MessageSquare className="w-4 h-4 text-[#5E8FBF]" />
+                <FiMessageSquare className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Status Activity & Technician Notes</span>
               </CardTitle>
             </CardHeader>

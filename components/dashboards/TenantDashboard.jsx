@@ -6,7 +6,7 @@ import Image from 'next/image';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '../ui/Card';
 import Badge from '../ui/Badge';
 import Button from '../ui/Button';
-import { Building2, Wrench, CalendarCheck, Sparkles, ArrowRight } from 'lucide-react';
+import { FiHome, FiTool, FiCalendar, FiCoffee, FiArrowRight } from 'react-icons/fi';
 import { formatPrice, formatDate } from '../../lib/utils';
 
 export default function TenantDashboard({ data }) {
@@ -29,12 +29,12 @@ export default function TenantDashboard({ data }) {
           <div className="flex gap-3">
             <Link href="/maintenance">
               <Button variant="secondary" size="sm">
-                <Wrench className="w-4 h-4" /> Report Issue
+                <FiTool className="w-4 h-4" /> Report Issue
               </Button>
             </Link>
             <Link href="/amenities">
               <Button variant="primary" size="sm">
-                <Sparkles className="w-4 h-4" /> Book Amenity
+                <FiCoffee className="w-4 h-4" /> Book Amenity
               </Button>
             </Link>
           </div>

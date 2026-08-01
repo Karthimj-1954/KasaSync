@@ -7,18 +7,18 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  Building2,
-  CalendarCheck,
-  Wrench,
-  Sparkles,
-  MessageSquare,
-  BarChart3,
-  CheckCircle2,
-  XCircle,
-  ArrowRight,
-  ShieldCheck,
-  Check
-} from 'lucide-react';
+  FiGrid,
+  FiCalendar,
+  FiTool,
+  FiCoffee,
+  FiMessageSquare,
+  FiBarChart2,
+  FiCheckCircle,
+  FiXCircle,
+  FiArrowRight,
+  FiShield,
+  FiCheck
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -40,7 +40,7 @@ export default function FeaturesPage() {
         <section className="max-w-5xl mx-auto text-center space-y-6">
           <motion.div initial="hidden" animate="visible" variants={staggerContainer} className="space-y-6">
             <motion.div variants={fadeIn} className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#8EB3D1]/30 text-xs font-semibold text-[#183153] shadow-sm">
-              <Sparkles className="w-4 h-4 text-[#6F9DCB]" />
+              <FiCoffee className="w-4 h-4 text-[#6F9DCB]" />
               <span>Full-Stack SaaS Platform</span>
             </motion.div>
 
@@ -60,7 +60,7 @@ export default function FeaturesPage() {
               </Link>
               <Link href="/contact">
                 <Button variant="secondary" size="lg" className="px-8">
-                  Contact Sales <ArrowRight className="w-4 h-4" />
+                  Contact Sales <FiArrowRight className="w-4 h-4" />
                 </Button>
               </Link>
             </motion.div>
@@ -83,32 +83,32 @@ export default function FeaturesPage() {
           >
             {[
               {
-                icon: Building2,
+                icon: FiGrid,
                 category: 'Property Management',
                 items: ['Property Listings', 'Image Gallery', 'Availability Tracking', 'Owner Dashboard']
               },
               {
-                icon: CalendarCheck,
+                icon: FiCalendar,
                 category: 'Booking System',
                 items: ['Instant Booking', 'Booking Approval', 'Calendar View', 'Conflict Detection']
               },
               {
-                icon: Wrench,
+                icon: FiTool,
                 category: 'Maintenance',
                 items: ['Create Requests', 'Assign Staff', 'Status Tracking', 'Photo Uploads']
               },
               {
-                icon: Sparkles,
+                icon: FiCoffee,
                 category: 'Community Amenities',
                 items: ['Reserve Facilities', 'Gym Booking', 'Swimming Pool', 'Clubhouse']
               },
               {
-                icon: MessageSquare,
+                icon: FiMessageSquare,
                 category: 'Messaging',
                 items: ['Owner ↔ Tenant Chat', 'Notifications', 'Read Receipts', 'File Sharing']
               },
               {
-                icon: BarChart3,
+                icon: FiBarChart2,
                 category: 'Analytics',
                 items: ['Occupancy Rate', 'Revenue Reports', 'Maintenance Reports', 'Booking Statistics']
               }
@@ -126,7 +126,7 @@ export default function FeaturesPage() {
                 <ul className="space-y-2.5 pt-1">
                   {cat.items.map((item, itemIdx) => (
                     <li key={itemIdx} className="flex items-center gap-2.5 text-xs md:text-sm text-[#4A6484]">
-                      <Check className="w-4 h-4 text-[#6F9DCB] shrink-0" />
+                      <FiCheck className="w-4 h-4 text-[#6F9DCB] shrink-0" />
                       <span>{item}</span>
                     </li>
                   ))}
@@ -166,11 +166,11 @@ export default function FeaturesPage() {
                     <tr key={idx} className="hover:bg-[#F7E8A4]/10 transition">
                       <td className="p-4 md:p-5 font-semibold text-[#183153]">{row.aspect}</td>
                       <td className="p-4 md:p-5 text-slate-500 flex items-center gap-2">
-                        <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
+                        <FiXCircle className="w-4 h-4 text-rose-400 shrink-0" />
                         <span>{row.trad}</span>
                       </td>
                       <td className="p-4 md:p-5 font-semibold text-[#183153] flex items-center gap-2">
-                        <CheckCircle2 className="w-4 h-4 text-[#6F9DCB] shrink-0" />
+                        <FiCheckCircle className="w-4 h-4 text-[#6F9DCB] shrink-0" />
                         <span>{row.kasasync}</span>
                       </td>
                     </tr>

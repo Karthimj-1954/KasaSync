@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { notificationService } from '../../../services/notificationService';
 import { Card } from '../../../components/ui/Card';
 import Button from '../../../components/ui/Button';
-import { Bell, CheckCheck } from 'lucide-react';
+import { FiBell, FiCheck } from 'react-icons/fi';
 import { formatDate } from '../../../lib/utils';
 import toast from 'react-hot-toast';
 
@@ -39,7 +39,7 @@ export default function NotificationsPage() {
           <p className="text-xs text-[#6B7A90]">Real-time alerts for maintenance updates, bookings, and messages</p>
         </div>
         <Button variant="outline" size="sm" onClick={handleMarkAllRead}>
-          <CheckCheck className="w-4 h-4" /> Mark All as Read
+          <FiCheck className="w-4 h-4" /> Mark All as Read
         </Button>
       </div>
 
@@ -50,7 +50,7 @@ export default function NotificationsPage() {
         </div>
       ) : notifications.length === 0 ? (
         <Card className="text-center py-12">
-          <Bell className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
+          <FiBell className="w-12 h-12 text-[#5E8FBF] mx-auto mb-3" />
           <h4 className="text-base font-bold text-[#183153] font-poppins">No notifications</h4>
           <p className="text-xs text-[#6B7A90] mt-1">You are all caught up!</p>
         </Card>

@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import { Home, Mail } from 'lucide-react';
+import { FiHome, FiMail } from 'react-icons/fi';
 import { authService } from '@/services/authService';
 import toast from 'react-hot-toast';
 
@@ -33,7 +33,7 @@ export default function ForgotPasswordPage() {
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2.5 mb-1">
             <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-              <Home className="w-6 h-6 text-white" />
+              <FiHome className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-[#183153] font-poppins">KasaSync</span>
           </Link>
@@ -55,7 +55,7 @@ export default function ForgotPasswordPage() {
               label="Registered Email Address"
               type="email"
               placeholder="name@example.com"
-              icon={Mail}
+              icon={FiMail}
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required

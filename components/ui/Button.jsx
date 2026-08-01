@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { cn } from '../../lib/utils';
-import { Loader2 } from 'lucide-react';
+import { FiLoader } from 'react-icons/fi';
 
 export default function Button({
   children,
@@ -40,7 +40,7 @@ export default function Button({
       className={cn(baseStyles, variants[variant], sizes[size], className)}
       {...props}
     >
-      {loading && <Loader2 className="w-4 h-4 animate-spin" />}
+      {loading && <FiLoader className="w-4 h-4 animate-spin" />}
       {children}
     </button>
   );

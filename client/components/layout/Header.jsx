@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import Button from '@/components/ui/Button';
-import { Home, ArrowRight, Menu, X } from 'lucide-react';
+import { FiHome, FiArrowRight, FiMenu, FiX } from 'react-icons/fi';
 
 export default function Header() {
   const pathname = usePathname();
@@ -29,7 +29,7 @@ export default function Header() {
         {/* Branding (Left) */}
         <Link href="/" className="flex items-center gap-3 shrink-0">
           <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-            <Home className="w-6 h-6 text-white" />
+            <FiHome className="w-6 h-6 text-white" />
           </div>
           <div>
             <h1 className="text-xl font-bold text-[#183153] font-poppins">KasaSync</h1>
@@ -70,7 +70,7 @@ export default function Header() {
           </Link>
           <Link href="/register">
             <Button variant="primary" size="sm">
-              Get Started <ArrowRight className="w-4 h-4" />
+              Get Started <FiArrowRight className="w-4 h-4" />
             </Button>
           </Link>
         </div>
@@ -81,7 +81,7 @@ export default function Header() {
           aria-label="Toggle Navigation Menu"
           className="md:hidden p-2 text-[#183153] hover:bg-[#EAF3FA] rounded-xl transition"
         >
-          {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {mobileMenuOpen ? <FiX className="w-6 h-6" /> : <FiMenu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -116,7 +116,7 @@ export default function Header() {
             </Link>
             <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
               <Button variant="primary" size="sm" className="w-full justify-center">
-                Get Started <ArrowRight className="w-4 h-4" />
+                Get Started <FiArrowRight className="w-4 h-4" />
               </Button>
             </Link>
           </div>

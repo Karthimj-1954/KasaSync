@@ -7,19 +7,19 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  Bell,
-  Mail,
-  Smartphone,
-  CalendarCheck,
-  Wrench,
-  DollarSign,
-  Megaphone,
-  CheckCircle2,
-  ArrowRight,
-  Sparkles,
-  HelpCircle,
-  ShieldCheck
-} from 'lucide-react';
+  FiBell,
+  FiMail,
+  FiSmartphone,
+  FiCalendar,
+  FiTool,
+  FiDollarSign,
+  FiVolume2,
+  FiCheckCircle,
+  FiArrowRight,
+  FiCoffee,
+  FiHelpCircle,
+  FiShield
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -47,7 +47,7 @@ export default function NotificationsPage() {
           >
             <motion.div variants={fadeIn} className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#D6E4F2] text-xs font-semibold text-[#183153] shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+                <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Real-Time Alert Dispatch</span>
               </div>
 
@@ -67,7 +67,7 @@ export default function NotificationsPage() {
                 </a>
                 <Link href="/login">
                   <Button variant="secondary" size="lg" className="px-8">
-                    Enable Notifications <ArrowRight className="w-4 h-4" />
+                    Enable Notifications <FiArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -79,7 +79,7 @@ export default function NotificationsPage() {
                 {/* Notification Card 1 */}
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] shadow-md flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0 border border-emerald-200">
-                    <CalendarCheck className="w-5 h-5" />
+                    <FiCalendar className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
@@ -93,7 +93,7 @@ export default function NotificationsPage() {
                 {/* Notification Card 2 */}
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] shadow-md flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center shrink-0 border border-amber-200">
-                    <Wrench className="w-5 h-5" />
+                    <FiTool className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
@@ -107,7 +107,7 @@ export default function NotificationsPage() {
                 {/* Notification Card 3 */}
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] shadow-md flex items-start gap-3">
                   <div className="w-10 h-10 rounded-xl bg-[#EAF3FA] text-[#2B5F9E] flex items-center justify-center shrink-0 border border-[#D6E4F2]">
-                    <Megaphone className="w-5 h-5" />
+                    <FiVolume2 className="w-5 h-5" />
                   </div>
                   <div className="flex-1">
                     <div className="flex items-center justify-between">
@@ -138,32 +138,32 @@ export default function NotificationsPage() {
           >
             {[
               {
-                icon: CalendarCheck,
+                icon: FiCalendar,
                 title: 'Booking Updates',
                 desc: 'Instant notifications when amenity reservations are requested, approved, or rescheduled.'
               },
               {
-                icon: Wrench,
+                icon: FiTool,
                 title: 'Maintenance Updates',
                 desc: 'Real-time 7-step status changes as work orders transition from dispatch to completion.'
               },
               {
-                icon: DollarSign,
+                icon: FiDollarSign,
                 title: 'Rent & Lease Reminders',
                 desc: 'Automated upcoming rent due date alerts and digital payment receipt confirmations.'
               },
               {
-                icon: Megaphone,
+                icon: FiVolume2,
                 title: 'Community Announcements',
                 desc: 'Broadcast notifications for building maintenance schedules, events, and emergency alerts.'
               },
               {
-                icon: Smartphone,
+                icon: FiSmartphone,
                 title: 'Mobile Push Notifications',
                 desc: 'Receive immediate push notifications on your smartphone for high-priority dispatches.'
               },
               {
-                icon: Mail,
+                icon: FiMail,
                 title: 'Automated Email Alerts',
                 desc: 'Structured email summaries for official lease documents, receipts, and account activity.'
               }
@@ -232,7 +232,7 @@ export default function NotificationsPage() {
             ].map((faq, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-2">
                 <div className="flex items-center gap-2 text-[#183153]">
-                  <HelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                  <FiHelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                   <h3 className="text-base font-bold font-poppins">{faq.q}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-[#425466] leading-relaxed pl-7">{faq.a}</p>

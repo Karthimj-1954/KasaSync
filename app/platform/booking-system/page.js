@@ -7,18 +7,16 @@ import Header from '@/components/layout/Header';
 import Footer from '@/components/layout/Footer';
 import Button from '@/components/ui/Button';
 import {
-  CalendarCheck,
-  Clock,
-  ShieldCheck,
-  Zap,
-  CheckCircle2,
-  ArrowRight,
-  Sparkles,
-  CalendarDays,
-  History,
-  HelpCircle,
-  AlertTriangle
-} from 'lucide-react';
+  FiCalendar,
+  FiClock,
+  FiShield,
+  FiZap,
+  FiCheckCircle,
+  FiArrowRight,
+  FiCoffee,
+  FiHelpCircle,
+  FiAlertTriangle
+} from 'react-icons/fi';
 
 const fadeIn = {
   hidden: { opacity: 0, y: 20 },
@@ -46,7 +44,7 @@ export default function BookingSystemPage() {
           >
             <motion.div variants={fadeIn} className="space-y-6">
               <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#EAF3FA] border border-[#D6E4F2] text-xs font-semibold text-[#183153] shadow-sm">
-                <Sparkles className="w-4 h-4 text-[#5E8FBF]" />
+                <FiCoffee className="w-4 h-4 text-[#5E8FBF]" />
                 <span>Zero Double-Booking Engine</span>
               </div>
 
@@ -66,7 +64,7 @@ export default function BookingSystemPage() {
                 </Link>
                 <Link href="/login">
                   <Button variant="secondary" size="lg" className="px-8">
-                    Book Now <ArrowRight className="w-4 h-4" />
+                    Book Now <FiArrowRight className="w-4 h-4" />
                   </Button>
                 </Link>
               </div>
@@ -78,7 +76,7 @@ export default function BookingSystemPage() {
                 <div className="flex items-center justify-between z-10">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 rounded-xl bg-[#183153] text-white flex items-center justify-center">
-                      <CalendarCheck className="w-5 h-5" />
+                      <FiCalendar className="w-5 h-5" />
                     </div>
                     <div>
                       <p className="text-sm font-bold text-[#183153]">Rooftop Lounge Pavilion</p>
@@ -92,12 +90,12 @@ export default function BookingSystemPage() {
 
                 <div className="grid grid-cols-2 gap-4 z-10">
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <Clock className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiClock className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Live Time Slots</p>
                     <p className="text-[10px] text-[#6B7A90]">Automated validation</p>
                   </div>
                   <div className="bg-white/90 backdrop-blur-md p-4 rounded-2xl border border-[#D6E4F2]">
-                    <AlertTriangle className="w-5 h-5 text-[#5E8FBF] mb-1" />
+                    <FiAlertTriangle className="w-5 h-5 text-[#5E8FBF] mb-1" />
                     <p className="text-xs font-bold text-[#183153]">Conflict Guard</p>
                     <p className="text-[10px] text-[#6B7A90]">Prevents double-booking</p>
                   </div>
@@ -105,7 +103,7 @@ export default function BookingSystemPage() {
 
                 <div className="bg-white p-4 rounded-2xl border border-[#D6E4F2] flex items-center justify-between z-10 shadow-sm">
                   <div className="flex items-center gap-3">
-                    <Zap className="w-5 h-5 text-[#5E8FBF]" />
+                    <FiZap className="w-5 h-5 text-[#5E8FBF]" />
                     <span className="text-xs font-bold text-[#183153]">Instant Confirmation & QR Token</span>
                   </div>
                   <span className="text-xs font-bold text-[#2B5F9E]">Ready</span>
@@ -131,32 +129,32 @@ export default function BookingSystemPage() {
           >
             {[
               {
-                icon: CalendarCheck,
+                icon: FiCalendar,
                 title: 'Online Booking',
                 desc: 'Schedule reservations 24/7 from smartphone or desktop without waiting for manual manager approval.'
               },
               {
-                icon: Clock,
+                icon: FiClock,
                 title: 'Real-Time Availability',
                 desc: 'Instant visual grid showing open, reserved, and maintenance time slots for every community amenity.'
               },
               {
-                icon: CalendarDays,
+                icon: FiCalendar,
                 title: 'Interactive Booking Calendar',
                 desc: 'Browse daily, weekly, and monthly availability views across all shared residential spaces.'
               },
               {
-                icon: ShieldCheck,
+                icon: FiShield,
                 title: 'Conflict Prevention Guard',
                 desc: 'Automated transaction checks guarantee two residents can never reserve the same slot.'
               },
               {
-                icon: Zap,
+                icon: FiZap,
                 title: 'Instant Confirmation',
                 desc: 'Receive immediate digital confirmation and email notifications once a booking request is validated.'
               },
               {
-                icon: History,
+                icon: FiClock,
                 title: 'Complete Booking History',
                 desc: 'Track active, upcoming, completed, and canceled reservations in your personal tenant portal.'
               }
@@ -194,7 +192,7 @@ export default function BookingSystemPage() {
               'Mobile-friendly interface'
             ].map((benefit, idx) => (
               <div key={idx} className="bg-white p-4 rounded-xl border border-[#EAF3FA] shadow-sm flex items-center gap-3">
-                <CheckCircle2 className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                <FiCheckCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                 <span className="text-sm font-semibold text-[#183153]">{benefit}</span>
               </div>
             ))}
@@ -225,7 +223,7 @@ export default function BookingSystemPage() {
             ].map((faq, idx) => (
               <div key={idx} className="bg-white p-6 rounded-2xl border border-[#EAF3FA] shadow-sm space-y-2">
                 <div className="flex items-center gap-2 text-[#183153]">
-                  <HelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
+                  <FiHelpCircle className="w-5 h-5 text-[#5E8FBF] shrink-0" />
                   <h3 className="text-base font-bold font-poppins">{faq.q}</h3>
                 </div>
                 <p className="text-xs md:text-sm text-[#425466] leading-relaxed pl-7">{faq.a}</p>

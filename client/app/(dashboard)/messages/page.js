@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react';
 import ChatWindow from '../../../components/chat/ChatWindow';
 import { authService } from '../../../services/authService';
 import { Card } from '../../../components/ui/Card';
-import { Users } from 'lucide-react';
+import { FiUsers } from 'react-icons/fi';
 
 export default function MessagesPage() {
   const [users, setUsers] = useState([]);
@@ -30,9 +30,10 @@ export default function MessagesPage() {
       </div>
 
       <div className="grid md:grid-cols-3 gap-6">
+        {/* Contact List */}
         <Card className="md:col-span-1 p-4">
           <h4 className="text-xs font-bold uppercase tracking-wider text-[#34495E] mb-3 flex items-center gap-2">
-            <Users className="w-4 h-4 text-[#5E8FBF]" /> Contacts & Channels
+            <FiUsers className="w-4 h-4 text-[#5E8FBF]" /> Contacts & Channels
           </h4>
           <div className="space-y-2">
             {loading ? (

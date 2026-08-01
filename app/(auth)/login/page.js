@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation';
 import { useAuth } from '@/context/AuthContext';
 import Input from '@/components/ui/Input';
 import Button from '@/components/ui/Button';
-import { Home, Mail, Lock, ShieldCheck, UserCheck, Wrench, Building2 } from 'lucide-react';
+import { FiHome, FiMail, FiLock, FiShield, FiUserCheck, FiTool, FiGrid } from 'react-icons/fi';
 
 export default function LoginPage() {
   const router = useRouter();
@@ -38,7 +38,7 @@ export default function LoginPage() {
         <div className="text-center space-y-2">
           <Link href="/" className="inline-flex items-center gap-2.5 mb-1">
             <div className="w-10 h-10 rounded-2xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-              <Home className="w-6 h-6 text-white" />
+              <FiHome className="w-6 h-6 text-white" />
             </div>
             <span className="text-2xl font-bold text-[#183153] font-poppins">KasaSync</span>
           </Link>
@@ -54,7 +54,7 @@ export default function LoginPage() {
               onClick={() => handleQuickLogin('admin@kasasync.com')}
               className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <ShieldCheck className="w-4 h-4 text-[#183153] shrink-0" />
+              <FiShield className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
                 <p className="text-xs font-bold text-[#183153]">Admin</p>
                 <p className="text-[10px] text-[#425466] truncate">admin@kasasync.com</p>
@@ -65,7 +65,7 @@ export default function LoginPage() {
               onClick={() => handleQuickLogin('owner@kasasync.com')}
               className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <Building2 className="w-4 h-4 text-[#183153] shrink-0" />
+              <FiGrid className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
                 <p className="text-xs font-bold text-[#183153]">Owner</p>
                 <p className="text-[10px] text-[#425466] truncate">owner@kasasync.com</p>
@@ -76,7 +76,7 @@ export default function LoginPage() {
               onClick={() => handleQuickLogin('tenant@kasasync.com')}
               className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <UserCheck className="w-4 h-4 text-[#183153] shrink-0" />
+              <FiUserCheck className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
                 <p className="text-xs font-bold text-[#183153]">Tenant</p>
                 <p className="text-[10px] text-[#425466] truncate">tenant@kasasync.com</p>
@@ -87,7 +87,7 @@ export default function LoginPage() {
               onClick={() => handleQuickLogin('staff@kasasync.com')}
               className="p-3 rounded-2xl bg-[#EAF3FA] hover:bg-[#C7DDF3] border border-[#C7D7EA] text-left transition flex items-center gap-2.5 shadow-sm cursor-pointer"
             >
-              <Wrench className="w-4 h-4 text-[#183153] shrink-0" />
+              <FiTool className="w-4 h-4 text-[#183153] shrink-0" />
               <div className="overflow-hidden">
                 <p className="text-xs font-bold text-[#183153]">Staff</p>
                 <p className="text-[10px] text-[#425466] truncate">staff@kasasync.com</p>
@@ -102,7 +102,7 @@ export default function LoginPage() {
             label="Email Address"
             type="email"
             placeholder="name@example.com"
-            icon={Mail}
+            icon={FiMail}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
@@ -112,7 +112,7 @@ export default function LoginPage() {
             label="Password"
             type="password"
             placeholder="••••••••"
-            icon={Lock}
+            icon={FiLock}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required

@@ -8,7 +8,7 @@ import Select from '@/components/ui/Select';
 import Button from '@/components/ui/Button';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { propertyService } from '@/services/propertyService';
-import { ArrowLeft, Upload, Image as ImageIcon } from 'lucide-react';
+import { FiArrowLeft, FiUpload, FiImage } from 'react-icons/fi';
 import toast from 'react-hot-toast';
 
 export default function NewPropertyPage() {
@@ -94,7 +94,7 @@ export default function NewPropertyPage() {
   return (
     <div className="max-w-3xl mx-auto space-y-6">
       <Link href="/properties" className="inline-flex items-center gap-2 text-xs font-semibold text-[#6B7A90] hover:text-[#183153] transition">
-        <ArrowLeft className="w-4 h-4" /> Back to Properties
+        <FiArrowLeft className="w-4 h-4" /> Back to Properties
       </Link>
 
       <div>
@@ -248,7 +248,7 @@ export default function NewPropertyPage() {
                   className="border-2 border-dashed border-[#C7D7EA] hover:border-[#5E8FBF] bg-[#EAF3FA]/30 rounded-[20px] p-8 text-center cursor-pointer transition flex flex-col items-center justify-center gap-2 group"
                 >
                   <div className="w-12 h-12 rounded-2xl bg-white border border-[#C7D7EA] flex items-center justify-center text-[#5E8FBF] shadow-sm group-hover:scale-105 transition">
-                    <Upload className="w-6 h-6" />
+                    <FiUpload className="w-6 h-6" />
                   </div>
                   <div>
                     <p className="text-sm font-bold text-[#183153] font-poppins">Click to Upload Photo File</p>
@@ -265,7 +265,7 @@ export default function NewPropertyPage() {
                   placeholder="https://images.unsplash.com/photo-..."
                   value={imageUrlInput}
                   onChange={(e) => setImageUrlInput(e.target.value)}
-                  icon={ImageIcon}
+                  icon={FiImage}
                 />
                 <Button type="button" variant="secondary" onClick={handleUrlSubmit}>
                   Apply URL

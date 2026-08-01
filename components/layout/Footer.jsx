@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Home } from 'lucide-react';
+import { FiHome } from 'react-icons/fi';
 
 export default function Footer() {
   return (
@@ -15,7 +15,7 @@ export default function Footer() {
           <div className="lg:col-span-1 space-y-4">
             <Link href="/" className="inline-flex items-center gap-2.5">
               <div className="w-9 h-9 rounded-xl bg-[#5E8FBF] flex items-center justify-center shadow-md shadow-[#5E8FBF]/20">
-                <Home className="w-5 h-5 text-white" />
+                <FiHome className="w-5 h-5 text-white" />
               </div>
               <span className="text-xl font-bold text-white font-poppins tracking-tight">KasaSync</span>
             </Link>
