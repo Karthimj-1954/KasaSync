@@ -114,9 +114,9 @@ export default function Footer() {
                 </Link>
               </li>
               <li>
-                <a href="mailto:support@kasasync.com" className="hover:text-white transition-colors duration-200">
+                <Link href="/contact" className="hover:text-white transition-colors duration-200">
                   Support
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
